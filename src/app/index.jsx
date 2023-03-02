@@ -1,5 +1,11 @@
+import GateWay from "../routes";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <GateWay />
+    </>
+  );
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 
 function Category() {
-  return <div></div>;
+  return <h1>زیرگروه محصولات</h1>;
 }
 
 export default Category;

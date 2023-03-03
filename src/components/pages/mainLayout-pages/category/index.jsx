@@ -1,7 +1,9 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 function Category() {
-  return <h1>زیرگروه محصولات</h1>;
+    let [searchParams] = useSearchParams();
+    return <h1> {`گروه شماره  ${searchParams.get("id")}`} </h1>
 }
 
 export default Category;

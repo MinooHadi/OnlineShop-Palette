@@ -24,9 +24,9 @@ function GateWay() {
           {/* صنایع دتی، کتاب و مجله، لوازم التحریر */}
           <Route path="/" element={<Home />} />
           {/* خاتم و منبت کاری و ...، رمان و ...، ابزار نقاشی و رنگ آمیزی و ... */}
-          <Route path="/category?id=:catgoryId" element={<Category />} />
+          <Route path="/category" element={<Category />} />
           <Route path="products" element={<Products />} />
-          <Route path="/product?id=:productId" element={<Product />} />
+          <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/checkout" element={<Checkout />} />

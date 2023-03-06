@@ -32,7 +32,7 @@ function GateWay() {
           <Route path="/checkout" element={<Checkout />} />
         </Route>
         <Route path="/adminLogin" element={<LoginLayout />} />
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route element={<AdminLayout />}>
           <Route path="/admin/orders" element={<AdminPanelOrders />} />
           <Route path="/admin/stocs" element={<AdminPanelStocks />} />
           <Route path="/admin/products" element={<AdminPanelProducts />} />

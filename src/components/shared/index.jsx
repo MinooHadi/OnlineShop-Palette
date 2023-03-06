@@ -4,4 +4,3 @@ export { default as ProductCarts } from "./product-carts/index";
 export { default as Input } from "./input/index";
 export { default as Modal } from "./modal/index";
 export { default as Form } from "./form/index";
-export { default as Circle } from "./circle/index";

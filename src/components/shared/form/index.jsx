@@ -9,7 +9,7 @@ function Form() {
   const navigate = useNavigate()
 
   function login() {
-    navigate("/admin")
+    navigate("/admin/orders")
   }
 
   return (

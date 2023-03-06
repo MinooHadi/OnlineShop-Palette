@@ -1,6 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
-import logo from "./../../../src/assets/logo/1.png";
+import logo from "./../../../src/assets/logo/logo.png";
 
 import {GrUserAdmin} from "react-icons/gr";
 import {MdFavoriteBorder} from "react-icons/md";
@@ -21,18 +22,18 @@ function MainLayoutHeader() {
           </p>
         </div>
         <div className="flex gap-10">
-          <p className="flex flex-col items-center text-sm font-medium">
+          <Link className="flex flex-col items-center text-sm font-medium hover:text-yellow-500" to="/adminLogin">
             <GrUserAdmin size="1.5rem" />
             مدیریت
-          </p>
-          <p className="flex flex-col items-center text-sm font-medium">
+          </Link>
+          <Link className="flex flex-col items-center text-sm font-medium">
             <MdFavoriteBorder size="1.5rem" />
             مورد علاقه ها
-          </p>
-          <p className="flex flex-col items-center text-sm font-medium">
+          </Link>
+          <Link className="flex flex-col items-center text-sm font-medium">
             <BiShoppingBag size="1.5rem" />
             سبد خرید
-          </p>
+          </Link>
         </div>
       </div>
     </div>

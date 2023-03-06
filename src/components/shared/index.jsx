@@ -5,3 +5,4 @@ export { default as Input } from "./input/index";
 export { default as Modal } from "./modal/index";
 export { default as Form } from "./form/index";
 export { default as DrawerMenu } from "./drawerMenu/index";
+export { default as SubMenu } from "./subMenu/index";

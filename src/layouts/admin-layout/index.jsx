@@ -15,7 +15,7 @@ function AdminLayout() {
     switch (pathname) {
       case "/admin/orders":
         return "مدیریت سفارش ها";
-      case "/admin/stocs":
+      case "/admin/stocks":
         return "مدیریت موجودی ها";
       case "/admin/products":
         return "مدیریت کالاها";

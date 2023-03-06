@@ -6,8 +6,8 @@ import MainLayoutHeader from "../mainLayout-header";
 function MainLayout() {
   return (
     <>
-      <h1>صفحه اصلی</h1>
       <MainLayoutHeader />
+      <h1>صفحه اصلی</h1>
       <Outlet />
       <MainLayoutFooter />
     </>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import logo from "./../../../src/assets/logo/logo.png";
 
-import { GrUserAdmin } from "react-icons/gr";
+import { RiAdminLine } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { BiShoppingBag } from "react-icons/bi";
 
@@ -25,14 +25,14 @@ function MainLayoutHeader() {
             className="flex flex-col items-center text-sm font-medium hover:text-yellow-500"
             to="/adminLogin"
           >
-            <GrUserAdmin size="1.5rem" />
+            <RiAdminLine size="1.5rem" />
             مدیریت
           </Link>
-          <Link className="flex flex-col items-center text-sm font-medium">
+          <Link className="flex flex-col items-center text-sm font-medium hover:text-yellow-500">
             <MdFavoriteBorder size="1.5rem" />
             مورد علاقه ها
           </Link>
-          <Link className="flex flex-col items-center text-sm font-medium">
+          <Link className="flex flex-col items-center text-sm font-medium hover:text-yellow-500">
             <BiShoppingBag size="1.5rem" />
             سبد خرید
           </Link>

@@ -1,13 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Input from "../input";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function Form() {
+  const navigate = useNavigate()
+
+  function login() {
+    navigate("/admin")
+  }
+
   return (
-    <form className="w-1/3 border-4 rounded-lg border-yellow-400 py-10 m-auto fixed top-1/4 right-1/3 flex flex-col items-center gap-5">
+    <form onSubmit={login} className="w-1/3 border-4 rounded-lg border-yellow-400 py-10 m-auto fixed top-1/4 right-1/3 flex flex-col items-center gap-5">
       <div className="self-end pl-12 hover:text-yellow-400">
         <Link to="/">
           <AiOutlineArrowLeft size="1.5rem" />

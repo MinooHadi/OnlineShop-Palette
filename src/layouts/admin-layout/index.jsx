@@ -5,8 +5,8 @@ import AdminLayoutHeader from "../adminLayout-header";
 function AdminLayout() {
   return (
     <>
-      <h1>پنل ادمین</h1>
       <AdminLayoutHeader />
+      <h1>پنل ادمین</h1>
       <Outlet />
     </>
   );

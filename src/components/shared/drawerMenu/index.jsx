@@ -4,7 +4,7 @@ import Input from "../input";
 
 function DrawerMenu() {
   return (
-      <div className="w-1/4 bg-yellow-200 p-6 flex flex-col gap-5">
+      <div className="w-1/4 bg-yellow-200 p-6 flex flex-col gap-5 h-[600px] fixed top-40">
         <Input
           type="search"
           value=""

@@ -1,11 +1,8 @@
 import React from "react";
+import { Form } from "../../components/shared";
 
 function LoginLayout() {
-  return (
-    <>
-      <h1>صفحه لاگین</h1>
-    </>
-  );
+  return <Form />;
 }
 
 export default LoginLayout;

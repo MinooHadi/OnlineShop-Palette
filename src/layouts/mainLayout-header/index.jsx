@@ -1,12 +1,11 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import logo from "./../../../src/assets/logo/logo.png";
 
-import {GrUserAdmin} from "react-icons/gr";
-import {MdFavoriteBorder} from "react-icons/md";
-import {BiShoppingBag} from "react-icons/bi";
-
+import { GrUserAdmin } from "react-icons/gr";
+import { MdFavoriteBorder } from "react-icons/md";
+import { BiShoppingBag } from "react-icons/bi";
 
 function MainLayoutHeader() {
   return (
@@ -22,7 +21,10 @@ function MainLayoutHeader() {
           </p>
         </div>
         <div className="flex gap-10">
-          <Link className="flex flex-col items-center text-sm font-medium hover:text-yellow-500" to="/adminLogin">
+          <Link
+            className="flex flex-col items-center text-sm font-medium hover:text-yellow-500"
+            to="/adminLogin"
+          >
             <GrUserAdmin size="1.5rem" />
             مدیریت
           </Link>

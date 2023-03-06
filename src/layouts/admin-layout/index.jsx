@@ -1,17 +1,32 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { DrawerMenu } from "../../components/shared";
 import AdminLayoutHeader from "../adminLayout-header";
 
 function AdminLayout() {
   const [drawerMenu, setDrawerMenu] = useState(false);
+  const { pathname } = useLocation();
 
   function showHideDrawerMenu() {
     setDrawerMenu(!drawerMenu);
   }
+
+  function headerTitle() {
+    switch (pathname) {
+      case "/admin/orders":
+        return "مدیریت سفارش ها";
+      case "/admin/stocs":
+        return "مدیریت موجودی ها";
+      case "/admin/products":
+        return "مدیریت کالاها";
+      default:
+        return;
+    }
+  }
+
   return (
     <>
-      <AdminLayoutHeader />
+      <AdminLayoutHeader page={headerTitle()} />
       {drawerMenu ? (
         <div>
           <div
@@ -26,7 +41,6 @@ function AdminLayout() {
           onClick={showHideDrawerMenu}
         ></div>
       )}
-
       <Outlet />
     </>
   );

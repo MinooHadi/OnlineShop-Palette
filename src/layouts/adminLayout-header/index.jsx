@@ -5,7 +5,7 @@ import logo from "./../../assets/logo/logo.png";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
-function AdminLayoutHeader() {
+function AdminLayoutHeader(props) {
   return (
     <div>
       <div className="flex justify-center items-center text-yellow-700 bg-yellow-300 h-10">
@@ -16,6 +16,12 @@ function AdminLayoutHeader() {
           <img src={logo} alt="logo" className="w-32 h-24" />
           <p className="text-3xl font-bold text-yellow-900">
             پنل مدیریت فروشگاه
+          </p>
+        </div>
+        <div>
+          <p className="text-xl py-2 px-6 bg-yellow-900 rounded-full text-yellow-100">
+            {" "}
+            {props.page}{" "}
           </p>
         </div>
         <div className="hover:text-yellow-400">

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 
 import { BsClipboardCheck } from "react-icons/bs";
+import { fetchCategories } from "../../../../redux/Slices/categoriesSlice";
+import { fetchSubcategories } from "../../../../redux/Slices/subcategoriesSlice";
 
 function AdminPanelOrders() {
   const dispatch = useDispatch();
@@ -10,7 +12,10 @@ function AdminPanelOrders() {
 
   useEffect(() => {
     dispatch(fetchOrders());
+    dispatch(fetchCategories());
+    dispatch(fetchSubcategories());
   }, [dispatch]);
+
   return (
     <table className="m-auto border-2 border-yellow-900 mt-10 text-center">
       <thead className="font-bold">
@@ -32,7 +37,10 @@ function AdminPanelOrders() {
                 <td className="p-5">{item.prices}</td>
                 <td className="p-5">{item.createdAt}</td>
                 <td className="p-5 flex justify-center">
-                  <BsClipboardCheck size="1.2rem" className="hover:text-yellow-500" />
+                  <BsClipboardCheck
+                    size="1.2rem"
+                    className="hover:text-yellow-500"
+                  />
                 </td>
               </tr>
             );

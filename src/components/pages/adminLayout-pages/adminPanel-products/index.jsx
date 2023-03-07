@@ -9,7 +9,7 @@ import { Button } from "../../../shared";
 
 function AdminPanelProducts() {
   const dispatch = useDispatch();
-  const { products } = useSelector((store) => store);
+  const { products, categories } = useSelector((store) => store);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -41,7 +41,7 @@ function AdminPanelProducts() {
                   </td>
                   <td className="p-5"> {item.name} </td>
                   <td className="p-5">
-                    {item.category} {item.subcategory}
+                    {categories.data[item.category].name} {item.subcategory}
                   </td>
                   <td className="p-5">
                     <BiEditAlt

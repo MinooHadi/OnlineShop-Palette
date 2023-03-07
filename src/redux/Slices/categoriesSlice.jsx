@@ -12,7 +12,7 @@ export const fetchCategories = createAsyncThunk(
 const categoriesSlice = createSlice({
   name: "categories/list",
   initialState: {
-    data: [],
+    data: {},
     status: "idle",
   },
   reducers: {},
@@ -25,7 +25,11 @@ const categoriesSlice = createSlice({
     },
     [fetchCategories.fulfilled]: (state, action) => {
       state.status = "success";
-      state.data = action.payload;
+      const map = {};
+      action.payload.forEach(
+        (item) => (map[item.id] = { name: item.name, icon: item.icon })
+      );
+      state.data = map;
     },
   },
 });

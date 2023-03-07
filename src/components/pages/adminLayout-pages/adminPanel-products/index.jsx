@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { baseURL } from "../../../../api/constant";
-import { fetchProducts } from "../../../../redux/Slices/shoppingSlice";
+import { fetchProducts } from "../../../../redux/Slices/productsSlice";
 
 import { BiEditAlt } from "react-icons/bi";
 import { TbTrash } from "react-icons/tb";

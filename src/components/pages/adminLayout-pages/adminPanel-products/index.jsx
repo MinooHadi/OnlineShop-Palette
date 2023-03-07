@@ -15,7 +15,7 @@ function AdminPanelProducts() {
   }, [dispatch]);
 
   return (
-    <table className="m-auto border-2 border-yellow-900 mt-10">
+    <table className="m-auto border-2 border-yellow-900 mt-10 text-center">
       <thead className="font-bold">
         <tr className="border-2 border-yellow-900">
           <td className="p-5">تصویر</td>

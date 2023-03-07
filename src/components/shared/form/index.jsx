@@ -1,35 +1,17 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import Input from "../input";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { loginAdminService } from "../../../api/services/auth";
+import useAuth from "./customAuth";
 
 function Form() {
-  const navigate = useNavigate();
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-
-  const adminInfo = { username, password };
-
-  async function login(e) {
-    e.preventDefault();
-    try {
-      const res = await loginAdminService(adminInfo);
-      console.log(res.status);
-      if (res.status === 200) {
-        localStorage.setItem("token", res.data.accessToken);
-        navigate("/admin/orders");
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  const { register, handleSubmit, errors, login } = useAuth();
 
   return (
     <form
-      onSubmit={login}
+      onSubmit={handleSubmit(login)}
       className="w-1/3 border-4 rounded-lg border-yellow-400 py-10 m-auto fixed top-1/4 right-1/3 flex flex-col items-center gap-5"
     >
       <div className="self-end pl-12 hover:text-yellow-400">
@@ -40,16 +22,16 @@ function Form() {
       <Input
         lable="نام کاربری"
         type="text"
-        value={username}
         className="border-2 w-96 h-8"
-        onChange={(e) => setUserName(e.target.value)}
+        validation={{ ...register("username") }}
+        error={errors.username?.message}
       />
       <Input
         lable="رمز عبور"
         type="password"
-        value={password}
         className="border-2 w-96 h-8"
-        onChange={(e) => setPassword(e.target.value)}
+        validation={{ ...register("password") }}
+        error={errors.password?.message}
       />
       <Input
         type="submit"

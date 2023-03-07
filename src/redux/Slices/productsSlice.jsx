@@ -12,6 +12,7 @@ const productsSlice = createSlice({
     data: [],
     status: "idle",
   },
+  reducers: {},
   extraReducers: {
     [fetchProducts.pending]: (state) => {
       state.status = "pending";

@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { baseURL } from "../../../../api/constant";
 import { fetchProducts } from "../../../../redux/Slices/shoppingSlice";
 
+import { BiEditAlt } from "react-icons/bi";
+import { TbTrash } from "react-icons/tb";
+
 function AdminPanelProducts() {
   const dispatch = useDispatch();
   const { products } = useSelector((store) => store);
@@ -23,19 +26,27 @@ function AdminPanelProducts() {
         </tr>
       </thead>
       <tbody>
-        {products.data &&
+        {products.status === "success" &&
           products.data.map((item) => {
             return (
               <tr>
                 <td className="p-5">
-                  <img src={`${baseURL}/files/${item.thumbnail}`} className="w-20" alt={item.name}/>
+                  <img
+                    src={`${baseURL}/files/${item.thumbnail}`}
+                    className="w-20"
+                    alt={item.name}
+                  />
                 </td>
                 <td className="p-5"> {item.name} </td>
                 <td className="p-5">
                   {item.category} {item.subcategory}
                 </td>
-                <td className="p-5">ویرایش</td>
-                <td className="p-5">حذف</td>
+                <td className="p-5">
+                  <BiEditAlt size="1.5rem" className="hover:text-yellow-500" />
+                </td>
+                <td className="p-5">
+                  <TbTrash size="1.5rem" className="hover:text-yellow-500" />
+                </td>
               </tr>
             );
           })}

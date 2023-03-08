@@ -4,15 +4,16 @@ import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 
 import { BsClipboardCheck } from "react-icons/bs";
 import { Pagination, Table } from "../../../shared";
+import { useSearchParams } from "react-router-dom";
 
 function AdminPanelOrders() {
   const dispatch = useDispatch();
   const { orders } = useSelector((store) => store);
-  const [currentPage, setCurrentPage] = useState(1)
+  const [params, setParams] = useSearchParams()
 
   useEffect(() => {
-    dispatch(fetchOrders(currentPage));
-  }, [dispatch, currentPage]);
+    dispatch(fetchOrders({page: params.get("page"), delivered: params.get("delivered")}));
+  }, [dispatch, params]);
 
   function calculatePageCount() {
     const pageCount = Math.ceil(orders.totalCount / 6)
@@ -20,7 +21,8 @@ function AdminPanelOrders() {
   }
 
   function getPageNumber(e) {
-    setCurrentPage(e.target.innerText);
+    params.set("page", e.target.innerText)
+    setParams(params.toString())
   }
 
   return (

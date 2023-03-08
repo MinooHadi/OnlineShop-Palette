@@ -3,7 +3,6 @@ import { baseURL } from "../../../api/constant";
 
 function Table(props) {
 
-
   function createTd(data) {
     return props.td.map((item) => {
       return props.renderInSrc.includes(item) ? (

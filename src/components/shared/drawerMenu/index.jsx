@@ -34,13 +34,13 @@ function DrawerMenu() {
   function rowClicked(e) {
     const id = e.target.id;
     switch (id) {
-      case "1":
+      case "0":
         params.delete("delivered");
         break;
-      case "2":
+      case "1":
         params.set("delivered", true);
         break;
-      case "3":
+      case "2":
         params.set("delivered", false);
         break;
     }
@@ -64,10 +64,10 @@ function DrawerMenu() {
         {ordersSub && (
           <SubMenu
             items={[
-              { name: "همه سفارش ها", id: 1 },
-              { name: "سفارش های ارسال شده", id: 2 },
-              { name: "سفارش های ارسال نشده", id: 3 },
+              { name: "سفارش های ارسال شده", id: 1 },
+              { name: "سفارش های ارسال نشده", id: 2 },
             ]}
+            all="همه سفارش ها"
             onClick={rowClicked}
           />
         )}
@@ -82,7 +82,7 @@ function DrawerMenu() {
             onClick={() => setStocksSub(!stocksSub)}
           />
         </div>
-        {stocksSub && <SubMenu items={categories.data} />}
+        {stocksSub && <SubMenu items={categories.data} all="همه موجودی ها" />}
       </div>
       <div>
         <div className="flex gap-1 w-fit">
@@ -94,7 +94,7 @@ function DrawerMenu() {
             onClick={() => setProductsSub(!productsSub)}
           />
         </div>
-        {productsSub && <SubMenu items={categories.data} />}
+        {productsSub && <SubMenu items={categories.data} all="همه کالاها" />}
       </div>
     </div>
   );

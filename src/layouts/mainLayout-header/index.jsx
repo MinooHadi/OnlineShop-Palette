@@ -8,6 +8,11 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { BiShoppingBag } from "react-icons/bi";
 
 function MainLayoutHeader() {
+
+  function adminAuth() {
+    return Boolean(localStorage.getItem("token"))
+  }
+
   return (
     <div className="flex flex-col">
       <div className="flex justify-center items-center text-yellow-700 bg-yellow-300 h-10">
@@ -23,7 +28,7 @@ function MainLayoutHeader() {
         <div className="flex gap-10">
           <Link
             className="flex flex-col items-center text-sm font-medium hover:text-yellow-500"
-            to="/adminLogin"
+            to={adminAuth() ? "/admin/orders" : "/adminLogin"}
           >
             <RiAdminLine size="1.5rem" />
             مدیریت

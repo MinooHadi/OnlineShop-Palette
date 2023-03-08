@@ -4,6 +4,7 @@ import Input from "../input";
 
 import { RiArrowDownSFill } from "react-icons/ri";
 import SubMenu from "../subMenu";
+import Select from "../select";
 
 function DrawerMenu() {
   const [orders, setOrders] = useState(false);
@@ -12,15 +13,9 @@ function DrawerMenu() {
 
   return (
     <div className="w-1/4 bg-yellow-200 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
-      <Input
-        type="search"
-        value=""
-        lable="جست و جو براساس نام مشتری"
-        className="border-2 h-8"
-      />
-      <select className="h-8">
-        <option>فیلتر</option>
-      </select>
+      <Input type="search" value="" lable="جست و جو" className="border-2 h-8" />
+      <Select opt={["فیلتر"]} />
+      <Select opt={["مرتب سازی"]} />
       <div>
         <div className="flex gap-1 w-fit">
           <Link to="/admin/orders">سفارش ها</Link>

@@ -5,15 +5,21 @@ import { fetchProducts } from "../../../../redux/Slices/productsSlice";
 import { BiEditAlt } from "react-icons/bi";
 import { TbTrash } from "react-icons/tb";
 import { Button, Pagination, Table } from "../../../shared";
+import { useSearchParams } from "react-router-dom";
 
 function AdminPanelProducts() {
   const dispatch = useDispatch();
   const { products } = useSelector((store) => store);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(fetchProducts(currentPage));
-  }, [dispatch, currentPage]);
+    dispatch(
+      fetchProducts({
+        page: params.get("page"),
+        categoryId: params.get("categoryId"),
+      })
+    );
+  }, [dispatch, params]);
 
   function calculatePageCount() {
     const pageCount = Math.ceil(products.totalCount / 6);
@@ -21,7 +27,8 @@ function AdminPanelProducts() {
   }
 
   function getPageNumber(e) {
-    setCurrentPage(e.target.innerText);
+    params.set("page", e.target.innerText);
+    setParams(params.toString())
   }
 
   return (

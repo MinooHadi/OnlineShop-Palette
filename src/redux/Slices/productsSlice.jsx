@@ -3,9 +3,11 @@ import { productsService } from "../../api/services/products";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchlist",
-  async (page) => {
-    const res = await productsService(page);
+  async ({page, categoryId}) => {
+    console.log(page, categoryId);
+    const res = await productsService(page, categoryId);
     const totalCount = res.headers["x-total-count"];
+    console.log(res, totalCount);
     return [res.data, totalCount];
   }
 );

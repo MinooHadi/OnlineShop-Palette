@@ -24,7 +24,6 @@ const ordersSlice = createSlice({
     },
     [fetchOrders.fulfilled]: (state, action) => {
       state.status = "success";
-      console.log(action.payload);
       state.data = action.payload[0];
       state.totalCount = action.payload[1];
     },

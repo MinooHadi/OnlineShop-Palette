@@ -9,20 +9,25 @@ import { useSearchParams } from "react-router-dom";
 function AdminPanelOrders() {
   const dispatch = useDispatch();
   const { orders } = useSelector((store) => store);
-  const [params, setParams] = useSearchParams()
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(fetchOrders({page: params.get("page"), delivered: params.get("delivered")}));
+    dispatch(
+      fetchOrders({
+        page: params.get("page"),
+        delivered: params.get("delivered"),
+      })
+    );
   }, [dispatch, params]);
 
   function calculatePageCount() {
-    const pageCount = Math.ceil(orders.totalCount / 6)
-    return pageCount
+    const pageCount = Math.ceil(orders.totalCount / 6);
+    return pageCount;
   }
 
   function getPageNumber(e) {
-    params.set("page", e.target.innerText)
-    setParams(params.toString())
+    params.set("page", e.target.innerText);
+    setParams(params.toString());
   }
 
   return (

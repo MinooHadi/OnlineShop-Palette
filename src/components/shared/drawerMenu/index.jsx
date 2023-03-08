@@ -8,44 +8,87 @@ import Select from "../select";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 import { fetchOrders } from "../../../redux/Slices/ordersSlice";
+import { fetchProducts } from "../../../redux/Slices/productsSlice";
 
 function DrawerMenu() {
   const [ordersSub, setOrdersSub] = useState(false);
   const [stocksSub, setStocksSub] = useState(false);
   const [productsSub, setProductsSub] = useState(false);
-  const [params, setParams] = useSearchParams();
+  const [orderParams, setOrderParams] = useSearchParams();
+  const [productParams, setProductParams] = useSearchParams();
 
   const { categories } = useSelector((store) => store);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      fetchCategories({
-        page: params.get("page"),
-        delivered: params.get("delivered"),
-      })
-    );
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchOrders());
-  }, [dispatch, params]);
+    dispatch(
+      fetchOrders({
+        page: orderParams.get("page"),
+        delivered: orderParams.get("delivered"),
+      })
+    );
+  }, [dispatch, orderParams]);
 
-  function rowClicked(e) {
+  useEffect(() => {
+    dispatch(
+      fetchProducts({
+        page: productParams.get("page"),
+        categoryId: productParams.get("categoryId"),
+      })
+    );
+  }, [dispatch, productParams]);
+
+  function ordersFilter(e) {
     const id = e.target.id;
     switch (id) {
       case "0":
-        params.delete("delivered");
+        orderParams.delete("delivered");
         break;
       case "1":
-        params.set("delivered", true);
+        orderParams.set("delivered", true);
         break;
       case "2":
-        params.set("delivered", false);
+        orderParams.set("delivered", false);
         break;
     }
-    params.set("page", 1);
-    setParams(params.toString());
+    orderParams.set("page", 1);
+    setOrderParams(orderParams.toString());
+  }
+
+  function productsFilter(e) {
+    const id = e.target.id;
+    switch (id) {
+      case "0":
+        productParams.delete("categoryId");
+        break;
+      case "1":
+        productParams.set("categoryId", 1);
+        break;
+      case "2":
+        productParams.set("categoryId", 2);
+        break;
+      case "3":
+        productParams.set("categoryId", 3);
+        break;
+      case "4":
+        productParams.set("categoryId", 4);
+        break;
+      case "5":
+        productParams.set("categoryId", 5);
+        break;
+      case "6":
+        productParams.set("categoryId", 6);
+        break;
+      case "7":
+        productParams.set("categoryId", 7);
+        break;
+    }
+    productParams.set("page", 1);
+    setProductParams(productParams.toString());
   }
 
   return (
@@ -68,7 +111,7 @@ function DrawerMenu() {
               { name: "سفارش های ارسال نشده", id: 2 },
             ]}
             all="همه سفارش ها"
-            onClick={rowClicked}
+            onClick={ordersFilter}
           />
         )}
       </div>
@@ -94,7 +137,13 @@ function DrawerMenu() {
             onClick={() => setProductsSub(!productsSub)}
           />
         </div>
-        {productsSub && <SubMenu items={categories.data} all="همه کالاها" />}
+        {productsSub && (
+          <SubMenu
+            items={categories.data}
+            all="همه کالاها"
+            onClick={productsFilter}
+          />
+        )}
       </div>
     </div>
   );

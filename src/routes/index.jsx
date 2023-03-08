@@ -21,9 +21,7 @@ function GateWay() {
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
-          {/* صنایع دتی، کتاب و مجله، لوازم التحریر */}
           <Route path="/" element={<Home />} />
-          {/* خاتم و منبت کاری و ...، رمان و ...، ابزار نقاشی و رنگ آمیزی و ... */}
           <Route path="/category" element={<Category />} />
           <Route path="products" element={<Products />} />
           <Route path="/product" element={<Product />} />

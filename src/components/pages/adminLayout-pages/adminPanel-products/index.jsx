@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { baseURL } from "../../../../api/constant";
 import { fetchProducts } from "../../../../redux/Slices/productsSlice";
 
 import { BiEditAlt } from "react-icons/bi";
@@ -20,7 +19,7 @@ function AdminPanelProducts() {
       <Table
         thead={["تصویر", "نام کالا", "گروه", "زیرگروه"]}
         tbody={products.data}
-        td={["thumbnail", "name", "category", "subcategory"]}
+        td={["thumbnail", "name", ["category", "name"] , ["subcategory", "name"] ]}
         renderInSrc={["thumbnail"]}
         iconThead={["ویرایش", "حذف"]}
         iconTd={[

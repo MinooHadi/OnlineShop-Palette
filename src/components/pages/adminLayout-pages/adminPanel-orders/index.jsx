@@ -18,40 +18,10 @@ function AdminPanelOrders() {
   }, [dispatch]);
 
   return (
-    // <table className="m-auto border-2 border-yellow-900 mt-10 text-center">
-    //   <thead className="font-bold">
-    //     <tr className="border-2 border-yellow-900">
-    //       <td className="p-5">نام کالا</td>
-    //       <td className="p-5">مجموع قیمت</td>
-    //       <td className="p-5">زمان ثبت سفارش</td>
-    //       <td className="p-5">بررسی سفارش</td>
-    //     </tr>
-    //   </thead>
-    //   <tbody>
-    //     {orders.status === "success" &&
-    //       orders.data.map((item) => {
-    //         return (
-    //           <tr>
-    //             <td className="p-5">
-    //               {item.username} {item.lastname}
-    //             </td>
-    //             <td className="p-5">{item.prices}</td>
-    //             <td className="p-5">{item.createdAt}</td>
-    //             <td className="p-5 flex justify-center">
-    //               <BsClipboardCheck
-    //                 size="1.2rem"
-    //                 className="hover:text-yellow-500"
-    //               />
-    //             </td>
-    //           </tr>
-    //         );
-    //       })}
-    //   </tbody>
-    // </table>
     <Table
-        thead={["نام کاربر", "مجموع قیمت", "زمان ثبت سفارش"]}
+        thead={["نام کاربر", "نام خانوادگی کاربر", "مجموع قیمت", "زمان ثبت سفارش"]}
         tbody={orders.data}
-        td={["username", "prices", "createdAt"]}
+        td={["username", "lastname", "prices", "createdAt"]}
         renderInSrc={[]}
         iconThead={["بررسی سفارش"]}
         iconTd={[

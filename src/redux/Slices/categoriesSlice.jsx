@@ -25,11 +25,7 @@ const categoriesSlice = createSlice({
     },
     [fetchCategories.fulfilled]: (state, action) => {
       state.status = "success";
-      const map = {};
-      action.payload.forEach(
-        (item) => (map[item.id] = { name: item.name, icon: item.icon })
-      );
-      state.data = map;
+      state.data = action.payload;
     },
   },
 });

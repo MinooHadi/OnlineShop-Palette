@@ -9,7 +9,7 @@ import { Button, Table } from "../../../shared";
 
 function AdminPanelProducts() {
   const dispatch = useDispatch();
-  const { products, categories } = useSelector((store) => store);
+  const { products } = useSelector((store) => store);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -18,9 +18,9 @@ function AdminPanelProducts() {
   return (
     <div className="flex">
       <Table
-        thead={["تصویر", "نام کالا", "دسته بندی"]}
+        thead={["تصویر", "نام کالا", "گروه", "زیرگروه"]}
         tbody={products.data}
-        td={["thumbnail", "name", "category"]}
+        td={["thumbnail", "name", "category", "subcategory"]}
         renderInSrc={["thumbnail"]}
         iconThead={["ویرایش", "حذف"]}
         iconTd={[

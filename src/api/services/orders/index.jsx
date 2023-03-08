@@ -1,3 +1,3 @@
 import { instance } from "../../constant";
 
-export const ordersService = () => instance.get("/orders");
+export const ordersService = (data) => instance.get(`/orders?_page=${data}&_limit=6`);

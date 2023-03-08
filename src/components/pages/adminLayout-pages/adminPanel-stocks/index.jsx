@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { fetchStocks } from "../../../../redux/Slices/stocksSlice";
 import { Button, Pagination, Table } from "../../../shared";
 
 function AdminPanelStocks() {
   const dispatch = useDispatch();
   const { stocks } = useSelector((store) => store);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(fetchStocks(currentPage));
-    console.log(currentPage);
-  }, [dispatch, currentPage]);
+    dispatch(
+      fetchStocks({
+        page: params.get("page"),
+        categoryId: params.get("categoryId"),
+      })
+    );
+  }, [dispatch, params]);
 
   function calculatePageCount() {
     const pageCount = Math.ceil(stocks.totalCount / 6);
@@ -19,7 +24,8 @@ function AdminPanelStocks() {
   }
 
   function getPageNumber(e) {
-    setCurrentPage(e.target.innerText);
+    params.set("page", e.target.innerText)
+    setParams(params.toString())
   }
 
   return (

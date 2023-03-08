@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 import { fetchOrders } from "../../../redux/Slices/ordersSlice";
 import { fetchProducts } from "../../../redux/Slices/productsSlice";
+import { fetchStocks } from "../../../redux/Slices/stocksSlice";
 
 function DrawerMenu() {
   const [ordersSub, setOrdersSub] = useState(false);
@@ -16,6 +17,7 @@ function DrawerMenu() {
   const [productsSub, setProductsSub] = useState(false);
   const [orderParams, setOrderParams] = useSearchParams();
   const [productParams, setProductParams] = useSearchParams();
+  const [stockParams, setStockParams] = useSearchParams();
 
   const { categories } = useSelector((store) => store);
   const dispatch = useDispatch();
@@ -41,6 +43,15 @@ function DrawerMenu() {
       })
     );
   }, [dispatch, productParams]);
+
+  useEffect(() => {
+    dispatch(
+      fetchStocks({
+        page: stockParams.get("page"),
+        categoryId: stockParams.get("categoryId"),
+      })
+    );
+  }, [dispatch, stockParams]);
 
   function ordersFilter(e) {
     const id = e.target.id;
@@ -91,6 +102,38 @@ function DrawerMenu() {
     setProductParams(productParams.toString());
   }
 
+  function stocksFilter(e) {
+    const id = e.target.id;
+    switch (id) {
+      case "0":
+        stockParams.delete("categoryId");
+        break;
+      case "1":
+        stockParams.set("categoryId", 1);
+        break;
+      case "2":
+        stockParams.set("categoryId", 2);
+        break;
+      case "3":
+        stockParams.set("categoryId", 3);
+        break;
+      case "4":
+        stockParams.set("categoryId", 4);
+        break;
+      case "5":
+        stockParams.set("categoryId", 5);
+        break;
+      case "6":
+        stockParams.set("categoryId", 6);
+        break;
+      case "7":
+        stockParams.set("categoryId", 7);
+        break;
+    }
+    stockParams.set("page", 1);
+    setStockParams(stockParams.toString());
+  }
+
   return (
     <div className="w-1/4 bg-yellow-200 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
       <Input type="search" value="" lable="جست و جو" className="border-2 h-8" />
@@ -125,7 +168,13 @@ function DrawerMenu() {
             onClick={() => setStocksSub(!stocksSub)}
           />
         </div>
-        {stocksSub && <SubMenu items={categories.data} all="همه موجودی ها" />}
+        {stocksSub && (
+          <SubMenu
+            items={categories.data}
+            all="همه موجودی ها"
+            onClick={stocksFilter}
+          />
+        )}
       </div>
       <div>
         <div className="flex gap-1 w-fit">

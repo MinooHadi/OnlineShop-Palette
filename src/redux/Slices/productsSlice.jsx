@@ -1,16 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsService } from "../../api/services/products";
 
-export const fetchProducts = createAsyncThunk("products/fetchlist", async () => {
-  const res = await productsService();
-  return res.data;
-});
+export const fetchProducts = createAsyncThunk(
+  "products/fetchlist",
+  async (page) => {
+    const res = await productsService(page);
+    const totalCount = res.headers["x-total-count"];
+    return [res.data, totalCount];
+  }
+);
 
 const productsSlice = createSlice({
   name: "products/list",
   initialState: {
     data: [],
     status: "idle",
+    totalCount: 0,
   },
   reducers: {},
   extraReducers: {
@@ -22,7 +27,8 @@ const productsSlice = createSlice({
     },
     [fetchProducts.fulfilled]: (state, action) => {
       state.status = "success";
-      state.data = action.payload;
+      state.data = action.payload[0];
+      state.totalCount = action.payload[1];
     },
   },
 });

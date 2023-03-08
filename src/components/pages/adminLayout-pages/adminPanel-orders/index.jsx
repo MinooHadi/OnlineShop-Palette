@@ -5,7 +5,7 @@ import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 import { BsClipboardCheck } from "react-icons/bs";
 import { fetchCategories } from "../../../../redux/Slices/categoriesSlice";
 import { fetchSubcategories } from "../../../../redux/Slices/subcategoriesSlice";
-import { Table } from "../../../shared";
+import { Pagination, Table } from "../../../shared";
 
 function AdminPanelOrders() {
   const dispatch = useDispatch();
@@ -18,8 +18,14 @@ function AdminPanelOrders() {
   }, [dispatch]);
 
   return (
-    <Table
-        thead={["نام کاربر", "نام خانوادگی کاربر", "مجموع قیمت", "زمان ثبت سفارش"]}
+    <>
+      <Table
+        thead={[
+          "نام کاربر",
+          "نام خانوادگی کاربر",
+          "مجموع قیمت",
+          "زمان ثبت سفارش",
+        ]}
         tbody={orders.data}
         td={["username", "lastname", "prices", "createdAt"]}
         renderInSrc={[]}
@@ -28,6 +34,8 @@ function AdminPanelOrders() {
           <BsClipboardCheck size="1.2rem" className="hover:text-yellow-500" />,
         ]}
       />
+      <Pagination pageCount="10" />
+    </>
   );
 }
 

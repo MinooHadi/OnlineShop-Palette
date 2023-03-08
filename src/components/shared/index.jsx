@@ -8,3 +8,4 @@ export { default as DrawerMenu } from "./drawerMenu/index";
 export { default as SubMenu } from "./subMenu/index";
 export { default as Table } from "./table/index";
 export { default as Select } from "./select/index";
+export { default as Pagination } from "./pagination/index";

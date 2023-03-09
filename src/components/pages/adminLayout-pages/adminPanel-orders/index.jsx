@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+
+import { Pagination, Table } from "../../../shared";
 import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 
-import { BsClipboardCheck } from "react-icons/bs";
-import { Pagination, Table } from "../../../shared";
-import { useSearchParams } from "react-router-dom";
+import { ClipboardCheckIcon } from "../../../icons";
+
 
 function AdminPanelOrders() {
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ function AdminPanelOrders() {
         renderInSrc={[]}
         iconThead={["بررسی سفارش"]}
         iconTd={[
-          <BsClipboardCheck size="1.2rem" className="hover:text-yellow-500" />,
+          <ClipboardCheckIcon size="1.2rem" className="hover:text-yellow-500" />,
         ]}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />

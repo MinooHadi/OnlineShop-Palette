@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import logo from "./../../assets/logo/logo.png";
 
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { OutlineArrowLeftIcon } from "./../../components/icons";
 
 function AdminLayoutHeader(props) {
   return (
@@ -26,7 +26,7 @@ function AdminLayoutHeader(props) {
         </div>
         <div className="hover:text-yellow-400">
           <Link to="/">
-            <AiOutlineArrowLeft size="1.5rem" />
+            <OutlineArrowLeftIcon size="1.5rem" />
           </Link>
         </div>
       </div>

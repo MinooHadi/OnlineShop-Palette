@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Input from "../input";
-
-import { AiOutlineArrowLeft } from "react-icons/ai";
 import useAuth from "./customAuth";
+
+import { OutlineArrowLeftIcon } from "../../icons";
 
 function Form() {
   const { register, handleSubmit, errors, login } = useAuth();
@@ -16,7 +16,7 @@ function Form() {
     >
       <div className="self-end pl-12 hover:text-yellow-400">
         <Link to="/">
-          <AiOutlineArrowLeft size="1.5rem" />
+          <OutlineArrowLeftIcon size="1.5rem" />
         </Link>
       </div>
       <Input

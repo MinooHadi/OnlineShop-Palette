@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../../../redux/Slices/productsSlice";
-
-import { BiEditAlt } from "react-icons/bi";
-import { TbTrash } from "react-icons/tb";
-import { Button, Pagination, Table } from "../../../shared";
 import { useSearchParams } from "react-router-dom";
+
+import { fetchProducts } from "../../../../redux/Slices/productsSlice";
+import { Button, Pagination, Table } from "../../../shared";
+
+import { EditAltIcon, TrashIcon } from "../../../icons";
+
 
 function AdminPanelProducts() {
   const dispatch = useDispatch();
@@ -46,8 +47,8 @@ function AdminPanelProducts() {
           renderInSrc={["thumbnail"]}
           iconThead={["ویرایش", "حذف"]}
           iconTd={[
-            <BiEditAlt size="1.5rem" className="hover:text-yellow-500" />,
-            <TbTrash size="1.5rem" className="hover:text-yellow-500" />,
+            <EditAltIcon size="1.5rem" className="hover:text-yellow-500" />,
+            <TrashIcon size="1.5rem" className="hover:text-yellow-500" />,
           ]}
         />
         <Button

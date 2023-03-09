@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 import logo from "./../../../src/assets/logo/logo.png";
 
-import { RiAdminLine } from "react-icons/ri";
-import { MdFavoriteBorder } from "react-icons/md";
-import { BiShoppingBag } from "react-icons/bi";
+import { AdminLineIcon, FavoriteBorderIcon, ShoppingBagIcon } from "../../components/icons";
 
 function MainLayoutHeader() {
 
@@ -30,15 +28,15 @@ function MainLayoutHeader() {
             className="flex flex-col items-center text-sm font-medium hover:text-yellow-500"
             to={adminAuth() ? "/admin/orders" : "/adminLogin"}
           >
-            <RiAdminLine size="1.5rem" />
+            <AdminLineIcon size="1.5rem" />
             مدیریت
           </Link>
           <Link className="flex flex-col items-center text-sm font-medium hover:text-yellow-500">
-            <MdFavoriteBorder size="1.5rem" />
+            <FavoriteBorderIcon size="1.5rem" />
             مورد علاقه ها
           </Link>
           <Link className="flex flex-col items-center text-sm font-medium hover:text-yellow-500">
-            <BiShoppingBag size="1.5rem" />
+            <ShoppingBagIcon size="1.5rem" />
             سبد خرید
           </Link>
         </div>

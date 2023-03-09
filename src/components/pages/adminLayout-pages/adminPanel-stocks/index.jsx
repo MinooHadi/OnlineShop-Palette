@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+
 import { fetchStocks } from "../../../../redux/Slices/stocksSlice";
 import { Button, Pagination, Table } from "../../../shared";
 

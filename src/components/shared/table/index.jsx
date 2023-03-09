@@ -2,7 +2,6 @@ import React from "react";
 import { baseURL } from "../../../api/constant";
 
 function Table(props) {
-
   function createTd(data) {
     return props.td.map((item) => {
       return props.renderInSrc.includes(item) ? (
@@ -10,7 +9,9 @@ function Table(props) {
           <img src={`${baseURL}/files/${data[item]}`} className="w-20" />
         </td>
       ) : (
-        <td className="p-5"> {item instanceof Array ? data[item[0]][item[1]] : data[item]} </td>
+        <td className="p-5">
+          {item instanceof Array ? data[item[0]][item[1]] : data[item]}
+        </td>
       );
     });
   }
@@ -34,7 +35,9 @@ function Table(props) {
               {props.iconTd &&
                 props.iconTd.map((item) => (
                   <td>
-                    <div className="flex justify-center items-center">{item}</div>
+                    <div className="flex justify-center items-center">
+                      {item}
+                    </div>
                   </td>
                 ))}
             </tr>

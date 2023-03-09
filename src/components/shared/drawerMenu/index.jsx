@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../input";
+import { useDispatch, useSelector } from "react-redux";
 
-import { RiArrowDownSFill } from "react-icons/ri";
+import Input from "../input";
 import SubMenu from "../subMenu";
 import Select from "../select";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 
+import { ArrowDownSFillIcon } from "../../icons";
+
 function DrawerMenu() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [ordersSub, setOrdersSub] = useState(false);
   const [stocksSub, setStocksSub] = useState(false);
   const [productsSub, setProductsSub] = useState(false);
 
   const { categories } = useSelector((store) => store);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -40,10 +41,10 @@ function DrawerMenu() {
     const id = e.target.id;
     switch (id) {
       case "0":
-        navigate("/admin/products")
+        navigate("/admin/products");
         break;
-        default:
-          navigate(`/admin/products?categoryId=${id}`)
+      default:
+        navigate(`/admin/products?categoryId=${id}`);
     }
   }
 
@@ -67,7 +68,7 @@ function DrawerMenu() {
       <div>
         <div className="flex gap-1 w-fit">
           <Link to="/admin/orders">سفارش ها</Link>
-          <RiArrowDownSFill
+          <ArrowDownSFillIcon
             size="1.5rem"
             onClick={() => setOrdersSub(!ordersSub)}
           />
@@ -88,7 +89,7 @@ function DrawerMenu() {
           <Link to="/admin/stocks" className="flex gap-1 w-fit">
             موجودی و قیمت ها
           </Link>
-          <RiArrowDownSFill
+          <ArrowDownSFillIcon
             size="1.5rem"
             onClick={() => setStocksSub(!stocksSub)}
           />
@@ -106,7 +107,7 @@ function DrawerMenu() {
           <Link to="/admin/products" className="flex gap-1 w-fit">
             کالاها
           </Link>
-          <RiArrowDownSFill
+          <ArrowDownSFillIcon
             size="1.5rem"
             onClick={() => setProductsSub(!productsSub)}
           />

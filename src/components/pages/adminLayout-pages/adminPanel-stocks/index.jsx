@@ -25,13 +25,17 @@ function AdminPanelStocks() {
   }
 
   function getPageNumber(e) {
-    params.set("page", e.target.innerText)
-    setParams(params.toString())
+    params.set("page", e.target.innerText);
+    setParams(params.toString());
   }
 
   return (
     <>
-      <div className="flex">
+      <div>
+        <Button
+          title="ذخیره"
+          className="bg-rose-400 rounded-full text-slate-600 fixed top-40 left-4 h-14 w-28 mt-6 ml-6 vazir-extraBold"
+        />
         <Table
           thead={["نام کالا", "قیمت", "موجودی"]}
           tbody={stocks.data}
@@ -39,10 +43,6 @@ function AdminPanelStocks() {
           renderInSrc={[]}
           iconThead={[]}
           iconTd={[]}
-        />
-        <Button
-          title="ذخیره"
-          className="bg-green-200 text-green-900 h-14 w-36 mt-6 ml-6"
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />

@@ -34,7 +34,11 @@ function AdminPanelProducts() {
 
   return (
     <>
-      <div className="flex">
+      <div>
+      <Button
+          title="افزودن کالا جدید"
+          className="bg-rose-400 rounded-full text-slate-600 fixed top-40 left-4 h-14 w-32 mt-6 ml-6 vazir-extraBold"
+        />
         <Table
           thead={["تصویر", "نام کالا", "گروه", "زیرگروه"]}
           tbody={products.data}
@@ -51,10 +55,7 @@ function AdminPanelProducts() {
             <TrashIcon size="1.5rem" className="hover:text-yellow-500" />,
           ]}
         />
-        <Button
-          title="افزودن کالا جدید"
-          className="bg-green-200 text-green-900 h-14 w-36 mt-6 ml-6"
-        />
+       
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
     </>

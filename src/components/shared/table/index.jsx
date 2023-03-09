@@ -17,9 +17,9 @@ function Table(props) {
   }
 
   return (
-    <table className="m-auto border-2 border-yellow-900 mt-10 text-center">
-      <thead className="font-bold">
-        <tr className="border-2 border-yellow-900">
+    <table className="mx-auto w-1/2 border-2 border-slate-600 text-center mt-56 vazir-medium ">
+      <thead className="vazir-extraBold">
+        <tr className="border-2 border-slate-600">
           {props.thead.map((item) => (
             <td className="p-5">{item}</td>
           ))}

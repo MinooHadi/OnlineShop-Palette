@@ -3,7 +3,7 @@ import React from "react";
 function Input(props) {
   return (
     <div className="flex flex-col gap-2 relative">
-      <label className="pr-3"> {props.lable} </label>
+      <label className="pr-3 text-slate-600 vazir-extraBold"> {props.lable} </label>
       {props.type === "submit" ? (
         <input
           type={props.type}
@@ -18,7 +18,7 @@ function Input(props) {
         />
       )}
 
-      <p className="text-xs text-red-600 absolute top-16"> {props.error} </p>
+      <p className="text-xs text-red-600 absolute top-[70px] vazir-medium"> {props.error} </p>
     </div>
   );
 }

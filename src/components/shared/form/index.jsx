@@ -12,7 +12,7 @@ function Form() {
   return (
     <form
       onSubmit={handleSubmit(login)}
-      className="w-1/3 border-4 rounded-lg border-yellow-400 py-10 m-auto fixed top-1/4 right-1/3 flex flex-col items-center gap-5"
+      className="w-1/3 border-4 rounded-lg border-l-fuchsia-300 border-r-fuchsia-300 border-t-fuchsia-400 border-b-fuchsia-200 py-10 m-auto fixed top-[150px] right-1/3 flex flex-col items-center gap-8"
     >
       <div className="self-end pl-12 hover:text-yellow-400">
         <Link to="/">
@@ -36,7 +36,7 @@ function Form() {
       <Input
         type="submit"
         value="ورود به پنل ادمین"
-        className="bg-yellow-600 w-44 h-10 text-slate-50 font-semibold rounded-full mt-16"
+        className="mainHeaderColor w-44 h-14 text-slate-600 font-semibold rounded-full mt-16 vazir-bold"
       />
     </form>
   );

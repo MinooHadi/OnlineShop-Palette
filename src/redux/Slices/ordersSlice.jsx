@@ -24,7 +24,9 @@ const ordersSlice = createSlice({
     },
     [fetchOrders.fulfilled]: (state, action) => {
       state.status = "success";
-      state.data = action.payload[0];
+      const convertDate = [...action.payload[0]];
+      convertDate.map(item => item.createdAt = new Date().toLocaleDateString("fa-IR"));
+      state.data = convertDate;
       state.totalCount = action.payload[1];
     },
   },

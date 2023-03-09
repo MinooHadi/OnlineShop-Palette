@@ -9,7 +9,7 @@ import {
 
 function MainLayoutFooter() {
   return (
-    <div className="bg-yellow-300 h-40 w-full fixed bottom-0 flex justify-between items-center p-10">
+    <div className="mainFooterColor h-40 w-full fixed bottom-0 flex justify-between items-center p-10">
       <div className="flex flex-col gap-4">
         <p className="font-bold text-lg text-yellow-900">تماس با ما</p>
         <div>

@@ -12,3 +12,175 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+@font-face {
+  font-family: arsoo;
+  src: url(./assets/font/A.Arsoo.ttf);
+}
+.arsoo{
+  font-family: arsoo;
+}
+
+@font-face {
+  font-family: bardiya;
+  src: url(./assets/font/B\ Bardiya.ttf);
+}
+.bardiya{
+  font-family: bardiya;
+}
+
+@font-face {
+  font-family: chini;
+  src: url(./assets/font/B\ Chini.ttf);
+}
+.chini{
+  font-family: chini;
+}
+
+@font-face {
+  font-family: elham;
+  src: url(./assets/font/B\ Elham.ttf);
+}
+.elham{
+  font-family: elham;
+}
+
+@font-face {
+  font-family: elm;
+  src: url(./assets/font/B\ Elm\ Bold.ttf);
+}
+.elm{
+  font-family: elm;
+}
+
+@font-face {
+  font-family: kamran;
+  src: url(./assets/font/B\ Kamran.ttf);
+}
+.kamran{
+  font-family: kamran;
+}
+
+@font-face {
+  font-family: outline;
+  src: url(./assets/font/B\ Kamran\ Outline.ttf);
+}
+.outline{
+  font-family: outline;
+}
+
+@font-face {
+  font-family: morvarid;
+  src: url(./assets/font/B\ Morvarid.ttf);
+}
+.morvarid{
+  font-family: morvarid;
+}
+
+@font-face {
+  font-family: narm;
+  src: url(./assets/font/B\ Narm.ttf);
+}
+.narm{
+  font-family: narm;
+}
+
+@font-face {
+  font-family: shadi;
+  src: url(./assets/font/B\ Shadi.ttf);
+}
+.shadi{
+  font-family: shadi;
+}
+
+@font-face {
+  font-family: siavash;
+  src: url(./assets/font/B\ Siavash.ttf);
+}
+.siavash{
+  font-family: siavash;
+}
+
+@font-face {
+  font-family: vazir-black;
+  src: url(./assets/font/Vazirmatn-Black.ttf);
+}
+.vazir-black{
+  font-family: vazir-black;
+}
+
+@font-face {
+  font-family: vazir-bold;
+  src: url(./assets/font/Vazirmatn-Bold.ttf);
+}
+.vazir-bold{
+  font-family: vazir-bold;
+}
+
+@font-face {
+  font-family: vazir-extraBold;
+  src: url(./assets/font/Vazirmatn-ExtraBold.ttf);
+}
+.vazir-extraBold{
+  font-family: vazir-extraBold;
+}
+
+@font-face {
+  font-family: vazir-extraLight;
+  src: url(./assets/font/Vazirmatn-ExtraLight.ttf);
+}
+.vazir-extraLight{
+  font-family: vazir-extraLight;
+}
+
+@font-face {
+  font-family: vazir-light;
+  src: url(./assets/font/Vazirmatn-Light.ttf);
+}
+.vazir-light{
+  font-family: vazir-light;
+}
+
+@font-face {
+  font-family: vazir-medium;
+  src: url(./assets/font/Vazirmatn-Medium.ttf);
+}
+.vazir-medium{
+  font-family: vazir-medium;
+}
+
+@font-face {
+  font-family: vazir-regular;
+  src: url(./assets/font/Vazirmatn-Regular.ttf);
+}
+.vazir-regular{
+  font-family: vazir-regular;
+}
+
+@font-face {
+  font-family: vazir-semiBold;
+  src: url(./assets/font/Vazirmatn-SemiBold.ttf);
+}
+.vazir-semiBold{
+  font-family: vazir-semiBold;
+}
+
+@font-face {
+  font-family: vazir-thin;
+  src: url(./assets/font/Vazirmatn-Thin.ttf);
+}
+.vazir-thin{
+  font-family: vazir-thin;
+}
+
+.topColor{
+  background: linear-gradient(to right, rgb(56, 189, 248), rgb(251, 113, 133), rgb(163, 230, 53));
+}
+
+.mainHeaderColor {
+  background: linear-gradient(to right, rgb(254, 240, 138), rgb(251, 207, 232), rgb(244, 114, 182));
+}
+
+.mainFooterColor{
+  background-color: rgb(251, 207, 232);
+}

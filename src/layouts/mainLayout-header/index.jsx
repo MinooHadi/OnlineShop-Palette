@@ -28,15 +28,15 @@ function MainLayoutHeader() {
             className="flex flex-col items-center text-sm font-medium hover:text-lime-500"
             to={adminAuth() ? "/admin/orders" : "/adminLogin"}
           >
-            <AdminLineIcon size="1.5rem" />
+            <AdminLineIcon size="1.7rem" />
             مدیریت
           </Link>
           <Link className="flex flex-col items-center text-sm font-medium hover:text-red-500">
-            <FavoriteBorderIcon size="1.5rem" />
+            <FavoriteBorderIcon size="1.7rem" />
             مورد علاقه ها
           </Link>
           <Link className="flex flex-col items-center text-sm font-medium hover:text-blue-500">
-            <ShoppingBagIcon size="1.5rem" />
+            <ShoppingBagIcon size="1.7rem" />
             سبد خرید
           </Link>
         </div>

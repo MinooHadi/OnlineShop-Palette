@@ -37,7 +37,7 @@ function AdminPanelProducts() {
       <div>
       <Button
           title="افزودن کالا جدید"
-          className="bg-rose-400 rounded-full text-slate-600 fixed top-40 left-4 h-14 w-32 mt-6 ml-6 vazir-extraBold"
+          className="bg-rose-400 rounded-full shadow-lg shadow-rose-200 text-slate-600 fixed top-40 left-4 h-14 w-32 mt-6 ml-6 vazir-extraBold"
         />
         <Table
           thead={["تصویر", "نام کالا", "گروه", "زیرگروه"]}
@@ -51,8 +51,8 @@ function AdminPanelProducts() {
           renderInSrc={["thumbnail"]}
           iconThead={["ویرایش", "حذف"]}
           iconTd={[
-            <EditAltIcon size="1.5rem" className="hover:text-yellow-500" />,
-            <TrashIcon size="1.5rem" className="hover:text-yellow-500" />,
+            <EditAltIcon size="1.4rem" className="hover:text-rose-400" />,
+            <TrashIcon size="1.4rem" className="hover:text-rose-400" />,
           ]}
         />
        

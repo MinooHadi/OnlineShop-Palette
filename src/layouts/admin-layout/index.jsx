@@ -31,7 +31,7 @@ function AdminLayout() {
       {drawerMenu ? (
         <div>
           <div
-            className="w-8 h-16 rounded-l-full bg-rose-400 fixed right-80 top-40 flex items-center justify-center cursor-pointer"
+            className="w-8 h-16 rounded-l-full bg-rose-400 shadow-lg shadow-rose-200 fixed right-80 top-40 flex items-center justify-center cursor-pointer"
             onClick={showHideDrawerMenu}
           >
             <p className="text-slate-600 text-lg -rotate-90 vazir-semiBold">منو</p>

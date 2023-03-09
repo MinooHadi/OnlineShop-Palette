@@ -34,7 +34,7 @@ function AdminPanelStocks() {
       <div>
         <Button
           title="ذخیره"
-          className="bg-rose-400 rounded-full text-slate-600 fixed top-40 left-4 h-14 w-28 mt-6 ml-6 vazir-extraBold"
+          className="bg-rose-400 rounded-full shadow-lg shadow-rose-200 text-slate-600 fixed top-40 left-4 h-14 w-28 mt-6 ml-6 vazir-extraBold"
         />
         <Table
           thead={["نام کالا", "قیمت", "موجودی"]}

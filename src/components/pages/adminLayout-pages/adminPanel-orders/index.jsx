@@ -46,7 +46,7 @@ function AdminPanelOrders() {
         renderInSrc={[]}
         iconThead={["بررسی سفارش"]}
         iconTd={[
-          <ClipboardCheckIcon size="1.2rem" className="hover:text-yellow-500 font-bold" />,
+          <ClipboardCheckIcon size="1.2rem" className="hover:text-rose-400 font-bold" />,
         ]}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />

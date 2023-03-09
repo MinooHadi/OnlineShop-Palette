@@ -10,6 +10,14 @@ export const fetchStocks = createAsyncThunk(
   }
 );
 
+function ePersian(price) {
+  let n = parseFloat(price);
+  if(isNaN(n)) {
+      return '-'
+  }
+  return n.toLocaleString('fa-IR');
+}
+
 const stocksSlice = createSlice({
   name: "stocks/list",
   initialState: {
@@ -27,7 +35,12 @@ const stocksSlice = createSlice({
     },
     [fetchStocks.fulfilled]: (state, action) => {
       state.status = "success";
-      state.data = action.payload[0];
+      const convert = [...action.payload[0]]
+      convert.map(item => {
+        item.price = ePersian(item.price)
+        item.quantity = ePersian(item.quantity)
+      })
+      state.data = convert;
       state.totalCount = action.payload[1];
     },
   },

@@ -61,7 +61,7 @@ function DrawerMenu() {
   }
 
   return (
-    <div className="w-1/4 bg-yellow-200 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
+    <div className="w-1/4 bg-rose-100 border-rose-400 text-slate-600 vazir-bold border-2 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
       <Input type="search" value="" lable="جست و جو" className="border-2 h-8" />
       <Select opt={["فیلتر"]} />
       <Select opt={["مرتب سازی"]} />

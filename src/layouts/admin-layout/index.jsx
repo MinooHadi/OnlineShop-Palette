@@ -31,19 +31,19 @@ function AdminLayout() {
       {drawerMenu ? (
         <div>
           <div
-            className="w-8 h-16 rounded-l-full bg-yellow-300 fixed right-1/4 flex items-center justify-center cursor-pointer"
+            className="w-8 h-16 rounded-l-full bg-rose-400 fixed right-1/4 top-40 flex items-center justify-center cursor-pointer"
             onClick={showHideDrawerMenu}
           >
-            <p className="text-yellow-900 text-lg -rotate-90">منو</p>
+            <p className="text-slate-600 text-lg -rotate-90 vazir-semiBold">منو</p>
           </div>
           <DrawerMenu />
         </div>
       ) : (
         <div
-          className="w-8 h-16 rounded-l-full bg-yellow-300 fixed right-0 flex items-center justify-center cursor-pointer"
+          className="w-16 h-8 rounded-b-full bg-rose-400 shadow-lg top-40 shadow-rose-200 fixed right-0 flex items-center justify-center cursor-pointer"
           onClick={showHideDrawerMenu}
         >
-          <p className="text-yellow-900 text-lg -rotate-90">منو</p>
+          <p className="text-slate-600 text-lg vazir-semiBold">منو</p>
         </div>
       )}
       <Outlet />

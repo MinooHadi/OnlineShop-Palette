@@ -63,12 +63,12 @@ function Pagination(props) {
         </div>
       ) : (
         <div
-          className="m-auto my-5 flex flex-row-reverse gap-2 justify-start items-center w-52 overflow-x-scroll no-scrollbar"
+          className="m-auto my-5 flex flex-row-reverse gap-2 justify-start items-center w-fit overflow-x-scroll no-scrollbar"
           ref={divWidth}
         >
           {createPaginationDiv().map((item) => (
             <div
-              className="bg-rose-400 w-8 h-8 flex justify-center items-center rounded-full text-slate-600 vazir-extraBold hover:bg-rose-100  hover:cursor-pointer p-3"
+              className={`${item == currentPage ? "bg-rose-200" : "bg-rose-400" } w-8 h-8 flex justify-center items-center rounded-full text-slate-600 vazir-extraBold hover:bg-rose-100  hover:cursor-pointer p-3`}
               onClick={props.onClick}
             >
               {item}

@@ -10,7 +10,8 @@ import { TbBrandTiktok } from "react-icons/tb";
 import { RiAdminLine } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { BiShoppingBag } from "react-icons/bi";
-
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import {MdKeyboardDoubleArrowRight} from "react-icons/md"
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -22,5 +23,7 @@ export const FacebookCircleLineIcon = RiFacebookCircleLine;
 export const TwitterIcon = FiTwitter;
 export const BrandTiktokIcon = TbBrandTiktok;
 export const AdminLineIcon = RiAdminLine;
-export const FavoriteBorderIcon = MdFavoriteBorder
-export const ShoppingBagIcon = BiShoppingBag
+export const FavoriteBorderIcon = MdFavoriteBorder;
+export const ShoppingBagIcon = BiShoppingBag;
+export const KeyboardDoubleArrowLeftIcon = MdKeyboardDoubleArrowLeft;
+export const KeyboardDoubleArrowRightIcon = MdKeyboardDoubleArrowRight

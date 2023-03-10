@@ -11,8 +11,6 @@ function Pagination(props) {
   const [params] = useSearchParams()
   const currentPage = params.get("page") || 1
 
-  console.log(currentPage);
-
   function createPaginationDiv() {
     let pages = [];
     for (let i = 0; i < props.pageCount; i++) {

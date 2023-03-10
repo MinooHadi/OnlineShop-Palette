@@ -2,9 +2,9 @@ import React from "react";
 
 function Select(props) {
   return (
-    <select className="h-8">
+    <select className={props.className} onChange={props.onChange}>
       {props.opt.map((item) => (
-        <option> {item} </option>
+        <option> {item.name} </option>
       ))}
     </select>
   );

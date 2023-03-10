@@ -2,7 +2,7 @@ export { default as Button } from "./button/index";
 export { default as ProductCart } from "./product-cart/index";
 export { default as ProductCarts } from "./product-carts/index";
 export { default as Input } from "./input/index";
-export { default as Modal } from "./modal/index";
+export { default as AddEditProductModal } from "./addEditProductModal/index";
 export { default as Form } from "./form/index";
 export { default as DrawerMenu } from "./drawerMenu/index";
 export { default as SubMenu } from "./subMenu/index";

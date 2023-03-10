@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import { fetchProducts } from "../../../../redux/Slices/productsSlice";
-import { Button, Pagination, Table } from "../../../shared";
+import { AddEditProductModal, Button, Pagination, Table } from "../../../shared";
 
 import { EditAltIcon, TrashIcon } from "../../../icons";
-
 
 function AdminPanelProducts() {
   const dispatch = useDispatch();
   const { products } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
+  const [showAPModal, setShowAPModal] = useState(false)
 
   useEffect(() => {
     dispatch(
@@ -29,15 +29,23 @@ function AdminPanelProducts() {
 
   function getPageNumber(e) {
     params.set("page", e.target.innerText);
-    setParams(params.toString())
+    setParams(params.toString());
   }
 
+  function showAddProductModal() {
+    setShowAPModal(true)
+  }
+
+  function closeAddProductModal() {
+    setShowAPModal(false)
+  }
   return (
     <>
       <div>
-      <Button
+        <Button
           title="افزودن کالا جدید"
           className="bg-rose-400 rounded-full shadow-lg shadow-rose-200 text-slate-600 fixed top-40 left-4 h-14 w-32 mt-6 ml-6 vazir-extraBold"
+          onClick={showAddProductModal}
         />
         <Table
           thead={["تصویر", "نام کالا", "گروه", "زیرگروه"]}
@@ -55,9 +63,9 @@ function AdminPanelProducts() {
             <TrashIcon size="1.4rem" className="hover:text-rose-400" />,
           ]}
         />
-       
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
+      {showAPModal && <AddEditProductModal onClose={closeAddProductModal} /> }
     </>
   );
 }

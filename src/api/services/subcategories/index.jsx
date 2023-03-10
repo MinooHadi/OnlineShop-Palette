@@ -1,3 +1,3 @@
 import { instance } from "../../constant";
 
-export const subcategoriesService = () => instance.get("/subcategory");
+export const subcategoriesService = () => instance.get("/subcategories");

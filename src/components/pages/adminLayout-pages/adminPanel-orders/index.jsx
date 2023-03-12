@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import { Pagination, Table } from "../../../shared";
+import { CheckOrderModal, Pagination, Table } from "../../../shared";
 import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 
 import { ClipboardCheckIcon } from "../../../icons";
@@ -12,6 +12,7 @@ function AdminPanelOrders() {
   const dispatch = useDispatch();
   const { orders } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
+  const [showChOModal, setShowChOModal] = useState(false)
 
   useEffect(() => {
     dispatch(
@@ -32,6 +33,15 @@ function AdminPanelOrders() {
     setParams(params.toString());
   }
 
+  function showCheckOrderModal() {
+    setShowChOModal(true)
+  }
+
+  function closeCheckOrderModal() {
+    setShowChOModal(false)
+  }
+
+
   return (
     <div>
       <Table
@@ -46,10 +56,11 @@ function AdminPanelOrders() {
         renderInSrc={[]}
         iconThead={["بررسی سفارش"]}
         iconTd={[
-          <ClipboardCheckIcon size="1.2rem" className="hover:text-rose-400 font-bold" />,
+          <ClipboardCheckIcon size="1.2rem" className="hover:text-rose-400 font-bold" onClick={showCheckOrderModal} />,
         ]}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
+      {showChOModal && <CheckOrderModal onClose={closeCheckOrderModal} orders={orders.data} />}
     </div>
   );
 }

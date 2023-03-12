@@ -45,7 +45,7 @@ function AddEditProductModal(props) {
       <div className="flex flex-col gap-3">
         <lable className="pr-3 text-slate-600 vazir-extraBold">گروه کالا</lable>
         <Select
-          opt={[{name: "انتخاب گروه کالا"}, ...categories.data]}
+          opt={[{ name: "انتخاب گروه کالا" }, ...categories.data]}
           className="h-8 w-96 vazir-light text-slate-600"
           onChange={getCategoryId}
         />
@@ -56,7 +56,12 @@ function AddEditProductModal(props) {
             زیرگروه کالا
           </lable>
           <Select
-            opt={subcategories.data.filter((item) => item.categoryId === categoryId)}
+            opt={[
+              { name: "انتخاب زیرگروه کالا" },
+              ...subcategories.data.filter(
+                (item) => item.categoryId === categoryId
+              ),
+            ]}
             className="h-8 w-96 vazir-light text-slate-600"
           />
         </div>

@@ -7,15 +7,14 @@ import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 
 import { ClipboardCheckIcon } from "../../../icons";
 
-
 function AdminPanelOrders() {
   const dispatch = useDispatch();
   const { orders } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
-  const [showChOModal, setShowChOModal] = useState(false)
-  const selectedOrder = useRef()
+  const [showChOModal, setShowChOModal] = useState(false);
+  const selectedOrder = useRef();
 
-  const [selectedOrderId, setSelectedOrderId] = useState("")
+  const [selectedOrderId, setSelectedOrderId] = useState("");
 
   useEffect(() => {
     dispatch(
@@ -37,16 +36,17 @@ function AdminPanelOrders() {
   }
 
   function showCheckOrderModal(e) {
-    setShowChOModal(true)
-    let selected = e.target.parentElement.parentElement.parentElement.id
+    setShowChOModal(true);
+    let selected = e.target.parentElement.parentElement.parentElement.id;
     setSelectedOrderId(selected);
   }
 
-
   function closeCheckOrderModal() {
-    setShowChOModal(false)
+    setShowChOModal(false);
   }
 
+  console.log(orders.data);
+  console.log(selectedOrderId);
 
   return (
     <div>
@@ -62,12 +62,21 @@ function AdminPanelOrders() {
         renderInSrc={[]}
         iconThead={["بررسی سفارش"]}
         iconTd={[
-          <ClipboardCheckIcon size="1.2rem" className="hover:text-rose-400 font-bold" onClick={showCheckOrderModal} />,
+          <ClipboardCheckIcon
+            size="1.2rem"
+            className="hover:text-rose-400 font-bold"
+            onClick={showCheckOrderModal}
+          />,
         ]}
         myRef={selectedOrder}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
-      {showChOModal && <CheckOrderModal onClose={closeCheckOrderModal} orders={orders.data[selectedOrderId-1]} />}
+      {showChOModal && (
+        <CheckOrderModal
+          onClose={closeCheckOrderModal}
+          orders={orders.data[(selectedOrderId - 1) - (6 * (params.get("page") - 1))]}
+        />
+      )}
     </div>
   );
 }

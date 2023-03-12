@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import { fetchProducts } from "../../../../redux/Slices/productsSlice";
-import { AddEditProductModal, Button, Pagination, Table } from "../../../shared";
+import {
+  AddEditProductModal,
+  Button,
+  EditProductModal,
+  Pagination,
+  Table,
+} from "../../../shared";
 
 import { EditAltIcon, TrashIcon } from "../../../icons";
 
@@ -11,7 +17,8 @@ function AdminPanelProducts() {
   const dispatch = useDispatch();
   const { products } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
-  const [showAPModal, setShowAPModal] = useState(false)
+  const [showAPModal, setShowAPModal] = useState(false);
+  const [showEPModal, setshowEPModal] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -33,12 +40,21 @@ function AdminPanelProducts() {
   }
 
   function showAddProductModal() {
-    setShowAPModal(true)
+    setShowAPModal(true);
   }
 
   function closeAddProductModal() {
-    setShowAPModal(false)
+    setShowAPModal(false);
   }
+
+  function showEditProductModal() {
+    setshowEPModal(true);
+  }
+
+  function closeEddiProductModal() {
+    setshowEPModal(false);
+  }
+
   return (
     <>
       <div>
@@ -59,13 +75,18 @@ function AdminPanelProducts() {
           renderInSrc={["thumbnail"]}
           iconThead={["ویرایش", "حذف"]}
           iconTd={[
-            <EditAltIcon size="1.4rem" className="hover:text-rose-400" />,
+            <EditAltIcon
+              size="1.4rem"
+              className="hover:text-rose-400"
+              onClick={showEditProductModal}
+            />,
             <TrashIcon size="1.4rem" className="hover:text-rose-400" />,
           ]}
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
-      {showAPModal && <AddEditProductModal onClose={closeAddProductModal} /> }
+      {showAPModal && <AddEditProductModal onClose={closeAddProductModal} />}
+      {showEPModal && <EditProductModal onClose={closeEddiProductModal} />}
     </>
   );
 }

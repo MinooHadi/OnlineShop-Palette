@@ -39,6 +39,7 @@ const ordersSlice = createSlice({
       convert.map((item) => {
         item.prices = ePersian(item.prices)
         item.createdAt = new Date().toLocaleDateString("fa-IR");
+        item.expectAt = new Date().toLocaleDateString("fa-IR");
       });
       state.data = convert;
       state.totalCount = action.payload[1];

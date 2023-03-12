@@ -35,20 +35,20 @@ function CheckOrderModal(props) {
         <p className="vazir-extraBold text-slate-600">زمان سفارش: </p>
         <p className="vazir-light text-slate-800"> {props.orders.createdAt} </p>
       </div>
-      <table>
+      <table className="mx-auto w-[100%] border-2 border-slate-600 text-center mt-10 vazir-medium ">
         <thead>
-          <tr>
-            <td>کالا</td>
-            <td>قیمت</td>
-            <td>تعداد</td>
+          <tr className="border-2 border-slate-600">
+            <td className="p-5">کالا</td>
+            <td className="p-5">قیمت</td>
+            <td className="p-5">تعداد</td>
           </tr>
         </thead>
         <tbody>
           {props.orders.products.map(item => {
             return <tr>
-              <td> {item.name} </td>
-              <td> {item.price} </td>
-              <td> {item.count} </td>
+              <td className="p-5"> {item.name} </td>
+              <td className="p-5"> {item.price} </td>
+              <td className="p-5"> {item.count} </td>
             </tr>
           })}
         </tbody>

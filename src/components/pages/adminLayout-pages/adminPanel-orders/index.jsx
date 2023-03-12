@@ -15,7 +15,7 @@ function AdminPanelOrders() {
   const [showChOModal, setShowChOModal] = useState(false)
   const selectedOrder = useRef()
 
-  const [selectedOrderId, setSelectedOrderId] = useState(0)
+  const [selectedOrderId, setSelectedOrderId] = useState("")
 
   useEffect(() => {
     dispatch(
@@ -67,7 +67,7 @@ function AdminPanelOrders() {
         myRef={selectedOrder}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
-      {showChOModal && <CheckOrderModal onClose={closeCheckOrderModal} orders={orders.data[selectedOrderId]} />}
+      {showChOModal && <CheckOrderModal onClose={closeCheckOrderModal} orders={orders.data[selectedOrderId-1]} />}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
@@ -13,6 +13,9 @@ function AdminPanelOrders() {
   const { orders } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
   const [showChOModal, setShowChOModal] = useState(false)
+  const selectedOrder = useRef()
+
+  const [selectedOrderId, setSelectedOrderId] = useState(0)
 
   useEffect(() => {
     dispatch(
@@ -33,9 +36,12 @@ function AdminPanelOrders() {
     setParams(params.toString());
   }
 
-  function showCheckOrderModal() {
+  function showCheckOrderModal(e) {
     setShowChOModal(true)
+    let selected = e.target.parentElement.parentElement.parentElement.id
+    setSelectedOrderId(selected);
   }
+
 
   function closeCheckOrderModal() {
     setShowChOModal(false)
@@ -58,9 +64,10 @@ function AdminPanelOrders() {
         iconTd={[
           <ClipboardCheckIcon size="1.2rem" className="hover:text-rose-400 font-bold" onClick={showCheckOrderModal} />,
         ]}
+        myRef={selectedOrder}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
-      {showChOModal && <CheckOrderModal onClose={closeCheckOrderModal} orders={orders.data} />}
+      {showChOModal && <CheckOrderModal onClose={closeCheckOrderModal} orders={orders.data[selectedOrderId]} />}
     </div>
   );
 }

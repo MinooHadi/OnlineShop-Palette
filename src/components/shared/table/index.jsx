@@ -30,7 +30,7 @@ function Table(props) {
       <tbody>
         {props.tbody.map((item) => {
           return (
-            <tr>
+            <tr id={item.id} ref={props.myRef}>
               {createTd(item)}
               {props.iconTd &&
                 props.iconTd.map((item) => (

@@ -22,6 +22,8 @@ function AdminPanelProducts() {
   const [showEPModal, setShowEPModal] = useState(false);
   const [showDPModal, setShowDPModal] = useState(false);
 
+  const [selectedProductId, setSelectedProductId] = useState();
+
   useEffect(() => {
     dispatch(
       fetchProducts({
@@ -57,13 +59,20 @@ function AdminPanelProducts() {
     setShowEPModal(false);
   }
 
-  function showDeleteProductModal() {
+  function showDeleteProductModal(e) {
     setShowDPModal(true);
+    let selected = e.target.parentElement.parentElement.parentElement.id;
+    setSelectedProductId(selected);
   }
 
   function closeDeleteProductModal() {
-    setShowDPModal(false)
+    setShowDPModal(false);
   }
+
+
+  const selectedProduct = products.data.filter(
+    (item) => item.id == selectedProductId
+  );
 
   return (
     <>
@@ -90,14 +99,23 @@ function AdminPanelProducts() {
               className="hover:text-rose-400"
               onClick={showEditProductModal}
             />,
-            <TrashIcon size="1.4rem" className="hover:text-rose-400" onClick={showDeleteProductModal} />,
+            <TrashIcon
+              size="1.4rem"
+              className="hover:text-rose-400"
+              onClick={showDeleteProductModal}
+            />,
           ]}
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
       {showAPModal && <AddEditProductModal onClose={closeAddProductModal} />}
       {showEPModal && <EditProductModal onClose={closeEddiProductModal} />}
-      {showDPModal && <DeleteProductModal onClose={closeDeleteProductModal} />}
+      {showDPModal && (
+        <DeleteProductModal
+          onClose={closeDeleteProductModal}
+          products={selectedProduct[0]}
+        />
+      )}
     </>
   );
 }

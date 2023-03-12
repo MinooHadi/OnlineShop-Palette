@@ -12,7 +12,7 @@ function DeleteProductModal(props) {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
         onClick={props.onClose}
       />
-      <p className="text-slate-600 vazir-bold">آیا میخواهید آیتم مورد نظر را حذف کنید؟</p>
+      <p className="text-slate-600 vazir-bold">آیا میخواهید <span> {props.products.name} </span> را حذف کنید؟</p>
       <div className="w-[100%] flex justify-center gap-10">
         <Button title="بلی" className="w-20 py-2 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold" />
         <Button title="خیر" className="w-20 py-2 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold" />

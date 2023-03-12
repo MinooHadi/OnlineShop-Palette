@@ -6,6 +6,7 @@ import { fetchProducts } from "../../../../redux/Slices/productsSlice";
 import {
   AddEditProductModal,
   Button,
+  DeleteProductModal,
   EditProductModal,
   Pagination,
   Table,
@@ -18,7 +19,8 @@ function AdminPanelProducts() {
   const { products } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
   const [showAPModal, setShowAPModal] = useState(false);
-  const [showEPModal, setshowEPModal] = useState(false);
+  const [showEPModal, setShowEPModal] = useState(false);
+  const [showDPModal, setShowDPModal] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -48,11 +50,19 @@ function AdminPanelProducts() {
   }
 
   function showEditProductModal() {
-    setshowEPModal(true);
+    setShowEPModal(true);
   }
 
   function closeEddiProductModal() {
-    setshowEPModal(false);
+    setShowEPModal(false);
+  }
+
+  function showDeleteProductModal() {
+    setShowDPModal(true);
+  }
+
+  function closeDeleteProductModal() {
+    setShowDPModal(false)
   }
 
   return (
@@ -80,13 +90,14 @@ function AdminPanelProducts() {
               className="hover:text-rose-400"
               onClick={showEditProductModal}
             />,
-            <TrashIcon size="1.4rem" className="hover:text-rose-400" />,
+            <TrashIcon size="1.4rem" className="hover:text-rose-400" onClick={showDeleteProductModal} />,
           ]}
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
       {showAPModal && <AddEditProductModal onClose={closeAddProductModal} />}
       {showEPModal && <EditProductModal onClose={closeEddiProductModal} />}
+      {showDPModal && <DeleteProductModal onClose={closeDeleteProductModal} />}
     </>
   );
 }

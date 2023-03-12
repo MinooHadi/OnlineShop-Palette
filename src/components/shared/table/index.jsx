@@ -35,7 +35,7 @@ function Table(props) {
               {props.iconTd &&
                 props.iconTd.map((item) => (
                   <td>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center" >
                       {item}
                     </div>
                   </td>

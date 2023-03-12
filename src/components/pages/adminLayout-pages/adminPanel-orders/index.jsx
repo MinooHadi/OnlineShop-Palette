@@ -45,8 +45,7 @@ function AdminPanelOrders() {
     setShowChOModal(false);
   }
 
-  console.log(orders.data);
-  console.log(selectedOrderId);
+  const selectedIndex = (selectedOrderId-1) - (6 * ((params.get("page") || 1) -1));
 
   return (
     <div>
@@ -74,7 +73,7 @@ function AdminPanelOrders() {
       {showChOModal && (
         <CheckOrderModal
           onClose={closeCheckOrderModal}
-          orders={orders.data[(selectedOrderId - 1) - (6 * (params.get("page") - 1))]}
+          orders={orders.data[selectedIndex]}
         />
       )}
     </div>

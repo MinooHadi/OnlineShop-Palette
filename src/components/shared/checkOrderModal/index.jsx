@@ -44,16 +44,21 @@ function CheckOrderModal(props) {
           </tr>
         </thead>
         <tbody>
-          {props.orders.products.map(item => {
-            return <tr>
-              <td className="p-5"> {item.name} </td>
-              <td className="p-5"> {item.price} </td>
-              <td className="p-5"> {item.count} </td>
-            </tr>
+          {props.orders.products.map((item) => {
+            return (
+              <tr>
+                <td className="p-5"> {item.name} </td>
+                <td className="p-5"> {item.price} </td>
+                <td className="p-5"> {item.count} </td>
+              </tr>
+            );
           })}
         </tbody>
       </table>
-      <Button title="تحویل شد" className="p-3 mt-14 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold" />
+      <Button
+        title="تحویل شد"
+        className="p-3 mt-14 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold"
+      />
     </div>,
     document.getElementById("modal-root")
   );

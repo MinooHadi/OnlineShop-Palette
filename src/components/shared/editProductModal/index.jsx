@@ -5,6 +5,7 @@ import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 import { fetchSubcategories } from "../../../redux/Slices/subcategoriesSlice";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import Button from "../button";
+import FileInput from "../fileInput";
 import Input from "../input";
 import Select from "../select";
 
@@ -14,6 +15,8 @@ function EditProductModal(props) {
   const [subcategoryId, setSubcategoryId] = useState("");
   const { categories } = useSelector((store) => store);
   const { subcategories } = useSelector((store) => store);
+  const [coverImageName, setCoverImageName] = useState([]);
+  const [productImagesName, setProductImagesName] = useState([]);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -37,9 +40,19 @@ function EditProductModal(props) {
     setSubcategoryId(selectedSubcategory[0].id);
   }
 
+  function getFileName(e) {
+    setCoverImageName([e.target.files[0].name]);
+  }
+
+  function getFilesName(e) {
+    setProductImagesName([...Array.from(e.target.files).map(item => item.name)]);
+  }
+
   function saveProductInfo() {
     console.log("save");
   }
+
+
   return ReactDOM.createPortal(
     <div className="fixed flex flex-col gap-4 w-1/3 p-10 h-2/3 top-44 left-1/3 items-center border-2 bg-slate-100 overflow-auto no-scrollbar">
       <MdCloseCircleOutlineIcon
@@ -82,16 +95,24 @@ function EditProductModal(props) {
           onChange={getSubcategoryId}
         />
       </div>
-      <Input
-        type="file"
-        lable="تصویر کاور کالا"
-        className="border-2 w-96 h-8 bg-white"
-      />
-      <Input
-        type="file"
-        lable="تصاویر کالا"
-        className="border-2 w-96 h-8 bg-white"
-      />
+      <div>
+        <Input
+          type="file"
+          lable="تصویر کاور کالا"
+          className="border-2 w-96 h-8 bg-white"
+          onChange={getFileName}
+        />
+        <FileInput imgSrc={[props.editProduct.thumbnail]} imgName={coverImageName} />
+      </div>
+      <div>
+        <Input
+          type="file"
+          lable="تصاویر کالا"
+          className="border-2 w-96 h-8 bg-white"
+          onChange={getFilesName}
+        />
+        <FileInput imgSrc={props.editProduct.image} imgName={productImagesName} />
+      </div>
       <Input
         type="number"
         lable="قیمت کالا"

@@ -14,8 +14,8 @@ function AddProductModal(props) {
   const [categoryId, setCategoryId] = useState("");
   const { categories } = useSelector((store) => store);
   const { subcategories } = useSelector((store) => store);
-  const [coverImage, setCoverImage] = useState([]);
-  const [productImage, setProductImage] = useState([]);
+  const [coverImageName, setCoverImageName] = useState([]);
+  const [productImagesName, setProductImagesName] = useState([]);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -33,14 +33,12 @@ function AddProductModal(props) {
   }
 
   function getFileName(e) {
-    setCoverImage([e.target.files[0].name]);
+    setCoverImageName([e.target.files[0].name]);
   }
 
   function getFilesName(e) {
-    setProductImage([...Array.from(e.target.files).map(item => item.name)]);
+    setProductImagesName([...Array.from(e.target.files).map(item => item.name)]);
   }
-
-  console.log(productImage);
 
   function saveProductInfo() {
     console.log("save");
@@ -86,7 +84,7 @@ function AddProductModal(props) {
           className="border-2 w-96 h-8 bg-white coustum-file-inpute"
           onChange={getFileName}
         />
-        <FileInput imgName={coverImage} />
+        <FileInput imgName={coverImageName} />
       </div>
       <div>
         <Input
@@ -95,7 +93,7 @@ function AddProductModal(props) {
           className="border-2 w-96 h-8 bg-white"
           onChange={getFilesName}
         />
-        <FileInput imgName={productImage} />
+        <FileInput imgName={productImagesName} />
       </div>
       <Input type="number" lable="قیمت کالا" className="border-2 w-96 h-8" />
       <Input type="number" lable="موجودی کالا" className="border-2 w-96 h-8" />

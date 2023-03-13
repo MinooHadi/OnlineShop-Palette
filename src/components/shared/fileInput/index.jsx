@@ -1,16 +1,16 @@
 import React from "react";
+import { baseURL } from "../../../api/constant";
 
 function FileInput(props) {
-    console.log(props.imgName);
   return (
-    <div className="flex flex-col gap-1">
-      {props.imgSrc
-        ? props.imgSrc.map((itemImg) => (
-            <div>
-              <img src={itemImg} />
+    <div className="flex gap-5 mt-2">
+      {props.imgName.length
+        ? props.imgName.map((itemName) => <div> {itemName} </div>)
+        : props.imgSrc.map((itemImg) => (
+            <div className="w-12">
+              <img src={`${baseURL}/files/${itemImg}`} />
             </div>
-          ))
-        : props.imgName.map((itemName) => <div> {itemName} </div>)}
+          ))}
     </div>
   );
 }

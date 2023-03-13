@@ -10,5 +10,6 @@ export { default as Table } from "./table/index";
 export { default as Select } from "./select/index";
 export { default as Pagination } from "./pagination/index";
 export { default as EditProductModal } from "./editProductModal";
-export {default as DeleteProductModal} from "./deleteProductModal";
-export {default as CheckOrderModal} from "./checkOrderModal";
+export { default as DeleteProductModal } from "./deleteProductModal";
+export { default as CheckOrderModal } from "./checkOrderModal";
+export { default as FileInput } from "./fileInput";

@@ -13,6 +13,10 @@
   scrollbar-width: none; /* Firefox */
 }
 
+
+.coustum-file-inpute::file-selector-button {
+}
+
 @font-face {
   font-family: arsoo;
   src: url(./assets/font/A.Arsoo.ttf);

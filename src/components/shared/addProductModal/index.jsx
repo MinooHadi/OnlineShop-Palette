@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 import { fetchSubcategories } from "../../../redux/Slices/subcategoriesSlice";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import Button from "../button";
+import FileInput from "../fileInput";
 import Input from "../input";
 import Select from "../select";
 
@@ -13,6 +14,8 @@ function AddProductModal(props) {
   const [categoryId, setCategoryId] = useState("");
   const { categories } = useSelector((store) => store);
   const { subcategories } = useSelector((store) => store);
+  const [coverImage, setCoverImage] = useState([]);
+  const [productImage, setProductImage] = useState([]);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -28,6 +31,16 @@ function AddProductModal(props) {
     );
     setCategoryId(selectedCategory[0].id);
   }
+
+  function getFileName(e) {
+    setCoverImage([e.target.files[0].name]);
+  }
+
+  function getFilesName(e) {
+    setProductImage([...Array.from(e.target.files).map(item => item.name)]);
+  }
+
+  console.log(productImage);
 
   function saveProductInfo() {
     console.log("save");
@@ -66,17 +79,24 @@ function AddProductModal(props) {
           />
         </div>
       )}
-
-      <Input
-        type="file"
-        lable="تصویر کاور کالا"
-        className="border-2 w-96 h-8 bg-white"
-      />
-      <Input
-        type="file"
-        lable="تصاویر کالا"
-        className="border-2 w-96 h-8 bg-white"
-      />
+      <div>
+        <Input
+          type="file"
+          lable="تصویر کاور کالا"
+          className="border-2 w-96 h-8 bg-white coustum-file-inpute"
+          onChange={getFileName}
+        />
+        <FileInput imgName={coverImage} />
+      </div>
+      <div>
+        <Input
+          type="file"
+          lable="تصاویر کالا"
+          className="border-2 w-96 h-8 bg-white"
+          onChange={getFilesName}
+        />
+        <FileInput imgName={productImage} />
+      </div>
       <Input type="number" lable="قیمت کالا" className="border-2 w-96 h-8" />
       <Input type="number" lable="موجودی کالا" className="border-2 w-96 h-8" />
       <div className="flex flex-col gap-3">

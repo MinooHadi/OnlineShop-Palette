@@ -8,7 +8,7 @@ import Button from "../button";
 import Input from "../input";
 import Select from "../select";
 
-function AddEditProductModal(props) {
+function AddProductModal(props) {
   const dispatch = useDispatch();
   const [categoryId, setCategoryId] = useState("");
   const { categories } = useSelector((store) => store);
@@ -95,4 +95,4 @@ function AddEditProductModal(props) {
   );
 }
 
-export default AddEditProductModal;
+export default AddProductModal;

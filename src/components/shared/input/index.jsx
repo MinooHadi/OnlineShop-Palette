@@ -15,6 +15,7 @@ function Input(props) {
           type={props.type}
           className={props.className}
           {...props.validation}
+          defaultValue={props.defaultValue}
         />
       )}
 

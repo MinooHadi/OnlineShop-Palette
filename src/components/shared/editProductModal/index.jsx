@@ -9,8 +9,9 @@ import Input from "../input";
 import Select from "../select";
 
 function EditProductModal(props) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [categoryId, setCategoryId] = useState("");
+  const [subcategoryId, setSubcategoryId] = useState("");
   const { categories } = useSelector((store) => store);
   const { subcategories } = useSelector((store) => store);
 
@@ -29,6 +30,13 @@ function EditProductModal(props) {
     setCategoryId(selectedCategory[0].id);
   }
 
+  function getSubcategoryId(e) {
+    const selectedSubcategory = subcategories.data.filter(
+      (item) => item.name === e.target.value
+    );
+    setSubcategoryId(selectedSubcategory[0].id);
+  }
+
   function saveProductInfo() {
     console.log("save");
   }
@@ -39,33 +47,41 @@ function EditProductModal(props) {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
         onClick={props.onClose}
       />
-      <Input type="text" lable="نام کالا" className="border-2 w-96 h-8" />
-      <Input type="text" lable="برند کالا" className="border-2 w-96 h-8" />
+      <Input
+        type="text"
+        lable="نام کالا"
+        className="border-2 w-96 h-8"
+        defaultValue={props.editProduct.name}
+      />
+      <Input
+        type="text"
+        lable="برند کالا"
+        className="border-2 w-96 h-8"
+        defaultValue={props.editProduct.brand}
+      />
       <div className="flex flex-col gap-3">
         <lable className="pr-3 text-slate-600 vazir-extraBold">گروه کالا</lable>
         <Select
-          opt={[{ name: "انتخاب گروه کالا" }, ...categories.data]}
+          opt={[{ name: props.editProduct.category.name }, ...categories.data]}
           className="h-8 w-96 vazir-light text-slate-600"
           onChange={getCategoryId}
         />
       </div>
-      {categoryId && (
-        <div className="flex flex-col gap-3">
-          <lable className="pr-3 text-slate-600 vazir-extraBold">
-            زیرگروه کالا
-          </lable>
-          <Select
-            opt={[
-              { name: "انتخاب زیرگروه کالا" },
-              ...subcategories.data.filter(
-                (item) => item.categoryId === categoryId
-              ),
-            ]}
-            className="h-8 w-96 vazir-light text-slate-600"
-          />
-        </div>
-      )}
-
+      <div className="flex flex-col gap-3">
+        <lable className="pr-3 text-slate-600 vazir-extraBold">
+          زیرگروه کالا
+        </lable>
+        <Select
+          opt={[
+            { name: props.editProduct.subcategory.name },
+            ...subcategories.data.filter(
+              (item) => item.categoryId === categoryId
+            ),
+          ]}
+          className="h-8 w-96 vazir-light text-slate-600"
+          onChange={getSubcategoryId}
+        />
+      </div>
       <Input
         type="file"
         lable="تصویر کاور کالا"
@@ -76,13 +92,26 @@ function EditProductModal(props) {
         lable="تصاویر کالا"
         className="border-2 w-96 h-8 bg-white"
       />
-      <Input type="number" lable="قیمت کالا" className="border-2 w-96 h-8" />
-      <Input type="number" lable="موجودی کالا" className="border-2 w-96 h-8" />
+      <Input
+        type="number"
+        lable="قیمت کالا"
+        className="border-2 w-96 h-8"
+        defaultValue={props.editProduct.price}
+      />
+      <Input
+        type="number"
+        lable="موجودی کالا"
+        className="border-2 w-96 h-8"
+        defaultValue={props.editProduct.quantity}
+      />
       <div className="flex flex-col gap-3">
         <lable className="pr-3 text-slate-600 vazir-extraBold">
           توضیحات مربوط به کالا
         </lable>
-        <textarea className="w-96 h-28" />
+        <textarea
+          className="w-96 h-28"
+          defaultValue={props.editProduct.description}
+        />
       </div>
       <Button
         title="ذخیره اطلاعات"

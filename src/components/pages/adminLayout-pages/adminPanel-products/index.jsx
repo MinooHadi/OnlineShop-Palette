@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { fetchProducts } from "../../../../redux/Slices/productsSlice";
 import {
   AddEditProductModal,
+  AddProductModal,
   Button,
   DeleteProductModal,
   EditProductModal,
@@ -23,6 +24,7 @@ function AdminPanelProducts() {
   const [showDPModal, setShowDPModal] = useState(false);
 
   const [selectedProductId, setSelectedProductId] = useState();
+  const [selectedEditProducId, setSelectedEditProducId] = useState();
 
   useEffect(() => {
     dispatch(
@@ -51,8 +53,18 @@ function AdminPanelProducts() {
     setShowAPModal(false);
   }
 
-  function showEditProductModal() {
+  function showEditProductModal(e) {
     setShowEPModal(true);
+    let elem = e.target;
+    let selected;
+    if (elem.tagName === "svg") {
+      selected = elem.parentElement.dataset.id;
+    } else if (elem.tagName === "path") {
+      selected = elem.parentElement.parentElement.dataset.id;
+    } else {
+      return;
+    }
+    setSelectedEditProducId(selected);
   }
 
   function closeEddiProductModal() {
@@ -79,6 +91,10 @@ function AdminPanelProducts() {
 
   const selectedProduct = products.data.filter(
     (item) => item.id == selectedProductId
+  );
+
+  const selectedEditProduct = products.data.filter(
+    (item) => item.id == selectedEditProducId
   );
 
   return (
@@ -115,8 +131,13 @@ function AdminPanelProducts() {
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
-      {showAPModal && <AddEditProductModal onClose={closeAddProductModal} />}
-      {showEPModal && <EditProductModal onClose={closeEddiProductModal} />}
+      {showAPModal && <AddProductModal onClose={closeAddProductModal} />}
+      {showEPModal && (
+        <EditProductModal
+          onClose={closeEddiProductModal}
+          editProduct={selectedEditProduct[0]}
+        />
+      )}
       {showDPModal && (
         <DeleteProductModal
           onClose={closeDeleteProductModal}

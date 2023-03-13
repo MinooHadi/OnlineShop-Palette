@@ -30,13 +30,13 @@ function Table(props) {
       <tbody>
         {props.tbody.map((item) => {
           return (
-            <tr id={item.id} ref={props.myRef}>
+            <tr>
               {createTd(item)}
               {props.iconTd &&
-                props.iconTd.map((item) => (
+                props.iconTd.map((childItem) => (
                   <td>
-                    <div className="flex justify-center items-center" >
-                      {item}
+                    <div className="flex justify-center items-center" data-id={item.id} onClick={props.onClick} >
+                      {childItem}
                     </div>
                   </td>
                 ))}

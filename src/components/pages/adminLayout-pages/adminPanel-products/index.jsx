@@ -61,14 +61,21 @@ function AdminPanelProducts() {
 
   function showDeleteProductModal(e) {
     setShowDPModal(true);
-    let selected = e.target.parentElement.parentElement.parentElement.id;
+    let elem = e.target;
+    let selected;
+    if (elem.tagName === "svg") {
+      selected = elem.parentElement.dataset.id;
+    } else if (elem.tagName === "path") {
+      selected = elem.parentElement.parentElement.dataset.id;
+    } else {
+      return;
+    }
     setSelectedProductId(selected);
   }
 
   function closeDeleteProductModal() {
     setShowDPModal(false);
   }
-
 
   const selectedProduct = products.data.filter(
     (item) => item.id == selectedProductId

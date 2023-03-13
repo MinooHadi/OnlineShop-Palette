@@ -35,7 +35,10 @@ function Table(props) {
               {props.iconTd &&
                 props.iconTd.map((childItem) => (
                   <td>
-                    <div className="flex justify-center items-center" data-id={item.id} onClick={props.onClick} >
+                    <div
+                      className="flex justify-center items-center"
+                      data-id={item.id}
+                    >
                       {childItem}
                     </div>
                   </td>

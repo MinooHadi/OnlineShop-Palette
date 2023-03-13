@@ -12,7 +12,6 @@ function AdminPanelOrders() {
   const { orders } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
   const [showChOModal, setShowChOModal] = useState(false);
-  const selectedOrder = useRef();
 
   const [selectedOrderId, setSelectedOrderId] = useState("");
 
@@ -37,7 +36,15 @@ function AdminPanelOrders() {
 
   function showCheckOrderModal(e) {
     setShowChOModal(true);
-    let selected = e.target.parentElement.parentElement.parentElement.id;
+    let elem = e.target;
+    let selected;
+    if (elem.tagName === "svg") {
+      selected = elem.parentElement.dataset.id;
+    } else if (elem.tagName === "path") {
+      selected = elem.parentElement.parentElement.dataset.id;
+    } else {
+      return;
+    }
     setSelectedOrderId(selected);
   }
 
@@ -45,7 +52,9 @@ function AdminPanelOrders() {
     setShowChOModal(false);
   }
 
-  const selectedIndex = (selectedOrderId-1) - (6 * ((params.get("page") || 1) -1));
+  const selectedOrder = orders.data.filter(
+    (item) => item.id == selectedOrderId
+  );
 
   return (
     <div>
@@ -67,13 +76,12 @@ function AdminPanelOrders() {
             onClick={showCheckOrderModal}
           />,
         ]}
-        myRef={selectedOrder}
       />
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
       {showChOModal && (
         <CheckOrderModal
           onClose={closeCheckOrderModal}
-          orders={orders.data[selectedIndex]}
+          orders={selectedOrder[0]}
         />
       )}
     </div>

@@ -7,3 +7,5 @@ export const productsService = (page, categoryId) => {
   }
   return instance.get(base);
 };
+
+export const productsCreateService = (data) => instance.post("/products", {...data, token: localStorage.getItem("token")})

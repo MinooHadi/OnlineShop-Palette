@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 
 import { fetchProducts } from "../../../../redux/Slices/productsSlice";
 import {
-  AddEditProductModal,
   AddProductModal,
   Button,
   DeleteProductModal,

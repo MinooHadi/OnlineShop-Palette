@@ -66,6 +66,7 @@ function EditProductModal(props) {
           className="border-2 w-96 h-8"
           defaultValue={props.editProduct.name}
           validation={{ ...register("name") }}
+          error={errors.name?.message}
         />
         <Input
           type="text"
@@ -73,6 +74,7 @@ function EditProductModal(props) {
           className="border-2 w-96 h-8"
           defaultValue={props.editProduct.brand}
           validation={{ ...register("brand") }}
+          error={errors.brand?.message}
         />
         <div className="flex flex-col gap-3">
           <lable className="pr-3 text-slate-600 vazir-extraBold">
@@ -109,6 +111,7 @@ function EditProductModal(props) {
             className="border-2 w-96 h-8 bg-white"
             onChange={getFileName}
             validation={{ ...register("thumbnail") }}
+            error={errors.thumbnail?.message}
           />
           <FileInput
             imgSrc={[props.editProduct.thumbnail]}
@@ -122,6 +125,7 @@ function EditProductModal(props) {
             className="border-2 w-96 h-8 bg-white"
             onChange={getFilesName}
             validation={{ ...register("image") }}
+            error={errors.image?.message}
           />
           <FileInput
             imgSrc={props.editProduct.image}
@@ -134,6 +138,7 @@ function EditProductModal(props) {
           className="border-2 w-96 h-8"
           defaultValue={props.editProduct.price}
           validation={{ ...register("price") }}
+          error={errors.price?.message}
         />
         <Input
           type="number"
@@ -141,6 +146,7 @@ function EditProductModal(props) {
           className="border-2 w-96 h-8"
           defaultValue={props.editProduct.quantity}
           validation={{ ...register("quantity") }}
+          error={errors.quantity?.message}
         />
         <div className="flex flex-col gap-3">
           <lable className="pr-3 text-slate-600 vazir-extraBold">
@@ -151,6 +157,9 @@ function EditProductModal(props) {
             defaultValue={props.editProduct.description}
             {...register("description")}
           />
+          <p className="text-xs text-red-600 pr-3 vazir-medium">
+            {errors.description?.message}
+          </p>
         </div>
         <Input
           type="submit"

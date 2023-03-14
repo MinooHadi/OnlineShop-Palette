@@ -51,18 +51,23 @@ function AddProductModal(props) {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
         onClick={props.onClose}
       />
-      <form onSubmit={handleSubmit(addNewProduct)}>
+      <form
+        onSubmit={handleSubmit(addNewProduct)}
+        className="flex flex-col gap-8"
+      >
         <Input
           type="text"
           lable="نام کالا"
           className="border-2 w-96 h-8"
           validation={{ ...register("name") }}
+          error={errors.name?.message}
         />
         <Input
           type="text"
           lable="برند کالا"
           className="border-2 w-96 h-8"
           validation={{ ...register("brand") }}
+          error={errors.brand?.message}
         />
         <div className="flex flex-col gap-3">
           <lable className="pr-3 text-slate-600 vazir-extraBold">
@@ -97,6 +102,7 @@ function AddProductModal(props) {
             className="border-2 w-96 h-8 bg-white coustum-file-inpute"
             onChange={getFileName}
             validation={{ ...register("thumbnail") }}
+            error={errors.thumbnail?.message}
           />
           <FileInput imgName={coverImageName} />
         </div>
@@ -107,6 +113,7 @@ function AddProductModal(props) {
             className="border-2 w-96 h-8 bg-white"
             onChange={getFilesName}
             validation={{ ...register("image") }}
+            error={errors.image?.message}
           />
           <FileInput imgName={productImagesName} />
         </div>
@@ -115,18 +122,23 @@ function AddProductModal(props) {
           lable="قیمت کالا"
           className="border-2 w-96 h-8"
           validation={{ ...register("price") }}
+          error={errors.price?.message}
         />
         <Input
           type="number"
           lable="موجودی کالا"
           className="border-2 w-96 h-8"
           validation={{ ...register("quantity") }}
+          error={errors.quantity?.message}
         />
         <div className="flex flex-col gap-3">
           <lable className="pr-3 text-slate-600 vazir-extraBold">
             توضیحات مربوط به کالا
           </lable>
           <textarea className="w-96 h-28" {...register("description")} />
+          <p className="text-xs text-red-600 pr-3 vazir-medium">
+            {errors.description?.message}
+          </p>
         </div>
         <Input
           type="submit"

@@ -34,7 +34,7 @@ function Input(props) {
         />
       )}
 
-      <p className="text-xs text-red-600 absolute top-[70px] vazir-medium">
+      <p className="text-xs text-red-600 absolute top-[70px] pr-3 vazir-medium">
         {props.error}
       </p>
     </div>

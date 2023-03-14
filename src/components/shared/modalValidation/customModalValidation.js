@@ -6,21 +6,21 @@ function useModalValidation() {
   const modalSchema = yup.object({
     name: yup
       .string()
-      .required("پر کردن این فیلد ازامی می باشد")
+      .required("پر کردن این فیلد الزامی می باشد")
       .matches(
         "[\u0622\u0627\u0628\u067E\u062A-\u062C\u0686\u062D-\u0632\u0698\u0633-\u063A\u0641\u0642\u06A9\u06AF\u0644-\u0648\u06CC]",
         "لطفا حروف فارسی وارد کنید"
       ),
     brand: yup
       .string()
-      .required("پر کردن این فیلد ازامی می باشد")
+      .required("پر کردن این فیلد الزامی می باشد")
       .matches(
         "[\u0622\u0627\u0628\u067E\u062A-\u062C\u0686\u062D-\u0632\u0698\u0633-\u063A\u0641\u0642\u06A9\u06AF\u0644-\u0648\u06CC]",
         "لطفا حروف فارسی وارد کنید"
       ),
     thumbnail: yup
       .mixed()
-      .required()
+      .required("پر کردن این فیلد الزامی می باشد")
       .test("is-valid-type", "فرمت عکس انتخاب شده صحیح نیست", (value) => {
         return (
           value &&
@@ -32,7 +32,7 @@ function useModalValidation() {
       }),
     image: yup
       .mixed()
-      .required()
+      .required("پر کردن این فیلد الزامی می باشد")
       .test("is-valid-type", "فرمت عکس انتخاب شده صحیح نیست", (value) => {
         for (let v of value) {
           if (
@@ -47,11 +47,19 @@ function useModalValidation() {
         }
         return true;
       }),
-    price: yup.number().required().min(0, "قیمت باید بیشتر از 0 باشد"),
-    quantity: yup.number().required().min(0, "تعداد باید بیشتر از 0 باشد"),
+    price: yup
+      .number()
+      .typeError("لطفا عدد وارد کنید")
+      .required("پر کردن این فیلد الزامی می باشد")
+      .min(0, "قیمت باید بیشتر از 0 باشد"),
+    quantity: yup
+      .number()
+      .typeError("لطفا عدد وارد کنید")
+      .required("پر کردن این فیلد الزامی می باشد")
+      .min(0, "تعداد باید بیشتر از 0 باشد"),
     description: yup
       .string()
-      .required("پر کردن این فیلد ازامی می باشد")
+      .required("پر کردن این فیلد الزامی می باشد")
       .matches(
         "[\u0622\u0627\u0628\u067E\u062A-\u062C\u0686\u062D-\u0632\u0698\u0633-\u063A\u0641\u0642\u06A9\u06AF\u0644-\u0648\u06CC]",
         "لطفا حروف فارسی وارد کنید"

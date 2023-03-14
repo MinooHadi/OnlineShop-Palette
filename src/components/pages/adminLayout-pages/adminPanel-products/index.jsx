@@ -48,8 +48,16 @@ function AdminPanelProducts() {
     setShowAPModal(true);
   }
 
-  function closeAddProductModal() {
+  function closeAddProductModal(refresh) {
     setShowAPModal(false);
+    if (refresh) {
+      dispatch(
+        fetchProducts({
+          page: params.get("page"),
+          categoryId: params.get("categoryId"),
+        })
+      );
+    }
   }
 
   function showEditProductModal(e) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
@@ -28,10 +28,7 @@ function AddProductModal(props) {
   }, [dispatch]);
 
   function getCategoryId(e) {
-    const selectedCategory = categories.data.filter(
-      (item) => item.name === e.target.value
-    );
-    setCategoryId(selectedCategory[0].id);
+    setCategoryId(e.target.value);
   }
 
   function getFileName(e) {
@@ -52,7 +49,10 @@ function AddProductModal(props) {
         onClick={props.onClose}
       />
       <form
-        onSubmit={handleSubmit(addNewProduct)}
+        onSubmit={handleSubmit((data, e) => {
+          const refresh = addNewProduct(data, e);
+          props.onClose(refresh);
+        })}
         className="flex flex-col gap-8"
       >
         <Input
@@ -77,6 +77,7 @@ function AddProductModal(props) {
             opt={[{ name: "انتخاب گروه کالا" }, ...categories.data]}
             className="h-8 w-96 vazir-light text-slate-600"
             onChange={getCategoryId}
+            validation={{ ...register("categoryId") }}
           />
         </div>
         {categoryId && (
@@ -88,10 +89,11 @@ function AddProductModal(props) {
               opt={[
                 { name: "انتخاب زیرگروه کالا" },
                 ...subcategories.data.filter(
-                  (item) => item.categoryId === categoryId
+                  (item) => item.categoryId == categoryId
                 ),
               ]}
               className="h-8 w-96 vazir-light text-slate-600"
+              validation={{ ...register("subcategoryId") }}
             />
           </div>
         )}

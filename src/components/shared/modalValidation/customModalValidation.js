@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { productsCreateService, uploadImages } from "../../../api/services/products";
 
 function useModalValidation() {
   const modalSchema = yup.object({
@@ -47,6 +48,8 @@ function useModalValidation() {
         }
         return true;
       }),
+    categoryId: yup.string().required("لطفا گروه را انتخاب کنید"),
+    subcategoryId: yup.string().required("لطفا زیرگروه را انتخاب کنید"),
     price: yup
       .number()
       .typeError("لطفا عدد وارد کنید")
@@ -66,9 +69,20 @@ function useModalValidation() {
       ),
   });
 
-  function addNewProduct(data, e) {
+  async function addNewProduct(data, e) {
     e.preventDefault();
-    console.log("save", data);
+    try {
+      const imgRes = await uploadImages([...data.thumbnail, ...data.image]);
+      const thumbnail = imgRes[0].data.filename;
+      const image = imgRes.splice(1).map(item => item.data.filename)
+      //TODO handle failure in upload request
+      const res = await productsCreateService({...data, thumbnail, image});
+      if (res.status === 201) {
+        return true
+      }
+    } catch {
+      alert("failed");
+    }
   }
 
   function editProduct(data, e) {

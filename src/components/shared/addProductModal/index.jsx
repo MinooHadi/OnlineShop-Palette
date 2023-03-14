@@ -10,7 +10,7 @@ import useModalValidation from "../modalValidation/customModalValidation";
 import Select from "../select";
 
 function AddProductModal(props) {
-  const { register, handleSubmit, errors, saveProductInfo } =
+  const { register, handleSubmit, errors, addNewProduct } =
     useModalValidation();
   const dispatch = useDispatch();
   const [categoryId, setCategoryId] = useState("");
@@ -51,7 +51,7 @@ function AddProductModal(props) {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
         onClick={props.onClose}
       />
-      <form onSubmit={handleSubmit(saveProductInfo)}>
+      <form onSubmit={handleSubmit(addNewProduct)}>
         <Input
           type="text"
           lable="نام کالا"
@@ -129,7 +129,7 @@ function AddProductModal(props) {
           <textarea className="w-96 h-28" {...register("description")} />
         </div>
         <Input
-        type= "submit"
+          type="submit"
           value="ذخیره اطلاعات"
           className="p-3 mt-14 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold"
         />

@@ -23,7 +23,8 @@ function useModalValidation() {
       .required()
       .test("is-valid-type", "فرمت عکس انتخاب شده صحیح نیست", (value) => {
         return (
-          value && value.length &&
+          value &&
+          value.length &&
           (value[0].type === "image/jpeg" ||
             value[0].type === "image/webp" ||
             value[0].type === "image/png")
@@ -57,7 +58,12 @@ function useModalValidation() {
       ),
   });
 
-  function saveProductInfo(data, e) {
+  function addNewProduct(data, e) {
+    e.preventDefault();
+    console.log("save", data);
+  }
+
+  function editProduct(data, e) {
     e.preventDefault();
     console.log("save", data);
   }
@@ -72,7 +78,8 @@ function useModalValidation() {
     register,
     handleSubmit,
     errors,
-    saveProductInfo,
+    addNewProduct,
+    editProduct,
   };
 }
 

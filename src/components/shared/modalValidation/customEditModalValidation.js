@@ -71,30 +71,35 @@ function useEditModalValidation() {
   async function editProduct(id, data, e) {
     e.preventDefault();
     const images = [];
+    let hasThumbnail = true;
+    let hasImage = true;
     if (!data.thumbnail.length) {
       delete data.thumbnail;
+      hasThumbnail = false;
     } else {
       images.push(...data.thumbnail);
     }
     if (!data.image.length) {
       delete data.image;
+      hasImage = false;
     } else {
       images.push(...data.image);
     }
     try {
       if (images.length) {
         const imgRes = await uploadImages(images);
-        const thumbnail = imgRes[0].data.filename;
-        const image = imgRes.splice(1).map((item) => item.data.filename);
-        const res = await productsEditService(id, { ...data, thumbnail, image });
-        if (res.status == 200) {
-          return true;
+        if (hasThumbnail && hasImage) {
+          data.thumbnail = imgRes[0].data.filename;
+          data.image = imgRes.splice(1).map((item) => item.data.filename);
+        } else if (hasThumbnail && !hasImage) {
+          data.thumbnail = imgRes[0].data.filename;
+        } else if (!hasThumbnail && hasImage) {
+          data.image = imgRes.map((item) => item.data.filename);
         }
-      } else {
-        const res = await productsEditService(id, data);
-        if (res.status == 200) {
-          return true;
-        }
+      }
+      const res = await productsEditService(id, data);
+      if (res.status == 200) {
+        return true;
       }
     } catch {
       alert("failed");

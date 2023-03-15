@@ -6,12 +6,12 @@ import { fetchSubcategories } from "../../../redux/Slices/subcategoriesSlice";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import FileInput from "../fileInput";
 import Input from "../input";
-import useModalValidation from "../modalValidation/customModalValidation";
+import useAddModalValidation from "../modalValidation/customAddModalValidation";
 import Select from "../select";
 
 function AddProductModal(props) {
   const { register, handleSubmit, errors, addNewProduct } =
-    useModalValidation();
+    useAddModalValidation();
   const dispatch = useDispatch();
   const [categoryId, setCategoryId] = useState("");
   const { categories } = useSelector((store) => store);

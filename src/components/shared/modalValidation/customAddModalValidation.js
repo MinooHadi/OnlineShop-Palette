@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { productsCreateService, uploadImages } from "../../../api/services/products";
 
-function useModalValidation() {
+function useAddModalValidation() {
   const modalSchema = yup.object({
     name: yup
       .string()
@@ -99,4 +99,4 @@ function useModalValidation() {
   };
 }
 
-export default useModalValidation;
+export default useAddModalValidation;

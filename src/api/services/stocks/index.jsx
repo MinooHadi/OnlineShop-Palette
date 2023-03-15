@@ -7,3 +7,9 @@ export const stocksService = (page, categoryId) => {
   }
   return instance.get(base);
 };
+
+export const stocksEditService = (data) => {
+  return instance.patch(`/products/${data.id}`, data, {
+    headers: { token: localStorage.getItem("token") },
+  });
+};

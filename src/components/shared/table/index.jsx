@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { baseURL } from "../../../api/constant";
 
 function Table(props) {
@@ -6,6 +6,16 @@ function Table(props) {
   const iconThead = props.iconThead ?? [];
   const iconTd = props.iconTd ?? [];
   const editable = props.editable ?? [];
+
+
+  function ePersian(price) {
+    let n = parseFloat(price);
+    if(isNaN(n)) {
+        return '-'
+    }
+    return n.toLocaleString('fa-IR');
+  }
+
   function createTd(data) {
     return props.td.map((item) => {
       return renderInSrc.includes(item) ? (
@@ -14,7 +24,20 @@ function Table(props) {
         </td>
       ) : (
         <td className="p-5">
-          <span contentEditable={editable.includes(item)}>
+          <span
+            contentEditable={editable.includes(item)}
+            onInput={(e) => {
+              let id = data.id;
+              let prev = props.editions[id] ?? {};
+              props.setEditions({
+                ...props.editions,
+                [id]: { ...prev, [item]: e.target.innerText },
+              });
+            }}
+            onBlur={(e) => {
+              e.target.innerText = ePersian(e.target.innerText)
+            }}
+          >
             {item instanceof Array ? data[item[0]][item[1]] : data[item]}
           </span>
         </td>

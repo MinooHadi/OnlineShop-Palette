@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { stocksEditService } from "../../../../api/services/stocks";
 
 import { fetchStocks } from "../../../../redux/Slices/stocksSlice";
 import { Button, Pagination, Table } from "../../../shared";
@@ -9,6 +10,8 @@ function AdminPanelStocks() {
   const dispatch = useDispatch();
   const { stocks } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
+
+  const [editions, setEditions] = useState({});
 
   useEffect(() => {
     dispatch(
@@ -29,18 +32,38 @@ function AdminPanelStocks() {
     setParams(params.toString());
   }
 
+  async function saveEdit() {
+    let promises = [];
+    for (let [id, obj] of Object.entries(editions)) {
+      promises.push(stocksEditService({ ...obj, id }));
+    }
+    const res = await Promise.all(promises);
+    console.log(res);
+    //TODO handle failure
+    dispatch(
+      fetchStocks({
+        page: params.get("page"),
+        categoryId: params.get("categoryId"),
+      })
+    );
+  }
+
+
   return (
     <>
       <div>
         <Button
           title="ذخیره"
           className="bg-rose-400 rounded-full shadow-lg shadow-rose-200 text-slate-600 fixed top-40 left-4 h-14 w-28 mt-6 ml-6 vazir-extraBold"
+          onClick={saveEdit}
         />
         <Table
           thead={["نام کالا", "قیمت", "موجودی"]}
           tbody={stocks.data}
           td={["name", "price", "quantity"]}
           editable={["price", "quantity"]}
+          editions={editions}
+          setEditions={setEditions}
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />

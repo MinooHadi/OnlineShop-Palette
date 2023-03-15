@@ -67,7 +67,6 @@ function AdminPanelOrders() {
         ]}
         tbody={orders.data}
         td={["username", "lastname", "prices", "createdAt"]}
-        renderInSrc={[]}
         iconThead={["بررسی سفارش"]}
         iconTd={[
           <ClipboardCheckIcon

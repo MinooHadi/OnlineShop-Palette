@@ -2,15 +2,21 @@ import React from "react";
 import { baseURL } from "../../../api/constant";
 
 function Table(props) {
+  const renderInSrc = props.renderInSrc ?? [];
+  const iconThead = props.iconThead ?? [];
+  const iconTd = props.iconTd ?? [];
+  const editable = props.editable ?? [];
   function createTd(data) {
     return props.td.map((item) => {
-      return props.renderInSrc.includes(item) ? (
+      return renderInSrc.includes(item) ? (
         <td className="p-5">
           <img src={`${baseURL}/files/${data[item]}`} className="w-20" />
         </td>
       ) : (
         <td className="p-5">
-          {item instanceof Array ? data[item[0]][item[1]] : data[item]}
+          <span contentEditable={editable.includes(item)}>
+            {item instanceof Array ? data[item[0]][item[1]] : data[item]}
+          </span>
         </td>
       );
     });
@@ -23,8 +29,9 @@ function Table(props) {
           {props.thead.map((item) => (
             <td className="p-5">{item}</td>
           ))}
-          {props.iconThead &&
-            props.iconThead.map((item) => <td className="p-5"> {item} </td>)}
+          {iconThead.map((item) => (
+            <td className="p-5"> {item} </td>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -32,17 +39,16 @@ function Table(props) {
           return (
             <tr>
               {createTd(item)}
-              {props.iconTd &&
-                props.iconTd.map((childItem) => (
-                  <td>
-                    <div
-                      className="flex justify-center items-center"
-                      data-id={item.id}
-                    >
-                      {childItem}
-                    </div>
-                  </td>
-                ))}
+              {iconTd.map((childItem) => (
+                <td>
+                  <div
+                    className="flex justify-center items-center"
+                    data-id={item.id}
+                  >
+                    {childItem}
+                  </div>
+                </td>
+              ))}
             </tr>
           );
         })}

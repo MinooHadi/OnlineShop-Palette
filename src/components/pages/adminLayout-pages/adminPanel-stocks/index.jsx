@@ -40,9 +40,7 @@ function AdminPanelStocks() {
           thead={["نام کالا", "قیمت", "موجودی"]}
           tbody={stocks.data}
           td={["name", "price", "quantity"]}
-          renderInSrc={[]}
-          iconThead={[]}
-          iconTd={[]}
+          editable={["price", "quantity"]}
         />
       </div>
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />

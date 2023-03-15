@@ -49,8 +49,8 @@ function AddProductModal(props) {
         onClick={props.onClose}
       />
       <form
-        onSubmit={handleSubmit((data, e) => {
-          const refresh = addNewProduct(data, e);
+        onSubmit={handleSubmit(async (data, e) => {
+          const refresh = await addNewProduct(data, e);
           props.onClose(refresh);
         })}
         className="flex flex-col gap-8"

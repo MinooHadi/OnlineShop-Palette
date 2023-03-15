@@ -74,8 +74,16 @@ function AdminPanelProducts() {
     setSelectedEditProducId(selected);
   }
 
-  function closeEddiProductModal() {
+  function closeEddiProductModal(refresh) {
     setShowEPModal(false);
+    if (refresh) {
+      dispatch(
+        fetchProducts({
+          page: params.get("page"),
+          categoryId: params.get("categoryId"),
+        })
+      );
+    }
   }
 
   function showDeleteProductModal(e) {

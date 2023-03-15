@@ -6,7 +6,7 @@ function FileInput(props) {
     <div className="flex gap-5 mt-2">
       {props.imgName.length
         ? props.imgName.map((itemName) => <div> {itemName} </div>)
-        : props.imgSrc ? props.imgSrc.map((itemImg) => (
+        : props.imgSrc && props.imgSrc.length ? props.imgSrc.map((itemImg) => (
             <div className="w-12">
               <img src={`${baseURL}/files/${itemImg}`} />
             </div>

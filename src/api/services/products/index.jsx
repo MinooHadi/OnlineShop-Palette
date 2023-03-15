@@ -10,13 +10,17 @@ export const productsService = (page, categoryId) => {
 };
 
 export const productsCreateService = (data) =>
-  instance.post("/products", { ...data, token: localStorage.getItem("token") });
+  instance.post(
+    "/products",
+    { ...data },
+    { headers: { token: localStorage.getItem("token") } }
+  );
 
 export const uploadImages = (data) => {
   const formData = data.map((item) => {
     const fData = new FormData();
     fData.append("image", item);
-    return fData
+    return fData;
   });
   let promises = [];
   for (let fD of formData) {
@@ -28,3 +32,13 @@ export const uploadImages = (data) => {
   }
   return Promise.all(promises);
 };
+
+export const productsEditService = (id, data) =>
+  instance.patch(
+    `/products/${id}`,
+    {
+      ...data,
+      id: id,
+    },
+    { headers: { token: localStorage.getItem("token") } }
+  );

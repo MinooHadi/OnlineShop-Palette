@@ -7,11 +7,12 @@ import { MdCloseCircleOutlineIcon } from "../../icons";
 import Button from "../button";
 import FileInput from "../fileInput";
 import Input from "../input";
-import useModalValidation from "../modalValidation/customModalValidation";
+import useEditModalValidation from "../modalValidation/customEditModalValidation";
 import Select from "../select";
 
 function EditProductModal(props) {
-  const { register, handleSubmit, errors, editProduct } = useModalValidation();
+  const { register, handleSubmit, errors, editProduct } =
+  useEditModalValidation();
   const dispatch = useDispatch();
   const [categoryId, setCategoryId] = useState("");
   const [subcategoryId, setSubcategoryId] = useState("");
@@ -29,17 +30,11 @@ function EditProductModal(props) {
   }, [dispatch]);
 
   function getCategoryId(e) {
-    const selectedCategory = categories.data.filter(
-      (item) => item.name === e.target.value
-    );
-    setCategoryId(selectedCategory[0].id);
+    setCategoryId(e.target.value);
   }
 
   function getSubcategoryId(e) {
-    const selectedSubcategory = subcategories.data.filter(
-      (item) => item.name === e.target.value
-    );
-    setSubcategoryId(selectedSubcategory[0].id);
+    setSubcategoryId(e.target.value);
   }
 
   function getFileName(e) {
@@ -59,7 +54,12 @@ function EditProductModal(props) {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
         onClick={props.onClose}
       />
-      <form onSubmit={handleSubmit(editProduct)}>
+      <form
+        onSubmit={handleSubmit(async (data, e) => {
+          const refresh = await editProduct(props.editProduct.id, data, e);
+          props.onClose(refresh);
+        })}
+      >
         <Input
           type="text"
           lable="نام کالا"
@@ -82,11 +82,12 @@ function EditProductModal(props) {
           </lable>
           <Select
             opt={[
-              { name: props.editProduct.category.name },
+              { name: props.editProduct.category.name, id: props.editProduct.category.id },
               ...categories.data,
             ]}
             className="h-8 w-96 vazir-light text-slate-600"
             onChange={getCategoryId}
+            validation={{ ...register("categoryId") }}
           />
         </div>
         <div className="flex flex-col gap-3">
@@ -95,13 +96,14 @@ function EditProductModal(props) {
           </lable>
           <Select
             opt={[
-              { name: props.editProduct.subcategory.name },
+              { name: props.editProduct.subcategory.name, id: props.editProduct.subcategory.id },
               ...subcategories.data.filter(
-                (item) => item.categoryId === categoryId
+                (item) => item.categoryId == categoryId
               ),
             ]}
             className="h-8 w-96 vazir-light text-slate-600"
             onChange={getSubcategoryId}
+            validation={{ ...register("subcategoryId") }}
           />
         </div>
         <div>

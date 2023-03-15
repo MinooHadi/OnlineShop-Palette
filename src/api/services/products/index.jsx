@@ -42,3 +42,8 @@ export const productsEditService = (id, data) =>
     },
     { headers: { token: localStorage.getItem("token") } }
   );
+
+export const productsDeleteService = (id) =>
+  instance.delete(`/products/${id}`, {
+    headers: { token: localStorage.getItem("token") },
+  });

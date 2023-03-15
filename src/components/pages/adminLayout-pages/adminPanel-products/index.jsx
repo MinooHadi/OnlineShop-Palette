@@ -100,8 +100,16 @@ function AdminPanelProducts() {
     setSelectedProductId(selected);
   }
 
-  function closeDeleteProductModal() {
+  function closeDeleteProductModal(refresh) {
     setShowDPModal(false);
+    if (refresh) {
+      dispatch(
+        fetchProducts({
+          page: params.get("page"),
+          categoryId: params.get("categoryId"),
+        })
+      );
+    }
   }
 
   const selectedProduct = products.data.filter(

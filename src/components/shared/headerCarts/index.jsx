@@ -33,7 +33,7 @@ function HeaderCarts() {
       <HeaderCart
         containerStyle="w-1/5 h-28 bg-purple-100 flex flex-row-reverse justify-between pr-3"
         src={image4}
-        className="w-20 h-28"
+        className="w-24 h-28"
         title="پشتیبانی سایت"
         description="با ما تماس بگیر 0973052909"
       />

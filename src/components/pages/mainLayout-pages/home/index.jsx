@@ -19,7 +19,7 @@ function Home() {
     navigate(`/subcategory?id=${e.target.id}`);
   }
 
-  function goTocategoryPage(e) {
+  function goToCategoryPage(e) {
     navigate(`/category?id=${e.target.id}`);
   }
 
@@ -31,7 +31,7 @@ function Home() {
             <div
               className="bg-slate-300 flex justify-center items-center h-10 vazir-extraBold text-lg text-slate-700 rounded-xl"
               id={cItem.id}
-              onClick={goTocategoryPage}
+              onClick={goToCategoryPage}
             >
               {cItem.name}
             </div>

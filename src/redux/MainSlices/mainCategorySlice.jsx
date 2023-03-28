@@ -26,7 +26,17 @@ const mainCategoriesSlice = createSlice({
     },
     [fetchMainCategories.fulfilled]: (state, action) => {
       state.status = "success";
-      state.data = action.payload[0];
+      let groupBySubId = {};
+      for (let item of action.payload[0]) {
+        let prev = groupBySubId[item.subcategoryId];
+        if (prev === undefined) {
+          groupBySubId[item.subcategoryId] = [item];
+        } else {
+          prev.push(item);
+          groupBySubId[item.subcategoryId] = prev;
+        }
+      }
+      state.data = groupBySubId;
     },
   },
 });

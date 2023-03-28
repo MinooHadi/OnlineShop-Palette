@@ -6,7 +6,7 @@ function ProductCart(props) {
       <img
         src={props.src}
         alt={props.alt}
-        className="w-44 hover:w-52 absolute top-6"
+        className="w-32 hover:w-36 absolute top-6"
       />
       <div className="flex flex-col w-full px-3 absolute bottom-6">
         <div className="flex justify-between pb-3">

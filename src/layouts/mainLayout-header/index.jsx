@@ -11,12 +11,14 @@ import {
   Store,
 } from "../../components/icons";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchSubcategories } from "../../redux/Slices/subcategoriesSlice";
 
 function MainLayoutHeader() {
   const [showMenu, setShowMenu] = useState(false);
-  const [showSubMenu, setShowSubMenu] = useState(false);
+  const [showSubMenu, setShowSubMenu] = useState();
+  const [selected, setSelected] = useState();
   const dispatch = useDispatch();
-  const { categories } = useSelector((store) => store);
+  const { categories, subcategories } = useSelector((store) => store);
 
   function adminAuth() {
     return Boolean(localStorage.getItem("token"));
@@ -28,10 +30,12 @@ function MainLayoutHeader() {
 
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchSubcategories());
   }, [dispatch]);
 
-  function showProductsSubMenu() {
+  function showProductsSubMenu(e) {
     setShowSubMenu(!showSubMenu);
+    setSelected(e.target.id);
   }
 
   return (
@@ -70,7 +74,17 @@ function MainLayoutHeader() {
                   </ul>
                 </div>
               )}
-              {showSubMenu && <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -left-60">SubMenu</div>}
+              {showSubMenu && (
+                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -left-60">
+                  <ul>
+                    {subcategories.data.map((item) => {
+                      if (item.categoryId == selected) {
+                        return <li> {item.name} </li>;
+                      }
+                    })}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
 

@@ -7,6 +7,7 @@ import { fetchCategories } from "./../../redux/Slices/categoriesSlice";
 import {
   AdminLineIcon,
   FavoriteBorderIcon,
+  Home,
   ShoppingBagIcon,
   Store,
 } from "../../components/icons";
@@ -59,9 +60,13 @@ function MainLayoutHeader() {
           </p>
         </div>
         <div className="flex gap-10 text-slate-600 vazir-semiBold">
+          <Link className="flex flex-col ml-20 items-center text-sm font-medium hover:text-lime-500" to="/">
+            <Home size="1.7rem" />
+            خانه
+          </Link>
           <div className="relative">
             <div
-              className="flex flex-col items-center text-sm font-medium hover:text-lime-500 hover:cursor-pointer absolute top-0 left-3"
+              className="flex flex-col items-center text-sm font-medium hover:text-yellow-500 hover:cursor-pointer absolute top-0 left-3"
               onClick={showProductsMenu}
             >
               <Store size="1.7rem" />
@@ -69,7 +74,7 @@ function MainLayoutHeader() {
             </div>
             <div className="absolute top-14 flex flex-row-reverse">
               {showMenu && (
-                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -right-32">
+                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -right-48">
                   <ul>
                     {categories.data.map((item) => (
                       <li id={item.id} onClick={showProductsSubMenu}>
@@ -80,7 +85,7 @@ function MainLayoutHeader() {
                 </div>
               )}
               {showSubMenu && (
-                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -left-60">
+                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -left-44">
                   <ul>
                     {subcategories.data.map((item) => {
                       if (item.categoryId == selected) {

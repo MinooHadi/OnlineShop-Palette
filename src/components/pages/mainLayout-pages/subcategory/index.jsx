@@ -6,7 +6,7 @@ import { fetchMainSubcategories } from "../../../../redux/MainSlices/mainSubcate
 import { store } from "../../../../redux/store";
 import ProductCart from "../../../shared/product-cart";
 
-function Products() {
+function Subcategory() {
   const dispatch = useDispatch();
   const [params, setParams] = useSearchParams();
   const { mainSubcategories } = useSelector((store) => store);
@@ -40,4 +40,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Subcategory;

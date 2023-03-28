@@ -12,7 +12,7 @@ import {
   Favorites,
   Home,
   Product,
-  Products,
+  Subcategory,
 } from "../components/pages/mainLayout-pages";
 import { AdminLayout, LoginLayout, MainLayout } from "../layouts";
 
@@ -23,7 +23,7 @@ function GateWay() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/subcategory" element={<Products />} />
+          <Route path="/subcategory" element={<Subcategory />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />

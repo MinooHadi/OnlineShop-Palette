@@ -19,12 +19,20 @@ function Home() {
     navigate(`/subcategory?id=${e.target.id}`);
   }
 
+  function goTocategoryPage(e) {
+    navigate(`/category?id=${e.target.id}`);
+  }
+
   return (
     <div className="flex flex-col gap-8 px-10 my-20">
       {categories.data.map((cItem) => {
         return (
           <>
-            <div className="bg-slate-300 flex justify-center items-center h-10 vazir-extraBold text-lg text-slate-700 rounded-xl">
+            <div
+              className="bg-slate-300 flex justify-center items-center h-10 vazir-extraBold text-lg text-slate-700 rounded-xl"
+              id={cItem.id}
+              onClick={goTocategoryPage}
+            >
               {cItem.name}
             </div>
             <div className="flex gap-20 flex-wrap justify-center my-5">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "./../../../src/assets/logo/logo.png";
 import { fetchCategories } from "./../../redux/Slices/categoriesSlice";
@@ -19,6 +19,7 @@ function MainLayoutHeader() {
   const [selected, setSelected] = useState();
   const dispatch = useDispatch();
   const { categories, subcategories } = useSelector((store) => store);
+  const navigate = useNavigate();
 
   function adminAuth() {
     return Boolean(localStorage.getItem("token"));
@@ -36,6 +37,10 @@ function MainLayoutHeader() {
   function showProductsSubMenu(e) {
     setShowSubMenu(!showSubMenu);
     setSelected(e.target.id);
+  }
+
+  function goToSubcategoryPage(e) {
+    navigate(`/subcategory?id=${e.target.id}`);
   }
 
   return (
@@ -79,7 +84,12 @@ function MainLayoutHeader() {
                   <ul>
                     {subcategories.data.map((item) => {
                       if (item.categoryId == selected) {
-                        return <li> {item.name} </li>;
+                        return (
+                          <li id={item.id} onClick={goToSubcategoryPage}>
+                            {" "}
+                            {item.name}{" "}
+                          </li>
+                        );
                       }
                     })}
                   </ul>

@@ -27,7 +27,7 @@ function MainLayoutHeader() {
   }
 
   function showProductsMenu() {
-    setShowMenu(!showMenu);
+    setShowMenu(true);
   }
 
   useEffect(() => {
@@ -36,91 +36,105 @@ function MainLayoutHeader() {
   }, [dispatch]);
 
   function showProductsSubMenu(e) {
-    setShowSubMenu(!showSubMenu);
+    setShowSubMenu(true);
     setSelected(e.target.id);
+  }
+
+  function hideMenus() {
+    setShowMenu(false);
+    setShowSubMenu(false);
   }
 
   function goToSubcategoryPage(e) {
     navigate(`/subcategory?id=${e.target.id}`);
+    setShowMenu(false);
+    setShowSubMenu(false);
+  }
+
+  function goToCategoryPage(e) {
+    navigate(`/category?id=${e.target.id}`);
+    setShowMenu(false);
+    setShowSubMenu(false);
   }
 
   return (
-    <div className="flex flex-col sticky top-0 shadow-lg shadow-slate-300 z-40">
-      <div className="flex justify-center items-center h-10 text-slate-50 topColor arsoo text-xl">
-        <p>
-          به فروشگاه <span className="morvarid font-bold text-3xl">پالت</span>{" "}
-          خوش اومدی
-        </p>
-      </div>
-      <div className="flex items-center justify-between mainHeaderColor px-12 py-3">
-        <div className="flex items-center gap-16">
-          <img src={logo} alt="logo" className="w-40 h-32" />
-          <p className="text-4xl font-bold text-slate-600 vazir-medium">
-            کتاب و لوازم التحریر و هنر
+    <>
+      <div className="flex flex-col sticky top-0 z-40" onMouseLeave={hideMenus}>
+        <div className="flex justify-center items-center h-10 text-slate-50 topColor arsoo text-xl">
+          <p>
+            به فروشگاه <span className="morvarid font-bold text-3xl">پالت</span>{" "}
+            خوش اومدی
           </p>
         </div>
-        <div className="flex gap-10 text-slate-600 vazir-semiBold">
-          <Link className="flex flex-col ml-20 items-center text-sm font-medium hover:text-lime-500" to="/">
-            <Home size="1.7rem" />
-            خانه
-          </Link>
-          <div className="relative">
+        <div className="flex items-center justify-between mainHeaderColor px-12">
+          <div className="flex items-center gap-16">
+            <img src={logo} alt="logo" className="w-32 h-24" />
+            <p className="text-4xl font-bold text-slate-600 vazir-medium">
+              کتاب و لوازم التحریر و هنر
+            </p>
+          </div>
+          <div className="flex gap-10 text-slate-600 vazir-semiBold">
+            <Link
+              className="flex flex-col items-center text-sm font-medium hover:text-lime-500"
+              to="/"
+            >
+              <Home size="1.7rem" />
+              خانه
+            </Link>
             <div
-              className="flex flex-col items-center text-sm font-medium hover:text-yellow-500 hover:cursor-pointer absolute top-0 left-3"
-              onClick={showProductsMenu}
+              className="flex flex-col items-center text-sm font-medium hover:text-yellow-500 hover:cursor-pointer"
+              onMouseOver={showProductsMenu}
             >
               <Store size="1.7rem" />
               محصولات
             </div>
-            <div className="absolute top-14 flex flex-row-reverse">
-              {showMenu && (
-                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -right-48">
-                  <ul>
-                    {categories.data.map((item) => (
-                      <li id={item.id} onClick={showProductsSubMenu}>
+            <Link
+              className="flex flex-col items-center text-sm font-medium hover:text-red-500"
+              to={adminAuth() ? "/admin/orders" : "/adminLogin"}
+            >
+              <AdminLineIcon size="1.7rem" />
+              مدیریت
+            </Link>
+            <Link className="flex flex-col items-center text-sm font-medium hover:text-fuchsia-500">
+              <FavoriteBorderIcon size="1.7rem" />
+              مورد علاقه ها
+            </Link>
+            <Link className="flex flex-col items-center text-sm font-medium hover:text-blue-500">
+              <ShoppingBagIcon size="1.7rem" />
+              سبد خرید
+            </Link>
+          </div>
+        </div>
+        <div className="w-[100%] mainHeaderColor border-t-4">
+          {showMenu && (
+            <div>
+              <ul className="flex vazir-medium justify-around py-3 text-slate-600">
+                {categories.data.map((item) => (
+                  <li id={item.id} onMouseOver={showProductsSubMenu} onClick={goToCategoryPage}>
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {showSubMenu && (
+            <div>
+              <ul className="flex vazir-light justify-around py-3 text-slate-600">
+                {subcategories.data.map((item) => {
+                  if (item.categoryId == selected) {
+                    return (
+                      <li id={item.id} onClick={goToSubcategoryPage}>
                         {item.name}
                       </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {showSubMenu && (
-                <div className="bg-slate-100 w-44 p-3 rounded-md text-center leading-10 absolute -left-44">
-                  <ul>
-                    {subcategories.data.map((item) => {
-                      if (item.categoryId == selected) {
-                        return (
-                          <li id={item.id} onClick={goToSubcategoryPage}>
-                            {" "}
-                            {item.name}{" "}
-                          </li>
-                        );
-                      }
-                    })}
-                  </ul>
-                </div>
-              )}
+                    );
+                  }
+                })}
+              </ul>
             </div>
-          </div>
-
-          <Link
-            className="flex flex-col items-center text-sm font-medium hover:text-red-500"
-            to={adminAuth() ? "/admin/orders" : "/adminLogin"}
-          >
-            <AdminLineIcon size="1.7rem" />
-            مدیریت
-          </Link>
-          <Link className="flex flex-col items-center text-sm font-medium hover:text-fuchsia-500">
-            <FavoriteBorderIcon size="1.7rem" />
-            مورد علاقه ها
-          </Link>
-          <Link className="flex flex-col items-center text-sm font-medium hover:text-blue-500">
-            <ShoppingBagIcon size="1.7rem" />
-            سبد خرید
-          </Link>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

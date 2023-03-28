@@ -23,7 +23,7 @@ function GateWay() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
-          <Route path="products" element={<Products />} />
+          <Route path="/subcategory" element={<Products />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />

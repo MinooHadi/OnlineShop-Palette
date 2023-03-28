@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import mainSubcategoriesSlice from "./MainSlices/mainSubcategoriesSlice";
 import categoriesSlice from "./Slices/categoriesSlice";
 import ordersSlice from "./Slices/ordersSlice";
 import productsSlice from "./Slices/productsSlice";
@@ -12,5 +13,6 @@ export const store = configureStore({
     stocks: stocksSlice,
     categories: categoriesSlice,
     subcategories: subcategoriesSlice,
+    mainSubcategories: mainSubcategoriesSlice,
   },
 });

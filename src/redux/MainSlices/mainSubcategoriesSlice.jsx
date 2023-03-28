@@ -3,16 +3,15 @@ import { mainSubcategoriesService } from "../../api/mainServices/subcategories";
 
 
 export const fetchMainSubcategories = createAsyncThunk(
-  "products/fetchlist",
+  "subcategory/fetchlist",
   async ({ subcategoryId }) => {
     const res = await mainSubcategoriesService(subcategoryId);
-    console.log("res", res.data);
     return [res.data];
   }
 );
 
 const mainSubcategoriesSlice = createSlice({
-  name: "products/list",
+  name: "subcategory/list",
   initialState: {
     data: [],
     status: "idle",

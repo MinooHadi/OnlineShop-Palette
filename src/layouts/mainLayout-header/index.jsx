@@ -12,7 +12,7 @@ function MainLayoutHeader() {
   }
 
   return (
-    <div className="flex flex-col sticky top-0">
+    <div className="flex flex-col sticky top-0 shadow-lg shadow-slate-300">
       <div className="flex justify-center items-center h-10 text-slate-50 topColor arsoo text-xl">
         <p>به فروشگاه <span className="morvarid font-bold text-3xl">پالت</span> خوش اومدی</p>
       </div>

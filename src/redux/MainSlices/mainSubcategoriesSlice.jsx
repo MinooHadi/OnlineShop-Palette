@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { mainSubcategoriesService } from "../../api/mainServices/subcategories/index";
+import { mainSubcategoriesService } from "../../api/mainServices/subcategories";
+
 
 export const fetchMainSubcategories = createAsyncThunk(
   "products/fetchlist",
   async ({ subcategoryId }) => {
     const res = await mainSubcategoriesService(subcategoryId);
+    console.log("res", res.data);
     return [res.data];
   }
 );

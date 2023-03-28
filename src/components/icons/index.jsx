@@ -13,6 +13,7 @@ import { BiShoppingBag } from "react-icons/bi";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { BiStore } from "react-icons/bi";
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -29,3 +30,4 @@ export const ShoppingBagIcon = BiShoppingBag;
 export const KeyboardDoubleArrowLeftIcon = MdKeyboardDoubleArrowLeft;
 export const KeyboardDoubleArrowRightIcon = MdKeyboardDoubleArrowRight;
 export const MdCloseCircleOutlineIcon = IoMdCloseCircleOutline;
+export const Store = BiStore

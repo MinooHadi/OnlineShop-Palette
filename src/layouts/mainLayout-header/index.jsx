@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from "./../../../src/assets/logo/logo.png";
@@ -21,6 +21,7 @@ function MainLayoutHeader() {
   const dispatch = useDispatch();
   const { categories, subcategories } = useSelector((store) => store);
   const navigate = useNavigate();
+  const lastSelected = useRef();
 
   function adminAuth() {
     return Boolean(localStorage.getItem("token"));
@@ -38,11 +39,17 @@ function MainLayoutHeader() {
   function showProductsSubMenu(e) {
     setShowSubMenu(true);
     setSelected(e.target.id);
+    if (lastSelected.current) {
+      lastSelected.current.classList.remove("menu-color");
+    }
+    e.target.classList.add("menu-color");
+    lastSelected.current = e.target;
   }
 
   function hideMenus() {
     setShowMenu(false);
     setShowSubMenu(false);
+    lastSelected.current = null;
   }
 
   function goToSubcategoryPage(e) {
@@ -105,12 +112,17 @@ function MainLayoutHeader() {
             </Link>
           </div>
         </div>
-        <div className="w-[100%] mainHeaderColor border-t-4">
+        <div className="w-[100%] mainHeaderColor border-t-4 absolute top-[132px]">
           {showMenu && (
             <div>
               <ul className="flex vazir-medium justify-around py-3 text-slate-600">
                 {categories.data.map((item) => (
-                  <li id={item.id} onMouseOver={showProductsSubMenu} onClick={goToCategoryPage}>
+                  <li
+                    id={item.id}
+                    onMouseOver={showProductsSubMenu}
+                    onClick={goToCategoryPage}
+                    className="hover:cursor-pointer pb-1"
+                  >
                     {item.name}
                   </li>
                 ))}
@@ -123,7 +135,11 @@ function MainLayoutHeader() {
                 {subcategories.data.map((item) => {
                   if (item.categoryId == selected) {
                     return (
-                      <li id={item.id} onClick={goToSubcategoryPage}>
+                      <li
+                        id={item.id}
+                        onClick={goToSubcategoryPage}
+                        className="hover:cursor-pointer submenu pb-1"
+                      >
                         {item.name}
                       </li>
                     );

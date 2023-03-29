@@ -13,6 +13,13 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.menu-color {
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(112,130,168,0) 75%, rgba(126,147,190,0) 85%, rgba(145,169,219,1) 100%);
+}
+
+.submenu:hover {
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(112,130,168,0) 75%, rgba(126,147,190,0) 85%, rgba(145,169,219,1) 100%);
+}
 
 .coustum-file-inpute::file-selector-button {
 }

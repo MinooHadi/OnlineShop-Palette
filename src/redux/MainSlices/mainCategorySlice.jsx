@@ -31,7 +31,7 @@ const mainCategoriesSlice = createSlice({
         let prev = groupBySubId[item.subcategoryId];
         if (prev === undefined) {
           groupBySubId[item.subcategoryId] = [item];
-        } else {
+        } else if(prev.length < 3) {
           prev.push(item);
           groupBySubId[item.subcategoryId] = prev;
         }

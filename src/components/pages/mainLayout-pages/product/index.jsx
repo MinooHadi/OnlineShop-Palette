@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "../../../../redux/store";
@@ -11,6 +11,7 @@ function Product() {
   const dispatch = useDispatch();
   let [params, setParams] = useSearchParams();
   const { mainProductDetail } = useSelector((store) => store);
+  const [selectedImage, setSelectedImage] = useState();
 
   useEffect(() => {
     dispatch(
@@ -20,6 +21,7 @@ function Product() {
     );
   }, [dispatch]);
 
+
   return (
     <>
       {mainProductDetail.data.map((item) => {
@@ -28,17 +30,22 @@ function Product() {
             <div className="p-8 flex flex-col gap-4">
               <div className="w-96 h-96 border-2 border-slate-200 rounded-md flex justify-center items-center p-5">
                 <img
-                  src={`${baseURL}/files/${item.thumbnail}`}
+                  src={
+                    selectedImage !== undefined
+                      ? `${baseURL}/files/${item.image[+selectedImage]}`
+                      : `${baseURL}/files/${item.thumbnail}`
+                  }
                   alt={item.name}
                   className="w-[100%] h-[100%] object-scale-down"
                 />
               </div>
               <div className="flex justify-start p-2 border-2 w-96 border-slate-200 rounded-md overflow-x-auto no-scrollbar ">
-                {item.image.map((i) => (
+                {item.image.map((iItem, index) => (
                   <div className="w-28 h-28 flex-none">
                     <img
-                      src={`${baseURL}/files/${i}`}
+                      src={`${baseURL}/files/${iItem}`}
                       className="w-[100%] h-[100%] object-scale-down"
+                      onClick={() => setSelectedImage(index)}
                     />
                   </div>
                 ))}

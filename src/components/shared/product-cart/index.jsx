@@ -2,7 +2,7 @@ import React from "react";
 
 function ProductCart(props) {
   return (
-    <div className="w-72 h-80 border-2 border-slate-300 flex flex-col items-center relative rounded-2xl">
+    <div className="w-72 h-80 border-2 border-slate-300 flex flex-col items-center relative rounded-2xl" id={props.id} onClick={props.onClick}>
       <img
         src={props.src}
         alt={props.alt}

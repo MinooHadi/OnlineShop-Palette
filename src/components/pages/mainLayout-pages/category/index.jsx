@@ -25,6 +25,10 @@ function Category() {
     navigate(`/subcategory?id=${e.target.id}`);
   }
 
+  function goToProductDetailPage(e) {
+    navigate(`/product?id=${e.target.id}`)
+  }
+
   return (
     <div>
       {Object.entries(mainCategories.data).map((item) => {
@@ -45,6 +49,8 @@ function Category() {
                   name={i.name}
                   quantity={i.quantity}
                   price={i.price}
+                  id={i.id}
+                  onClick={goToProductDetailPage}
                 />
               ))}
             </div>

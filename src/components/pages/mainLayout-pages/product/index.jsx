@@ -21,7 +21,6 @@ function Product() {
     );
   }, [dispatch]);
 
-
   return (
     <>
       {mainProductDetail.data.map((item) => {
@@ -74,13 +73,18 @@ function Product() {
                 />
               ) : (
                 <div className="flex justify-between">
-                  <Input
-                    type="number"
-                    className="border-2 w-14"
-                    defaultValue="1"
-                    min="1"
-                    max={item.quantity}
-                  />
+                  <div className="flex flex-col gap-3">
+                    <Input
+                      type="number"
+                      className="border-2 w-14"
+                      defaultValue="1"
+                      min="1"
+                      max={item.quantity}
+                    />
+                    {item.quantity < 10 ? (
+                      <p className="text-red-600 text-sm"> تنها {item.quantity} عدد در انبار باقی مانده </p>
+                    ) : null}
+                  </div>
                   <Button
                     className="w-40 h-12 bg-emerald-700 text-slate-100 px-3 rounded-lg hover:bg-emerald-900 self-end"
                     onClick={() => console.log("hi")}

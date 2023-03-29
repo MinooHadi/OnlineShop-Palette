@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { baseURL } from "../../../../api/constant";
 import { fetchMainSubcategories } from "../../../../redux/MainSlices/mainSubcategoriesSlice";
 import { store } from "../../../../redux/store";
@@ -10,6 +10,8 @@ function Subcategory() {
   const dispatch = useDispatch();
   const [params, setParams] = useSearchParams();
   const { mainSubcategories } = useSelector((store) => store);
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     dispatch(
@@ -18,6 +20,10 @@ function Subcategory() {
       })
     );
   }, [dispatch, params]);
+
+   function goToProductDetailPage(e) {
+    navigate(`/product?id=${e.target.id}`)
+  }
 
   return (
     <div className="px-10 my-16">
@@ -33,6 +39,8 @@ function Subcategory() {
             name={item.name}
             quantity={item.quantity}
             price={item.price}
+            id={item.id}
+            onClick={goToProductDetailPage}
           />
         ))}
       </div>

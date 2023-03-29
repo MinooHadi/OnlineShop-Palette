@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "../../../../redux/store";
 import { fetchMainProductDetail } from "../../../../redux/MainSlices/mainProductDetailSlice";
@@ -12,6 +12,7 @@ function Product() {
   let [params, setParams] = useSearchParams();
   const { mainProductDetail } = useSelector((store) => store);
   const [selectedImage, setSelectedImage] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(
@@ -52,8 +53,21 @@ function Product() {
             </div>
             <div className="flex flex-col gap-4 m-8 vazir-medium w-[70%]">
               <p className="text-slate-800">
-                <span className="text-slate-600">{item.category.name}</span> /{" "}
-                <span className="text-slate-500">{item.subcategory.name}</span>
+                <span
+                  className="text-slate-600 hover:cursor-pointer"
+                  id={item.category.id}
+                  onClick={(e) => navigate(`/category?id=${e.target.id}`)}
+                >
+                  {item.category.name}
+                </span>{" "}
+                /{" "}
+                <span
+                  className="text-slate-500 hover:cursor-pointer"
+                  id={item.subcategory.id}
+                  onClick={(e) => navigate(`/subcategory?id=${e.target.id}`)}
+                >
+                  {item.subcategory.name}
+                </span>
               </p>
               <p className="text-slate-600 text-sm">برند کالا: {item.brand}</p>
               <div className="flex justify-between items-center">
@@ -82,7 +96,10 @@ function Product() {
                       max={item.quantity}
                     />
                     {item.quantity < 10 ? (
-                      <p className="text-red-600 text-sm"> تنها {item.quantity} عدد در انبار باقی مانده </p>
+                      <p className="text-red-600 text-sm">
+                        {" "}
+                        تنها {item.quantity} عدد در انبار باقی مانده{" "}
+                      </p>
                     ) : null}
                   </div>
                   <Button

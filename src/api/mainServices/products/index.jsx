@@ -1,6 +1,6 @@
 import { instance } from "../../constant";
 
-export const mainProductService = (id) => {
+export const mainProductDetailService = (id) => {
   let base = `/products`;
   if (id !== null && id !== undefined) {
     base += `?id=${id}`;

@@ -5,7 +5,8 @@ export const fetchMainProductDetail = createAsyncThunk(
   "productDetail/fetchlist",
   async ({ id }) => {
     const res = await mainProductDetailService(id);
-    return [res.data];
+    console.log(res.data);
+    return res.data;
   }
 );
 
@@ -25,7 +26,7 @@ const mainProductDetailSlice = createSlice({
     },
     [fetchMainProductDetail.fulfilled]: (state, action) => {
       state.status = "success";
-      state.data = action.payload[0];
+      state.data = action.payload;
     },
   },
 });

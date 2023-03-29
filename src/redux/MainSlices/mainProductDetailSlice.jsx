@@ -5,7 +5,6 @@ export const fetchMainProductDetail = createAsyncThunk(
   "productDetail/fetchlist",
   async ({ id }) => {
     const res = await mainProductDetailService(id);
-    console.log(res.data);
     return res.data;
   }
 );

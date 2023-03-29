@@ -1,7 +1,6 @@
 import React from "react";
 
 function Input(props) {
-
   return (
     <div className="flex flex-col gap-2 relative">
       <label className="pr-3 text-slate-600 vazir-extraBold">
@@ -21,9 +20,18 @@ function Input(props) {
           defaultValue={props.defaultValue}
           multiple
           onChange={(e) => {
-            props.onChange(e)
-            props.validation.onChange(e)
+            props.onChange(e);
+            props.validation.onChange(e);
           }}
+        />
+      ) : props.type === "number" ? (
+        <input
+          type={props.type}
+          className={props.className}
+          {...props.validation}
+          min={props.min}
+          max={props.max}
+          defaultValue={props.defaultValue}
         />
       ) : (
         <input

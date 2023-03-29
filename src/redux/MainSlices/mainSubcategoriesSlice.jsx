@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { mainSubcategoriesService } from "../../api/mainServices/subcategories";
 
-
 export const fetchMainSubcategories = createAsyncThunk(
   "subcategory/fetchlist",
-  async ({ subcategoryId }) => {
-    const res = await mainSubcategoriesService(subcategoryId);
-    return [res.data];
+  async ({ page, subcategoryId }) => {
+    const res = await mainSubcategoriesService(page, subcategoryId);
+    const totalCount = res.headers["x-total-count"];
+    return [res.data, totalCount];
   }
 );
 
@@ -28,6 +28,7 @@ const mainSubcategoriesSlice = createSlice({
     [fetchMainSubcategories.fulfilled]: (state, action) => {
       state.status = "success";
       state.data = action.payload[0];
+      state.totalCount = action.payload[1];
     },
   },
 });

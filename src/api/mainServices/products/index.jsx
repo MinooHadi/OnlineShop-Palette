@@ -1,9 +1,9 @@
-import { instance } from "../../constant";
+import { userInstance } from "../../constant";
 
 export const mainProductDetailService = (id) => {
   let base = `/products?_expand=category&_expand=subcategory`;
   if (id !== null && id !== undefined) {
     base += `&id=${id}`;
   }
-  return instance.get(base);
+  return userInstance.get(base);
 };

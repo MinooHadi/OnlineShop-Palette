@@ -24,7 +24,7 @@ function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-8 px-10 my-20">
+    <div className="flex flex-col gap-8 px-10 my-20 min-h-screen">
       {categories.data.map((cItem) => {
         return (
           <>

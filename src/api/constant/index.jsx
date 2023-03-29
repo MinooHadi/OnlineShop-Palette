@@ -2,6 +2,11 @@ import axios from "axios";
 
 export const baseURL = "http://localhost:3001";
 
+export const userInstance = axios.create({
+  baseURL,
+  timeout: 15000,
+});
+
 export const instance = axios.create({
   baseURL,
   timeout: 15000,
@@ -33,14 +38,30 @@ instance.interceptors.response.use(
     } = error;
 
     if (status === 401) {
+      console.log("hi");
       instance.defaults.headers.refreshToken =
         localStorage.getItem("refresh_token");
-      instance.post("/auth/refresh-token").then(({ data }) => {
-        const { accessToken } = data;
-        localStorage.setItem("token", accessToken);
-        error.config.headers.token = accessToken
-        instance(error.config).then(() => window.location.reload());
-      });
+      instance.post("/auth/refresh-token").then(
+        ({ data, status }) => {
+          if (status === 403) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("refresh_token");
+            window.location.href = "/adminLogin";
+          } else {
+            const { accessToken } = data;
+            localStorage.setItem("token", accessToken);
+            error.config.headers.token = accessToken;
+            instance(error.config).then(() => window.location.reload());
+          }
+        },
+        (error) => {
+          if (error.response.status === 403) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("refresh_token");
+            window.location.href = "/adminLogin";
+          }
+        }
+      );
     } else {
       return Promise.reject(error);
     }

@@ -14,11 +14,23 @@
 }
 
 .menu-color {
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(112,130,168,0) 75%, rgba(126,147,190,0) 85%, rgba(145,169,219,1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(112, 130, 168, 0) 75%,
+    rgba(126, 147, 190, 0) 85%,
+    rgba(145, 169, 219, 1) 100%
+  );
 }
 
 .submenu:hover {
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(112,130,168,0) 75%, rgba(126,147,190,0) 85%, rgba(145,169,219,1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(112, 130, 168, 0) 75%,
+    rgba(126, 147, 190, 0) 85%,
+    rgba(145, 169, 219, 1) 100%
+  );
 }
 
 .coustum-file-inpute::file-selector-button {
@@ -28,7 +40,7 @@
   font-family: arsoo;
   src: url(./assets/font/A.Arsoo.ttf);
 }
-.arsoo{
+.arsoo {
   font-family: arsoo;
 }
 
@@ -36,7 +48,7 @@
   font-family: bardiya;
   src: url(./assets/font/B\ Bardiya.ttf);
 }
-.bardiya{
+.bardiya {
   font-family: bardiya;
 }
 
@@ -44,7 +56,7 @@
   font-family: chini;
   src: url(./assets/font/B\ Chini.ttf);
 }
-.chini{
+.chini {
   font-family: chini;
 }
 
@@ -52,7 +64,7 @@
   font-family: elham;
   src: url(./assets/font/B\ Elham.ttf);
 }
-.elham{
+.elham {
   font-family: elham;
 }
 
@@ -60,7 +72,7 @@
   font-family: elm;
   src: url(./assets/font/B\ Elm\ Bold.ttf);
 }
-.elm{
+.elm {
   font-family: elm;
 }
 
@@ -68,7 +80,7 @@
   font-family: kamran;
   src: url(./assets/font/B\ Kamran.ttf);
 }
-.kamran{
+.kamran {
   font-family: kamran;
 }
 
@@ -76,7 +88,7 @@
   font-family: outline;
   src: url(./assets/font/B\ Kamran\ Outline.ttf);
 }
-.outline{
+.outline {
   font-family: outline;
 }
 
@@ -84,7 +96,7 @@
   font-family: morvarid;
   src: url(./assets/font/B\ Morvarid.ttf);
 }
-.morvarid{
+.morvarid {
   font-family: morvarid;
 }
 
@@ -92,7 +104,7 @@
   font-family: narm;
   src: url(./assets/font/B\ Narm.ttf);
 }
-.narm{
+.narm {
   font-family: narm;
 }
 
@@ -100,7 +112,7 @@
   font-family: shadi;
   src: url(./assets/font/B\ Shadi.ttf);
 }
-.shadi{
+.shadi {
   font-family: shadi;
 }
 
@@ -108,7 +120,7 @@
   font-family: siavash;
   src: url(./assets/font/B\ Siavash.ttf);
 }
-.siavash{
+.siavash {
   font-family: siavash;
 }
 
@@ -116,7 +128,7 @@
   font-family: vazir-black;
   src: url(./assets/font/Vazirmatn-Black.ttf);
 }
-.vazir-black{
+.vazir-black {
   font-family: vazir-black;
 }
 
@@ -124,7 +136,7 @@
   font-family: vazir-bold;
   src: url(./assets/font/Vazirmatn-Bold.ttf);
 }
-.vazir-bold{
+.vazir-bold {
   font-family: vazir-bold;
 }
 
@@ -132,7 +144,7 @@
   font-family: vazir-extraBold;
   src: url(./assets/font/Vazirmatn-ExtraBold.ttf);
 }
-.vazir-extraBold{
+.vazir-extraBold {
   font-family: vazir-extraBold;
 }
 
@@ -140,7 +152,7 @@
   font-family: vazir-extraLight;
   src: url(./assets/font/Vazirmatn-ExtraLight.ttf);
 }
-.vazir-extraLight{
+.vazir-extraLight {
   font-family: vazir-extraLight;
 }
 
@@ -148,7 +160,7 @@
   font-family: vazir-light;
   src: url(./assets/font/Vazirmatn-Light.ttf);
 }
-.vazir-light{
+.vazir-light {
   font-family: vazir-light;
 }
 
@@ -156,7 +168,7 @@
   font-family: vazir-medium;
   src: url(./assets/font/Vazirmatn-Medium.ttf);
 }
-.vazir-medium{
+.vazir-medium {
   font-family: vazir-medium;
 }
 
@@ -164,7 +176,7 @@
   font-family: vazir-regular;
   src: url(./assets/font/Vazirmatn-Regular.ttf);
 }
-.vazir-regular{
+.vazir-regular {
   font-family: vazir-regular;
 }
 
@@ -172,7 +184,7 @@
   font-family: vazir-semiBold;
   src: url(./assets/font/Vazirmatn-SemiBold.ttf);
 }
-.vazir-semiBold{
+.vazir-semiBold {
   font-family: vazir-semiBold;
 }
 
@@ -180,18 +192,34 @@
   font-family: vazir-thin;
   src: url(./assets/font/Vazirmatn-Thin.ttf);
 }
-.vazir-thin{
+.vazir-thin {
   font-family: vazir-thin;
 }
 
-.topColor{
-  background: linear-gradient(to right, rgb(56, 189, 248), rgb(251, 113, 133), rgb(163, 230, 53));
+.topColor {
+  background: linear-gradient(
+    to right,
+    rgb(56, 189, 248),
+    rgb(251, 113, 133),
+    rgb(163, 230, 53)
+  );
 }
 
 .mainHeaderColor {
-  background: linear-gradient(to right, rgb(254, 240, 138), rgb(251, 207, 232), rgb(244, 114, 182));
+  background: linear-gradient(
+    to right,
+    rgb(254, 240, 138),
+    rgb(251, 207, 232),
+    rgb(244, 114, 182)
+  );
 }
 
-.mainFooterColor{
+.mainFooterColor {
   background-color: rgb(251, 207, 232);
+}
+
+#toast-root {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
 }

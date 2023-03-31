@@ -10,6 +10,7 @@ import {
   EditProductModal,
   Pagination,
   Table,
+  Toast,
 } from "../../../shared";
 
 import { EditAltIcon, TrashIcon } from "../../../icons";
@@ -21,6 +22,7 @@ function AdminPanelProducts() {
   const [showAPModal, setShowAPModal] = useState(false);
   const [showEPModal, setShowEPModal] = useState(false);
   const [showDPModal, setShowDPModal] = useState(false);
+  const [showToast, setShowToast] = useState(undefined);
 
   const [selectedProductId, setSelectedProductId] = useState();
   const [selectedEditProducId, setSelectedEditProducId] = useState();
@@ -58,6 +60,7 @@ function AdminPanelProducts() {
         })
       );
     }
+    setShowToast(refresh);
   }
 
   function showEditProductModal(e) {
@@ -167,6 +170,11 @@ function AdminPanelProducts() {
           products={selectedProduct[0]}
         />
       )}
+      {showToast === true ? (
+        <Toast msg="کالا با موفقیت اضافه شد" status={1} />
+      ) : showToast === false ? (
+        <Toast msg="دوباره امتحان کنید" status={0} />
+      ) : null}
     </>
   );
 }

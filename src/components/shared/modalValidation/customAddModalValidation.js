@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { productsCreateService, uploadImages } from "../../../api/services/products";
+import Toast from "../toast";
 
 function useAddModalValidation() {
   const modalSchema = yup.object({
@@ -79,9 +80,11 @@ function useAddModalValidation() {
       const res = await productsCreateService({...data, thumbnail, image});
       if (res.status === 201) {
         return true
+      } else {
+        return false
       }
     } catch {
-      alert("failed");
+      return false
     }
   }
 

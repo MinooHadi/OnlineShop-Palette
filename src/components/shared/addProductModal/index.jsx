@@ -21,9 +21,6 @@ function AddProductModal(props) {
 
   useEffect(() => {
     dispatch(fetchCategories());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchSubcategories());
   }, [dispatch]);
 

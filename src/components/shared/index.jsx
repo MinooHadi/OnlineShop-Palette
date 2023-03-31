@@ -13,3 +13,4 @@ export { default as DeleteProductModal } from "./deleteProductModal";
 export { default as CheckOrderModal } from "./checkOrderModal";
 export { default as FileInput } from "./fileInput";
 export { default as HeaderCarts } from "./headerCarts";
+export { default as Toast } from "./toast";

@@ -4,12 +4,13 @@ import { useSearchParams } from "react-router-dom";
 import { stocksEditService } from "../../../../api/services/stocks";
 
 import { fetchStocks } from "../../../../redux/Slices/stocksSlice";
-import { Button, Pagination, Table } from "../../../shared";
+import { Button, Pagination, Table, Toast } from "../../../shared";
 
 function AdminPanelStocks() {
   const dispatch = useDispatch();
   const { stocks } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
+  const [showSToast, setShowSToast] = useState(undefined);
 
   const [editions, setEditions] = useState({});
 
@@ -39,6 +40,17 @@ function AdminPanelStocks() {
     }
     const res = await Promise.all(promises);
     console.log(res);
+    if (res[0].status === 200) {
+      setShowSToast(true);
+      setTimeout(() => {
+        setShowSToast(undefined);
+      }, 2000);
+    } else {
+      setShowSToast(false);
+      setTimeout(() => {
+        setShowSToast(undefined);
+      }, 2000);
+    }
     //TODO handle failure
     dispatch(
       fetchStocks({
@@ -47,7 +59,6 @@ function AdminPanelStocks() {
       })
     );
   }
-
 
   return (
     <>
@@ -66,6 +77,11 @@ function AdminPanelStocks() {
           setEditions={setEditions}
         />
       </div>
+      {showSToast === true ? (
+        <Toast msg="اطلاعات با موفقیت ویرایش شد" status={1} />
+      ) : showSToast === false ? (
+        <Toast msg="دوباره امتحان کنید" status={0} />
+      ) : null}
       <Pagination pageCount={calculatePageCount()} onClick={getPageNumber} />
     </>
   );

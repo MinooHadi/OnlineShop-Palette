@@ -100,9 +100,11 @@ function useEditModalValidation() {
       const res = await productsEditService(id, data);
       if (res.status == 200) {
         return true;
+      } else {
+        return false
       }
     } catch {
-      alert("failed");
+      return false
     }
 
     //TODO handle failure in upload request

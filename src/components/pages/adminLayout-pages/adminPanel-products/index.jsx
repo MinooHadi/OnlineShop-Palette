@@ -63,6 +63,9 @@ function AdminPanelProducts() {
       );
     }
     setShowAToast(refresh);
+    setTimeout(() => {
+      setShowAToast(undefined);
+    }, 2000);
   }
 
   function showEditProductModal(e) {
@@ -90,6 +93,9 @@ function AdminPanelProducts() {
       );
     }
     setShowEToast(refresh);
+    setTimeout(() => {
+      setShowEToast(undefined);
+    }, 2000);
   }
 
   function showDeleteProductModal(e) {
@@ -117,6 +123,9 @@ function AdminPanelProducts() {
       );
     }
     setShowDToast(refresh);
+    setTimeout(() => {
+      setShowDToast(undefined);
+    }, 2000);
   }
 
   const selectedProduct = products.data.filter(

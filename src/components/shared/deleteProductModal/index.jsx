@@ -10,12 +10,12 @@ function DeleteProductModal(props) {
     try {
       const res = await productsDeleteService(id);
       if (res.status === 200) {
-        props.onClose(true)
+        props.onClose(true);
+        return true;
       }
-    } catch {
-      alert("failed");
-    }
-    props.onClose()
+    } catch {}
+    props.onClose();
+    return false
   }
 
   function closeDeleteModal() {

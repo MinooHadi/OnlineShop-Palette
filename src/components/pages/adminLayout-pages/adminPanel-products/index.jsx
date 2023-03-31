@@ -186,7 +186,11 @@ function AdminPanelProducts() {
         <Toast msg="دوباره امتحان کنید" status={0} />
       ) : null}
 
-      
+      {showDToast === true ? (
+        <Toast msg="کالا با موفقیت حذف شد" status={1} />
+      ) : showDToast === false ? (
+        <Toast msg="دوباره امتحان کنید" status={0} />
+      ) : null}
     </>
   );
 }

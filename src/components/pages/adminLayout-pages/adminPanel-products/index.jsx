@@ -22,7 +22,9 @@ function AdminPanelProducts() {
   const [showAPModal, setShowAPModal] = useState(false);
   const [showEPModal, setShowEPModal] = useState(false);
   const [showDPModal, setShowDPModal] = useState(false);
-  const [showToast, setShowToast] = useState(undefined);
+  const [showAToast, setShowAToast] = useState(undefined);
+  const [showEToast, setShowEToast] = useState(undefined);
+  const [showDToast, setShowDToast] = useState(undefined);
 
   const [selectedProductId, setSelectedProductId] = useState();
   const [selectedEditProducId, setSelectedEditProducId] = useState();
@@ -60,7 +62,7 @@ function AdminPanelProducts() {
         })
       );
     }
-    setShowToast(refresh);
+    setShowAToast(refresh);
   }
 
   function showEditProductModal(e) {
@@ -87,6 +89,7 @@ function AdminPanelProducts() {
         })
       );
     }
+    setShowEToast(refresh);
   }
 
   function showDeleteProductModal(e) {
@@ -113,6 +116,7 @@ function AdminPanelProducts() {
         })
       );
     }
+    setShowDToast(refresh);
   }
 
   const selectedProduct = products.data.filter(
@@ -170,11 +174,19 @@ function AdminPanelProducts() {
           products={selectedProduct[0]}
         />
       )}
-      {showToast === true ? (
+      {showAToast === true ? (
         <Toast msg="کالا با موفقیت اضافه شد" status={1} />
-      ) : showToast === false ? (
+      ) : showAToast === false ? (
         <Toast msg="دوباره امتحان کنید" status={0} />
       ) : null}
+
+      {showEToast === true ? (
+        <Toast msg="کالا با موفقیت ویرایش شد" status={1} />
+      ) : showEToast === false ? (
+        <Toast msg="دوباره امتحان کنید" status={0} />
+      ) : null}
+
+      
     </>
   );
 }

@@ -28,14 +28,15 @@ function useCustomerFormValidation() {
     phone: yup
       .string()
       .matches(
-        "[/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/]",
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
         "شماره وارد شده صحیح نمی باشد"
       )
       .required("پر کردن این فیلد الزامی می باشد"),
     expectAt: yup
       .date()
-      .min(new Date(), "تاریخ انتخاب شده صحیح نمی باشد")
-      .required("پر کردن این فیلد الزامی می باشد"),
+      .required("پر کردن این فیلد الزامی می باشد")
+      .min(new Date())
+      .typeError("تاریخ انتخاب شده صحیح نمی باشد"),
   });
 
   const {
@@ -51,4 +52,4 @@ function useCustomerFormValidation() {
   };
 }
 
-export default useCustomerFormValidation
+export default useCustomerFormValidation;

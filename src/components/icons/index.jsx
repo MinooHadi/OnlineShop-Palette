@@ -15,6 +15,9 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { BiStore } from "react-icons/bi";
 import { BiHome } from "react-icons/bi";
+import { ImLoop2 } from "react-icons/im";
+import { FaRegEnvelope } from "react-icons/fa";
+import { IoIosKeypad } from "react-icons/io";
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -33,3 +36,6 @@ export const KeyboardDoubleArrowRightIcon = MdKeyboardDoubleArrowRight;
 export const MdCloseCircleOutlineIcon = IoMdCloseCircleOutline;
 export const Store = BiStore;
 export const Home = BiHome;
+export const Loop2 = ImLoop2;
+export const RegEnvelope = FaRegEnvelope;
+export const IosKeypad = IoIosKeypad;

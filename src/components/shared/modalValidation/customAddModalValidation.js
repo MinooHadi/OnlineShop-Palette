@@ -2,7 +2,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { productsCreateService, uploadImages } from "../../../api/services/products";
-import Toast from "../toast";
 
 function useAddModalValidation() {
   const modalSchema = yup.object({

@@ -106,7 +106,7 @@ function MainLayoutHeader() {
               <FavoriteBorderIcon size="1.7rem" />
               مورد علاقه ها
             </Link>
-            <Link className="flex flex-col items-center text-sm font-medium hover:text-blue-500">
+            <Link className="flex flex-col items-center text-sm font-medium hover:text-blue-500" to={"/card"}>
               <ShoppingBagIcon size="1.7rem" />
               سبد خرید
             </Link>

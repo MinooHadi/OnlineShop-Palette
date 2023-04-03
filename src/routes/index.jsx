@@ -6,7 +6,7 @@ import {
   AdminPanelStocks,
 } from "../components/pages/adminLayout-pages";
 import {
-  Cart,
+  Card,
   Category,
   Checkout,
   Favorites,
@@ -25,7 +25,7 @@ function GateWay() {
           <Route path="/category" element={<Category />} />
           <Route path="/subcategory" element={<Subcategory />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/card" element={<Card />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/checkout" element={<Checkout />} />
         </Route>

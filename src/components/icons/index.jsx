@@ -18,6 +18,7 @@ import { BiHome } from "react-icons/bi";
 import { ImLoop2 } from "react-icons/im";
 import { FaRegEnvelope } from "react-icons/fa";
 import { IoIosKeypad } from "react-icons/io";
+import { GoPlus } from "react-icons/go";
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -39,3 +40,4 @@ export const Home = BiHome;
 export const Loop2 = ImLoop2;
 export const RegEnvelope = FaRegEnvelope;
 export const IosKeypad = IoIosKeypad;
+export const Plus = GoPlus;

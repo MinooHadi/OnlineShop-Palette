@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { Plus } from "../../icons";
 
 function ProductCart(props) {
+  const [showAddShoppingCard, setShowAddShoppingCard] = useState(false);
+
+  function addToShoppingCard(e) {
+    e.stopPropagation()
+    console.log("hi");
+  }
+
   return (
-    <div className="w-72 h-80 border-2 border-slate-300 flex flex-col items-center relative rounded-2xl" id={props.id} onClick={props.onClick}>
+    <div
+      className="w-72 h-80 border-2 border-slate-300 flex flex-col items-center relative rounded-2xl"
+      id={props.id}
+      onClick={props.onClick}
+      onMouseEnter={() => setShowAddShoppingCard(true)}
+      onMouseLeave={() => setShowAddShoppingCard(false)}
+    >
+      {showAddShoppingCard && (
+        <div
+          className="absolute flex items-center justify-center top-1 left-1 w-12 text-center h-6 bg-slate-700 rounded-2xl"
+          onClick={addToShoppingCard}
+        >
+          <Plus color="white" />
+        </div>
+      )}
       <img
         src={props.src}
         alt={props.alt}

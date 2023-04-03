@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import Input from "../input";
 import useCustomerFormValidation from "../modalValidation/customCustomerFormValidation";
 
 function CustomerFormModal() {
-  const { register, handleSubmit, errors } = useCustomerFormValidation();
+  const { register, handleSubmit, errors, payment } = useCustomerFormValidation();
+  const navigate = useNavigate()
 
   console.log(errors);
   return ReactDOM.createPortal(
@@ -15,9 +17,7 @@ function CustomerFormModal() {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
       />
       <form className="flex flex-col gap-6"
-        onSubmit={handleSubmit((e) => {
-          e.preventDefault();
-        })}
+        onSubmit={handleSubmit(payment)}
       >
         <Input
           type="text"

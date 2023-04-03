@@ -14,7 +14,12 @@ import {
   Product,
   Subcategory,
 } from "../components/pages/mainLayout-pages";
-import { AdminLayout, LoginLayout, MainLayout } from "../layouts";
+import {
+  AdminLayout,
+  LoginLayout,
+  MainLayout,
+  PaymentLayout,
+} from "../layouts";
 
 function GateWay() {
   return (
@@ -35,6 +40,7 @@ function GateWay() {
           <Route path="/admin/stocks" element={<AdminPanelStocks />} />
           <Route path="/admin/products" element={<AdminPanelProducts />} />
         </Route>
+        <Route path="/payment" element={<PaymentLayout />} />
       </Routes>
     </BrowserRouter>
   );

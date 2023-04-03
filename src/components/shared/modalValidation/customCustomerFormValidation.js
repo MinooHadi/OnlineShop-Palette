@@ -1,8 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import * as yup from "yup";
 
 function useCustomerFormValidation() {
+  const navigate = useNavigate();
+
   const modalSchema = yup.object({
     username: yup
       .string()
@@ -35,9 +38,14 @@ function useCustomerFormValidation() {
     expectAt: yup
       .date()
       .required("پر کردن این فیلد الزامی می باشد")
-      .min(new Date())
+      .min(new Date(), "تاریخ انتخاب شده صحیح نمی باشد")
       .typeError("تاریخ انتخاب شده صحیح نمی باشد"),
   });
+
+  function payment(data, e) {
+    e.preventDefault();
+    navigate("/payment");
+  }
 
   const {
     register,
@@ -49,6 +57,7 @@ function useCustomerFormValidation() {
     register,
     handleSubmit,
     errors,
+    payment,
   };
 }
 

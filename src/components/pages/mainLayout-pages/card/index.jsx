@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, ShoppingCard } from "../../../shared";
+import { Button, CustomerFormModal, ShoppingCard } from "../../../shared";
 
 function Card() {
   const [showCFormModal, setShowCFormModal] = useState(false);
@@ -27,6 +27,7 @@ function Card() {
           />
         </div>
       </div>
+      {showCFormModal && <CustomerFormModal />}
     </>
   );
 }

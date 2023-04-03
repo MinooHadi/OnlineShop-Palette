@@ -14,4 +14,5 @@ export { default as CheckOrderModal } from "./checkOrderModal";
 export { default as FileInput } from "./fileInput";
 export { default as HeaderCarts } from "./headerCarts";
 export { default as Toast } from "./toast";
-export {default as ShoppingCard} from "./shoppingCard"
+export { default as ShoppingCard } from "./shoppingCard";
+export { default as CustomerFormModal } from "./customerFormModal";

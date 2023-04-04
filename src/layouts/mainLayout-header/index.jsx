@@ -69,7 +69,7 @@ function MainLayoutHeader() {
       <div className="flex flex-col sticky top-0 z-40" onMouseLeave={hideMenus}>
         <div className="flex justify-center items-center h-10 text-slate-50 topColor arsoo text-xl">
           <p>
-            به فروشگاه <span className="morvarid font-bold text-3xl">پالت</span>{" "}
+            به فروشگاه <span className="morvarid font-bold text-3xl">پالت</span>
             خوش اومدی
           </p>
         </div>
@@ -106,10 +106,18 @@ function MainLayoutHeader() {
               <FavoriteBorderIcon size="1.7rem" />
               مورد علاقه ها
             </Link>
-            <Link className="flex flex-col items-center text-sm font-medium hover:text-blue-500" to={"/card"}>
-              <ShoppingBagIcon size="1.7rem" />
-              سبد خرید
-            </Link>
+            <div className="relative">
+              <div className="w-5 h-5 rounded-full bg-red-600 text-white absolute -top-1 left-10 text-[10px] flex items-center justify-center">
+                <span className="inline">0</span>
+              </div>
+              <Link
+                className="flex flex-col items-center text-sm font-medium hover:text-blue-500"
+                to={"/card"}
+              >
+                <ShoppingBagIcon size="1.7rem" />
+                سبد خرید
+              </Link>
+            </div>
           </div>
         </div>
         <div className="w-[100%] mainHeaderColor border-t-4 absolute top-[132px]">

@@ -1,10 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
 
 function useCustomerFormValidation() {
   const navigate = useNavigate();
+  const { shoppingCard } = useSelector((store) => store);
 
   const modalSchema = yup.object({
     username: yup
@@ -44,6 +46,16 @@ function useCustomerFormValidation() {
 
   function payment(data, e) {
     e.preventDefault();
+    const card = JSON.parse(localStorage.getItem("card"));
+    const products = card.map((item) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.thumbnail,
+      count: shoppingCard.cardState[item.id],
+    }));
+    const finalData = { ...data, products };
+    localStorage.setItem("order", JSON.stringify(finalData));
     navigate("/payment");
   }
 

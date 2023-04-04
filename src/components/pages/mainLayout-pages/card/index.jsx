@@ -18,21 +18,29 @@ function Card() {
     const promises = Object.keys(shoppingCard.cardState).map((item) =>
       mainProductDetailService(item)
     );
-    Promise.all(promises).then((res) => setData(res));
+    Promise.all(promises).then((res) =>
+      setData(res.map((item) => item.data[0]))
+    );
   }
 
   useEffect(() => {
     getProducts();
   }, []);
 
+  useEffect(() => {
+    if (data.length > 0) {
+      localStorage.setItem("card", JSON.stringify(data));
+    }
+  }, [data]);
+
   return (
     <>
       {Object.keys(shoppingCard.cardState).length ? (
         <div className="p-6 m-10 flex flex-col gap-3 items-center">
-          {data.map((item) => {
-            const product = item.data[0];
+          {data.map((product) => {
             if (shoppingCard.cardState[product.id]) {
-              totalPrice += (+shoppingCard.cardState[product.id] * +product.price)
+              totalPrice +=
+                +shoppingCard.cardState[product.id] * +product.price;
               return (
                 <ShoppingCard
                   name={product.name}
@@ -66,7 +74,9 @@ function Card() {
         </div>
       )}
 
-      {showCFormModal && <CustomerFormModal onClose={() => setShowCFormModal(false)} />}
+      {showCFormModal && (
+        <CustomerFormModal onClose={() => setShowCFormModal(false)} />
+      )}
     </>
   );
 }

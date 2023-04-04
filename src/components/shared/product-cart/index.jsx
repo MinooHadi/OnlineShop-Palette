@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Plus } from "../../icons";
+import { useDispatch, useSelector } from "react-redux";
+import { shoppingCardSliceActions } from "../../../redux/MainSlices/shoppingCardSlice";
 
 function ProductCart(props) {
   const [showAddShoppingCard, setShowAddShoppingCard] = useState(false);
+  const dispatch = useDispatch();
+  const { shoppingCard } = useSelector((store) => store);
+
 
   function addToShoppingCard(e) {
-    e.stopPropagation()
-    console.log("hi");
+    e.stopPropagation();
+    dispatch(shoppingCardSliceActions.increase(e.target.id));
   }
 
   return (
@@ -21,10 +26,11 @@ function ProductCart(props) {
         <div
           className="absolute flex items-center justify-center top-1 left-1 w-12 text-center h-6 bg-slate-700 rounded-2xl"
           onClick={addToShoppingCard}
+          id={props.id}
         >
           <Plus color="white" />
         </div>
-      ): null}
+      ) : null}
       <img
         src={props.src}
         alt={props.alt}

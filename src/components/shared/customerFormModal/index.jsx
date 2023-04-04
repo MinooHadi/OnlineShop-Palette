@@ -5,15 +5,15 @@ import { MdCloseCircleOutlineIcon } from "../../icons";
 import Input from "../input";
 import useCustomerFormValidation from "../modalValidation/customCustomerFormValidation";
 
-function CustomerFormModal() {
+function CustomerFormModal(props) {
   const { register, handleSubmit, errors, payment } = useCustomerFormValidation();
-  const navigate = useNavigate()
 
   return ReactDOM.createPortal(
     <div className="fixed flex flex-col gap-4 w-1/3 p-10 h-2/3 top-44 left-1/3 items-center border-2 bg-slate-100 overflow-auto no-scrollbar">
       <MdCloseCircleOutlineIcon
         size="1.2rem"
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
+        onClick={props.onClose}
       />
       <form className="flex flex-col gap-6"
         onSubmit={handleSubmit(payment)}

@@ -66,7 +66,7 @@ function Card() {
         </div>
       )}
 
-      {showCFormModal && <CustomerFormModal />}
+      {showCFormModal && <CustomerFormModal onClose={() => setShowCFormModal(false)} />}
     </>
   );
 }

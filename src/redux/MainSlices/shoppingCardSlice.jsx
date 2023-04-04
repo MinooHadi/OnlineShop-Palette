@@ -1,11 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { mainOrderService } from "../../api/mainServices/orders";
 
-
+export const postMainOrder = createAsyncThunk(
+  "order/post",
+  async ({ data }) => {
+    const res = await mainOrderService(data);
+    return res.data;
+  }
+);
 
 const shoppingCardSlice = createSlice({
   name: "shoppingCard/list",
   initialState: {
     cardState: {},
+    status: "idle",
   },
   reducers: {
     increase: (state, action) => {
@@ -29,8 +37,19 @@ const shoppingCardSlice = createSlice({
       state.cardState[action.payload.id] = action.payload.count;
     },
     deleteProduct: (state, action) => {
-      delete state.cardState[action.payload]
-    }
+      delete state.cardState[action.payload];
+    },
+  },
+  extraReducers: {
+    [postMainOrder.pending]: (state) => {
+      state.status = "pending";
+    },
+    [postMainOrder.rejected]: (state) => {
+      state.status = "rejected";
+    },
+    [postMainOrder.fulfilled]: (state) => {
+      state.status = "success";
+    },
   },
 });
 

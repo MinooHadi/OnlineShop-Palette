@@ -50,8 +50,8 @@ function CustomerFormModal(props) {
           type="date"
           lable="تاریخ تحویل"
           className="border-2 w-96 h-8"
-          validation={{ ...register("expectAt") }}
-          error={errors.expectAt?.message}
+          validation={{ ...register("expectedAt") }}
+          error={errors.expectedAt?.message}
         />
         <Input
           type="submit"

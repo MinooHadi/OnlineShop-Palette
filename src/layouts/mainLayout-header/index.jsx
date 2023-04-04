@@ -19,7 +19,9 @@ function MainLayoutHeader() {
   const [showSubMenu, setShowSubMenu] = useState();
   const [selected, setSelected] = useState();
   const dispatch = useDispatch();
-  const { categories, subcategories } = useSelector((store) => store);
+  const { categories, subcategories, shoppingCard } = useSelector(
+    (store) => store
+  );
   const navigate = useNavigate();
   const lastSelected = useRef();
 
@@ -107,9 +109,13 @@ function MainLayoutHeader() {
               مورد علاقه ها
             </Link>
             <div className="relative">
-              <div className="w-5 h-5 rounded-full bg-red-600 text-white absolute -top-1 left-10 text-[10px] flex items-center justify-center">
-                <span className="inline">0</span>
-              </div>
+              {Object.keys(shoppingCard.cardState).length > 0 && (
+                <div className="w-5 h-5 rounded-full bg-red-600 text-white absolute -top-1 left-10 text-[10px] flex items-center justify-center">
+                  <span className="inline">
+                    {Object.keys(shoppingCard.cardState).length}
+                  </span>
+                </div>
+              )}
               <Link
                 className="flex flex-col items-center text-sm font-medium hover:text-blue-500"
                 to={"/card"}

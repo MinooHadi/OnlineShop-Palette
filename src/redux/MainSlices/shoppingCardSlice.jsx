@@ -3,7 +3,8 @@ import { mainOrderService } from "../../api/mainServices/orders";
 
 export const postMainOrder = createAsyncThunk(
   "order/post",
-  async ({ data }) => {
+  async ( data ) => {
+    console.log(data);
     const res = await mainOrderService(data);
     return res.data;
   }

@@ -54,7 +54,8 @@ function useCustomerFormValidation() {
       image: item.thumbnail,
       count: shoppingCard.cardState[item.id],
     }));
-    const finalData = { ...data, products };
+    const prices = card.reduce((sum, curent) => sum + (curent.price * shoppingCard.cardState[curent.id]), 0)
+    const finalData = { ...data, products, delivered: "false", prices };
     localStorage.setItem("order", JSON.stringify(finalData));
     navigate("/payment");
   }

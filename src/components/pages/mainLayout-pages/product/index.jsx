@@ -7,11 +7,12 @@ import { baseURL } from "../../../../api/constant";
 import Button from "../../../shared/button";
 import Input from "../../../shared/input";
 import { Minus, Plus } from "../../../icons";
+import { shoppingCardSliceActions } from "../../../../redux/MainSlices/shoppingCardSlice";
 
 function Product() {
   const dispatch = useDispatch();
   let [params, setParams] = useSearchParams();
-  const { mainProductDetail } = useSelector((store) => store);
+  const { mainProductDetail, shoppingCard } = useSelector((store) => store);
   const [selectedImage, setSelectedImage] = useState();
   const navigate = useNavigate();
   const [productCount, setProductCount] = useState(1);
@@ -26,16 +27,30 @@ function Product() {
 
   function increaseProductCount() {
     const quantity = mainProductDetail.data[0].quantity;
-    if(productCount < quantity) {
+    if (productCount < quantity) {
       setProductCount(productCount + 1);
     }
   }
 
   function decreaseProductCount() {
-    if (productCount > 0) {
+    if (productCount > 1) {
       setProductCount(productCount - 1);
     }
   }
+
+  function addToShoppingCard(e) {
+    dispatch(
+      shoppingCardSliceActions.increase({
+        id: e.target.id,
+        count: productCount,
+      })
+    );
+  }
+
+  useEffect(() => {
+    console.log(shoppingCard.cardState);
+  }, [shoppingCard]);
+
   return (
     <>
       {mainProductDetail.data.map((item) => {
@@ -95,7 +110,6 @@ function Product() {
               {item.quantity == 0 ? (
                 <Button
                   className="disabled:bg-emerald-300 w-40 h-12 text-slate-100 px-3 rounded-lg self-end"
-                  onClick={() => console.log("hi")}
                   title="افزودن به سبد خرید"
                   disabled={true}
                 />
@@ -124,8 +138,9 @@ function Product() {
                   </div>
                   <Button
                     className="w-40 h-12 bg-emerald-700 text-slate-100 px-3 rounded-lg hover:bg-emerald-900 self-end"
-                    onClick={() => console.log("hi")}
+                    onClick={addToShoppingCard}
                     title="افزودن به سبد خرید"
+                    id={item.id}
                   />
                 </div>
               )}

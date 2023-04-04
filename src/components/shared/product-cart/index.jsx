@@ -11,7 +11,7 @@ function ProductCart(props) {
 
   function addToShoppingCard(e) {
     e.stopPropagation();
-    dispatch(shoppingCardSliceActions.increase(e.target.id));
+    dispatch(shoppingCardSliceActions.increase({id: e.target.id, count: 1}));
   }
 
   return (

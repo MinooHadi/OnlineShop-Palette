@@ -7,19 +7,13 @@ const shoppingCardSlice = createSlice({
   },
   reducers: {
     increase: (state, action) => {
-      let prevCount = state.cardState[action.payload];
+      let prevCount = state.cardState[action.payload.id];
       if (prevCount) {
-        state.cardState[action.payload] += 1;
+        state.cardState[action.payload.id] += action.payload.count;
       } else {
-        state.cardState[action.payload] = 1;
+        state.cardState[action.payload.id] = action.payload.count;
       }
-      console.log("prevCount", prevCount);
-      console.log(
-        "state.cardState[action.payload]",
-        state.cardState[action.payload]
-      );
-      console.log("action.payload", action.payload);
-      console.log(state.cardState);
+      console.log(action.payload);
     },
     decrease: (state, action) => {
       let prevCount = state.cardState[action.payload];

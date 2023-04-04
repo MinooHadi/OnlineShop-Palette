@@ -71,7 +71,7 @@ function MainLayoutHeader() {
       <div className="flex flex-col sticky top-0 z-40" onMouseLeave={hideMenus}>
         <div className="flex justify-center items-center h-10 text-slate-50 topColor arsoo text-xl">
           <p>
-            به فروشگاه <span className="morvarid font-bold text-3xl">پالت</span>
+            به فروشگاه <span className="morvarid font-bold text-3xl"> پالت </span>
             خوش اومدی
           </p>
         </div>

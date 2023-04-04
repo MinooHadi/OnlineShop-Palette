@@ -13,7 +13,6 @@ const shoppingCardSlice = createSlice({
       } else {
         state.cardState[action.payload.id] = action.payload.count;
       }
-      console.log(action.payload);
     },
     decrease: (state, action) => {
       let prevCount = state.cardState[action.payload];
@@ -23,6 +22,9 @@ const shoppingCardSlice = createSlice({
           delete state.cardState[action.payload];
         }
       }
+    },
+    setCount: (state, action) => {
+      state.cardState[action.payload.id] = action.payload.count;
     },
   },
 });

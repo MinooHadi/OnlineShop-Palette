@@ -7,3 +7,4 @@ export const mainProductDetailService = (id) => {
   }
   return userInstance.get(base);
 };
+

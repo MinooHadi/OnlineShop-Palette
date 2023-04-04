@@ -1,26 +1,52 @@
-import React from "react";
-import { TrashIcon } from "../../icons";
-import image1 from "./../../../assets/images/1.png"
+import React, { useEffect, useState } from "react";
+import { Minus, Plus, TrashIcon } from "../../icons";
+import image1 from "./../../../assets/images/1.png";
+import { useDispatch, useSelector } from "react-redux";
+import { shoppingCardSliceActions } from "../../../redux/MainSlices/shoppingCardSlice";
+import { baseURL } from "../../../api/constant";
+
+function ShoppingCard(props) {
+  const dispatch = useDispatch()
+  const { shoppingCard } = useSelector((store) => store);
 
 
-function ShoppingCard() {
+  function increaseProductCount() {
+    if (shoppingCard.cardState[props.id] < props.quantity) {
+      dispatch(shoppingCardSliceActions.increase({id: props.id, count: 1}))
+    }
+  }
+
+  function decreaseProductCount() {
+    if (shoppingCard.cardState[props.id] > 1) {
+      dispatch(shoppingCardSliceActions.decrease({id: props.id, count: 1}))
+    }
+  }
+
+  useEffect(() => {
+    console.log(shoppingCard.cardState);
+  })
+
   return (
     <div className="w-1/2 border-2 border-slate-200 rounded-lg p-4 flex justify-between items-center vazir-medium">
       <div className="flex items-center gap-12 w-2/3">
         <div className="w-24 h-24">
-          <img src={image1} className="w-[100%] h-[100%] object-cover" />
+          <img src={`${baseURL}/files/${props.thumbnail}`} className="w-[100%] h-[100%] object-cover" />
         </div>
         <div className="flex flex-col gap-5">
-          <p className="text-lg text-slate-700">نام کالا</p>
-          <p className="text-sm text-slate-500">قیمت کالا</p>
+          <p className="text-lg text-slate-700"> {props.name} </p>
+          <p className="text-sm text-slate-500"> {props.price} تومان </p>
         </div>
       </div>
-      <div className="flex flex-col items-end gap-5">
+      <div className="flex flex-col items-center gap-5">
         <TrashIcon size="1.5rem" />
-        <input type="number" defaultValue={1} className="w-1/3 text-center" />
+        <div className="flex items-center bg-slate-100 text-slate-600 w-20 h-8 px-2 rounded-3xl justify-between">
+          <Plus size="1rem" onClick={increaseProductCount} />
+          {props.count}
+          <Minus size="1rem" onClick={decreaseProductCount} />
+        </div>
       </div>
     </div>
   );
 }
 
-export default ShoppingCard
+export default ShoppingCard;

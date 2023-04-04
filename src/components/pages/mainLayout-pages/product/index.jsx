@@ -15,7 +15,7 @@ function Product() {
   const { mainProductDetail, shoppingCard } = useSelector((store) => store);
   const [selectedImage, setSelectedImage] = useState();
   const navigate = useNavigate();
-  const [productCount, setProductCount] = useState(1);
+  const [productCount, setProductCount] = useState(shoppingCard.cardState[+params.get("id")] || 1);
 
   useEffect(() => {
     dispatch(
@@ -40,16 +40,12 @@ function Product() {
 
   function addToShoppingCard(e) {
     dispatch(
-      shoppingCardSliceActions.increase({
+      shoppingCardSliceActions.setCount({
         id: e.target.id,
         count: productCount,
       })
     );
   }
-
-  useEffect(() => {
-    console.log(shoppingCard.cardState);
-  }, [shoppingCard]);
 
   return (
     <>

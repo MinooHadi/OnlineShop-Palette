@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import Button from "../button";
+import { orderDeliveredService } from "../../../api/services/orders";
 
 function CheckOrderModal(props) {
+
+  async function delivered() {
+   const res = await orderDeliveredService(props.orders.id)
+   if(res.status === 200) {
+      alert("ok")  
+   }
+  }
+
   return ReactDOM.createPortal(
     <div className="fixed flex flex-col gap-4 w-1/3 p-10 h-2/3 top-44 left-1/3 items-center border-2 bg-slate-100 overflow-auto no-scrollbar">
       <MdCloseCircleOutlineIcon
@@ -29,7 +38,10 @@ function CheckOrderModal(props) {
       </div>
       <div className="flex gap-4 w-[100%]">
         <p className="vazir-extraBold text-slate-600">زمان تحویل: </p>
-        <p className="vazir-light text-slate-800"> {props.orders.expectedAt} </p>
+        <p className="vazir-light text-slate-800">
+          {" "}
+          {props.orders.expectedAt}{" "}
+        </p>
       </div>
       <div className="flex gap-4 w-[100%]">
         <p className="vazir-extraBold text-slate-600">زمان سفارش: </p>
@@ -58,6 +70,7 @@ function CheckOrderModal(props) {
       <Button
         title="تحویل شد"
         className="p-3 mt-14 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold"
+        onClick={delivered}
       />
     </div>,
     document.getElementById("modal-root")

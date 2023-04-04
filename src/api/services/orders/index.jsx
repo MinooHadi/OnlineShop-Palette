@@ -7,3 +7,13 @@ export const ordersService = (page, delivered) => {
   }
   return instance.get(base);
 };
+
+export const orderDeliveredService = (id) =>
+  instance.patch(
+    `/orders/${id}`,
+    {
+      id: id,
+      delivered: "true",
+    },
+    { headers: { token: localStorage.getItem("token") } }
+  );

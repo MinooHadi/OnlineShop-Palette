@@ -19,6 +19,7 @@ import {
   LoginLayout,
   MainLayout,
   PaymentLayout,
+  PaymentResultLayout,
 } from "../layouts";
 
 function GateWay() {
@@ -41,6 +42,7 @@ function GateWay() {
           <Route path="/admin/products" element={<AdminPanelProducts />} />
         </Route>
         <Route path="/payment" element={<PaymentLayout />} />
+        <Route path="/payment-result" element={<PaymentResultLayout />} />
       </Routes>
     </BrowserRouter>
   );

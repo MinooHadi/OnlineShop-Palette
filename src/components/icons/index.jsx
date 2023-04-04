@@ -20,7 +20,9 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { IoIosKeypad } from "react-icons/io";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
-import {BsBasket} from "react-icons/bs";
+import { BsBasket } from "react-icons/bs";
+import { TiTick } from "react-icons/ti";
+import {MdOutlineClose} from "react-icons/md";
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -44,4 +46,6 @@ export const RegEnvelope = FaRegEnvelope;
 export const IosKeypad = IoIosKeypad;
 export const Plus = HiPlus;
 export const Minus = HiMinus;
-export const Basket = BsBasket
+export const Basket = BsBasket;
+export const Tick = TiTick;
+export const OutlineClose = MdOutlineClose;

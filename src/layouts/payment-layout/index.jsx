@@ -1,12 +1,14 @@
 import React from "react";
 import { IosKeypad, Loop2, RegEnvelope } from "../../components/icons";
-import { Input } from "../../components/shared";
+import { useNavigate } from "react-router-dom";
 
 function PaymentLayout() {
+  const navigate = useNavigate()
+
   return (
     <div className="w-[50%] border-4 border-slate-400 flex flex-col gap-8 m-auto p-6 my-10 vazir-medium">
       <p className="text-fuchsia-700 text-xl">اطلاعات کارت</p>
-      <form className="flex flex-col gap-10 py-3">
+      <form className="flex flex-col gap-10 py-3" onSubmit={() => navigate("/payment-result?status=true")}>
         <div className="flex gap-12 items-center">
           <div>
             <label>شماره کارت :</label>
@@ -105,7 +107,7 @@ function PaymentLayout() {
             value="پرداخت"
             className="w-[63%] bg-green-600 text-white py-2 rounded-lg"
           />
-          <button className="w-[33%] bg-red-600 text-white py-2 rounded-lg ">
+          <button className="w-[33%] bg-red-600 text-white py-2 rounded-lg " onClick={() => navigate("/payment-result?status=false")}>
             انصراف
           </button>
         </div>

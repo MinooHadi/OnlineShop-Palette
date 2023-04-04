@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
 const shoppingCardSlice = createSlice({
   name: "shoppingCard/list",
   initialState: {

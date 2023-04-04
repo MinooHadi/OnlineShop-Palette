@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, CustomerFormModal, ShoppingCard } from "../../../shared";
 import { useSelector } from "react-redux";
 import { mainProductDetailService } from "../../../../api/mainServices/products";
+import { Basket } from "../../../icons";
 
 function Card() {
   const [showCFormModal, setShowCFormModal] = useState(false);
@@ -26,7 +27,7 @@ function Card() {
 
   return (
     <>
-      <div className="p-6 m-10 flex flex-col gap-3 items-center">
+    {Object.keys(shoppingCard.cardState).length ? <div className="p-6 m-10 flex flex-col gap-3 items-center">
         {data.map((item) => {
           const product = item.data[0];
           if (shoppingCard.cardState[product.id]) {
@@ -53,7 +54,11 @@ function Card() {
             onClick={showCustomerFormModal}
           />
         </div>
-      </div>
+      </div> : <div className="flex flex-col items-center p-36 gap-4">
+        <Basket size="9rem" color="gray" />
+        <p className="vazir-bold text-slate-600">هنوز محصولی به سبد خرید اضافه نکرده اید</p>
+        </div>}
+      
       {showCFormModal && <CustomerFormModal />}
     </>
   );

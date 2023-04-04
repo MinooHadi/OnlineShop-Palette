@@ -6,6 +6,7 @@ import { fetchMainProductDetail } from "../../../../redux/MainSlices/mainProduct
 import { baseURL } from "../../../../api/constant";
 import Button from "../../../shared/button";
 import Input from "../../../shared/input";
+import { Minus, Plus } from "../../../icons";
 
 function Product() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function Product() {
   const { mainProductDetail } = useSelector((store) => store);
   const [selectedImage, setSelectedImage] = useState();
   const navigate = useNavigate();
+  const [productCount, setProductCount] = useState(1);
 
   useEffect(() => {
     dispatch(
@@ -22,6 +24,18 @@ function Product() {
     );
   }, [dispatch]);
 
+  function increaseProductCount() {
+    const quantity = mainProductDetail.data[0].quantity;
+    if(productCount < quantity) {
+      setProductCount(productCount + 1);
+    }
+  }
+
+  function decreaseProductCount() {
+    if (productCount > 0) {
+      setProductCount(productCount - 1);
+    }
+  }
   return (
     <>
       {mainProductDetail.data.map((item) => {
@@ -86,17 +100,23 @@ function Product() {
                   disabled={true}
                 />
               ) : (
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <div className="flex flex-col gap-3">
-                    <Input
-                      type="number"
-                      className="border-2 w-14"
-                      defaultValue="1"
-                      min="1"
-                      max={item.quantity}
-                    />
+                    <div className="flex items-center bg-slate-100 text-slate-600 w-20 h-10 px-2 rounded-3xl justify-between">
+                      <Plus
+                        size="1.2rem"
+                        onClick={increaseProductCount}
+                        data-id={item.id}
+                      />
+                      {productCount}
+                      <Minus
+                        size="1.2rem"
+                        onClick={decreaseProductCount}
+                        data-id={item.id}
+                      />
+                    </div>
                     {item.quantity < 10 ? (
-                      <p className="text-red-600 text-sm">
+                      <p className="text-red-600 text-xs absolute bottom-56">
                         {" "}
                         تنها {item.quantity} عدد در انبار باقی مانده{" "}
                       </p>
@@ -109,7 +129,7 @@ function Product() {
                   />
                 </div>
               )}
-              <div>
+              <div className="mt-5">
                 <p className="text-slate-500 text-sm p-2">توضیحات: </p>
                 <p className="text-slate-700"> {item.description} </p>
               </div>

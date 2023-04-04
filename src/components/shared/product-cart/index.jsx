@@ -17,14 +17,14 @@ function ProductCart(props) {
       onMouseEnter={() => setShowAddShoppingCard(true)}
       onMouseLeave={() => setShowAddShoppingCard(false)}
     >
-      {showAddShoppingCard && (
+      {showAddShoppingCard && props.quantity > 0 ? (
         <div
           className="absolute flex items-center justify-center top-1 left-1 w-12 text-center h-6 bg-slate-700 rounded-2xl"
           onClick={addToShoppingCard}
         >
           <Plus color="white" />
         </div>
-      )}
+      ): null}
       <img
         src={props.src}
         alt={props.alt}

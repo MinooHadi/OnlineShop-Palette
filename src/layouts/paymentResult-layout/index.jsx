@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { OutlineClose, Tick } from "../../components/icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  postMainOrder,
+  shoppingCardSliceActions,
+} from "../../redux/MainSlices/shoppingCardSlice";
 
 function PaymentResultLayout() {
   const [params] = useSearchParams();
+  const dispatch = useDispatch();
+  const { shoppingCard } = useSelector((store) => store);
+
+  useEffect(() => {
+    if (params.get("status") == "true") {
+      const data = JSON.parse(localStorage.getItem("order"));
+      dispatch(postMainOrder(data));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (shoppingCard.status === "success") {
+      localStorage.removeItem("card");
+      localStorage.removeItem("cardState");
+      localStorage.removeItem("order");
+      dispatch(shoppingCardSliceActions.reset());
+    }
+  }, [dispatch, shoppingCard.status]);
 
   return (
     <>

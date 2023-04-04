@@ -12,7 +12,7 @@ export const postMainOrder = createAsyncThunk(
 const shoppingCardSlice = createSlice({
   name: "shoppingCard/list",
   initialState: {
-    cardState: {},
+    cardState: JSON.parse(localStorage.getItem("cardState")) || {},
     status: "idle",
   },
   reducers: {
@@ -23,6 +23,7 @@ const shoppingCardSlice = createSlice({
       } else {
         state.cardState[action.payload.id] = action.payload.count;
       }
+      localStorage.setItem("cardState", JSON.stringify(state.cardState));
     },
     decrease: (state, action) => {
       let prevCount = state.cardState[action.payload];
@@ -32,13 +33,20 @@ const shoppingCardSlice = createSlice({
           delete state.cardState[action.payload];
         }
       }
+      localStorage.setItem("cardState", JSON.stringify(state.cardState));
     },
     setCount: (state, action) => {
       state.cardState[action.payload.id] = action.payload.count;
+      localStorage.setItem("cardState", JSON.stringify(state.cardState));
     },
     deleteProduct: (state, action) => {
       delete state.cardState[action.payload];
+      localStorage.setItem("cardState", JSON.stringify(state.cardState));
     },
+    reset: (state) => {
+      state.cardState = {};
+      state.status = "idle"
+    }
   },
   extraReducers: {
     [postMainOrder.pending]: (state) => {

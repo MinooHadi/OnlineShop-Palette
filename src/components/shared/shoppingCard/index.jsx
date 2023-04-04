@@ -16,9 +16,11 @@ function ShoppingCard(props) {
   }
 
   function decreaseProductCount() {
-    // if (shoppingCard.cardState[props.id] > 1) {
       dispatch(shoppingCardSliceActions.decrease(props.id))
-    // }
+  }
+
+  function deletedProduct() {
+    dispatch(shoppingCardSliceActions.deleteProduct(props.id))
   }
 
 
@@ -34,7 +36,7 @@ function ShoppingCard(props) {
         </div>
       </div>
       <div className="flex flex-col items-center gap-5">
-        <TrashIcon size="1.5rem" />
+        <TrashIcon size="1.5rem" onClick={deletedProduct} />
         <div className="flex items-center bg-slate-100 text-slate-600 w-20 h-8 px-2 rounded-3xl justify-between">
           <Plus size="1rem" onClick={increaseProductCount} />
           {props.count}

@@ -6,7 +6,6 @@ import { shoppingCardSliceActions } from "../../../redux/MainSlices/shoppingCard
 function ProductCart(props) {
   const [showAddShoppingCard, setShowAddShoppingCard] = useState(false);
   const dispatch = useDispatch();
-  const { shoppingCard } = useSelector((store) => store);
 
 
   function addToShoppingCard(e) {

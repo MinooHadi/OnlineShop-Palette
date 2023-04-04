@@ -26,6 +26,9 @@ const shoppingCardSlice = createSlice({
     setCount: (state, action) => {
       state.cardState[action.payload.id] = action.payload.count;
     },
+    deleteProduct: (state, action) => {
+      delete state.cardState[action.payload]
+    }
   },
 });
 

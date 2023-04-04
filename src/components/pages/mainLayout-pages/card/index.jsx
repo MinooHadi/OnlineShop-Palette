@@ -32,8 +32,6 @@ function Card() {
           {data.map((item) => {
             const product = item.data[0];
             if (shoppingCard.cardState[product.id]) {
-              console.log(shoppingCard.cardState[product.id]);
-              console.log(product.price);
               totalPrice += (+shoppingCard.cardState[product.id] * +product.price)
               return (
                 <ShoppingCard

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { OutlineClose, Tick } from "../../components/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,11 +11,13 @@ function PaymentResultLayout() {
   const [params] = useSearchParams();
   const dispatch = useDispatch();
   const { shoppingCard } = useSelector((store) => store);
+  const flag = useRef(false)
 
   useEffect(() => {
-    if (params.get("status") == "true") {
+    if (params.get("status") == "true" && flag.current === false) {
       const data = JSON.parse(localStorage.getItem("order"));
       dispatch(postMainOrder(data));
+      flag.current = true
     }
   }, [dispatch]);
 

@@ -29,16 +29,17 @@ function Card() {
 
   useEffect(() => {
     if (data.length > 0) {
-      localStorage.setItem("card", JSON.stringify(data));
+      const newData = data.filter((item) => item.id in shoppingCard.cardState);
+      setData(newData);
+      localStorage.setItem("card", JSON.stringify(newData));
     }
-  }, [data]);
+  }, [shoppingCard.cardState]);
 
   return (
     <>
       {Object.keys(shoppingCard.cardState).length ? (
         <div className="p-6 m-10 flex flex-col gap-3 items-center">
           {data.map((product) => {
-            if (shoppingCard.cardState[product.id]) {
               totalPrice +=
                 +shoppingCard.cardState[product.id] * +product.price;
               return (
@@ -51,7 +52,6 @@ function Card() {
                   quantity={product.quantity}
                 />
               );
-            }
           })}
           <div className="w-1/2 flex flex-col gap-4">
             <div className="flex justify-between items-center w-[100%] vazir-semiBold text-slate-700">

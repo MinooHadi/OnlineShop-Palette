@@ -10,7 +10,13 @@ function ProductCart(props) {
 
   function addToShoppingCard(e) {
     e.stopPropagation();
-    dispatch(shoppingCardSliceActions.increase({id: e.target.id, count: 1}));
+    let id;
+    if(e.target.id) {
+      id = e.target.id
+    } else {
+      id = e.currentTarget.id
+    }
+    dispatch(shoppingCardSliceActions.increase({id: id, count: 1}));
   }
 
   return (
@@ -27,7 +33,7 @@ function ProductCart(props) {
           onClick={addToShoppingCard}
           id={props.id}
         >
-          <Plus color="white" />
+          <Plus color="white" id={props.id} />
         </div>
       ) : null}
       <img

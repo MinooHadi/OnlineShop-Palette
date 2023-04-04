@@ -17,8 +17,8 @@ const shoppingCardSlice = createSlice({
     decrease: (state, action) => {
       let prevCount = state.cardState[action.payload];
       if (prevCount !== undefined) {
-        prevCount -= 1;
-        if (prevCount === 0) {
+        state.cardState[action.payload] -= 1;
+        if (prevCount === 1) {
           delete state.cardState[action.payload];
         }
       }

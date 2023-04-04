@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Minus, Plus, TrashIcon } from "../../icons";
-import image1 from "./../../../assets/images/1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { shoppingCardSliceActions } from "../../../redux/MainSlices/shoppingCardSlice";
 import { baseURL } from "../../../api/constant";
@@ -17,14 +16,11 @@ function ShoppingCard(props) {
   }
 
   function decreaseProductCount() {
-    if (shoppingCard.cardState[props.id] > 1) {
-      dispatch(shoppingCardSliceActions.decrease({id: props.id, count: 1}))
-    }
+    // if (shoppingCard.cardState[props.id] > 1) {
+      dispatch(shoppingCardSliceActions.decrease(props.id))
+    // }
   }
 
-  useEffect(() => {
-    console.log(shoppingCard.cardState);
-  })
 
   return (
     <div className="w-1/2 border-2 border-slate-200 rounded-lg p-4 flex justify-between items-center vazir-medium">

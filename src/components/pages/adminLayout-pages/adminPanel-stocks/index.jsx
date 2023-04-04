@@ -39,7 +39,6 @@ function AdminPanelStocks() {
       promises.push(stocksEditService({ ...obj, id }));
     }
     const res = await Promise.all(promises);
-    console.log(res);
     if (res[0].status === 200) {
       setShowSToast(true);
       setTimeout(() => {

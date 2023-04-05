@@ -5,12 +5,11 @@ import Button from "../button";
 import { orderDeliveredService } from "../../../api/services/orders";
 
 function CheckOrderModal(props) {
-
   async function delivered() {
-   const res = await orderDeliveredService(props.orders.id)
-   if(res.status === 200) {
-      alert("ok")  
-   }
+    const res = await orderDeliveredService(props.orders.id);
+    if (res.status === 200) {
+      alert("ok");
+    }
   }
 
   return ReactDOM.createPortal(
@@ -67,11 +66,13 @@ function CheckOrderModal(props) {
           })}
         </tbody>
       </table>
-      <Button
-        title="تحویل شد"
-        className="p-3 mt-14 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold"
-        onClick={delivered}
-      />
+      {props.orders.delivered === "false" && (
+        <Button
+          title="تحویل شد"
+          className="p-3 mt-14 rounded-lg mainHeaderColor text-slate-600 vazir-extraBold"
+          onClick={delivered}
+        />
+      )}
     </div>,
     document.getElementById("modal-root")
   );

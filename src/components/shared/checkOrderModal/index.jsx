@@ -3,12 +3,24 @@ import ReactDOM from "react-dom";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import Button from "../button";
 import { orderDeliveredService } from "../../../api/services/orders";
+import { useDispatch } from "react-redux";
+import { fetchOrders } from "../../../redux/Slices/ordersSlice";
+import { useSearchParams } from "react-router-dom";
 
 function CheckOrderModal(props) {
+  const dispatch = useDispatch()
+  const [params, setParams] = useSearchParams();
+
   async function delivered() {
     const res = await orderDeliveredService(props.orders.id);
     if (res.status === 200) {
-      alert("ok");
+      props.onClose();
+      dispatch(
+        fetchOrders({
+          page: params.get("page"),
+          delivered: params.get("delivered"),
+        })
+      );
     }
   }
 
@@ -37,10 +49,7 @@ function CheckOrderModal(props) {
       </div>
       <div className="flex gap-4 w-[100%]">
         <p className="vazir-extraBold text-slate-600">زمان تحویل: </p>
-        <p className="vazir-light text-slate-800">
-          {" "}
-          {props.orders.expectAt}{" "}
-        </p>
+        <p className="vazir-light text-slate-800"> {props.orders.expectAt} </p>
       </div>
       <div className="flex gap-4 w-[100%]">
         <p className="vazir-extraBold text-slate-600">زمان سفارش: </p>

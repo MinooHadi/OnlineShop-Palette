@@ -39,7 +39,7 @@ function CheckOrderModal(props) {
         <p className="vazir-extraBold text-slate-600">زمان تحویل: </p>
         <p className="vazir-light text-slate-800">
           {" "}
-          {props.orders.expectedAt}{" "}
+          {props.orders.expectAt}{" "}
         </p>
       </div>
       <div className="flex gap-4 w-[100%]">

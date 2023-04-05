@@ -37,7 +37,7 @@ function useCustomerFormValidation() {
         "شماره وارد شده صحیح نمی باشد"
       )
       .required("پر کردن این فیلد الزامی می باشد"),
-    expectedAt: yup
+    expectAt: yup
       .date()
       .required("پر کردن این فیلد الزامی می باشد")
       .min(new Date(), "تاریخ انتخاب شده صحیح نمی باشد")
@@ -55,7 +55,7 @@ function useCustomerFormValidation() {
       count: shoppingCard.cardState[item.id],
     }));
     const prices = card.reduce((sum, curent) => sum + (curent.price * shoppingCard.cardState[curent.id]), 0)
-    const finalData = { ...data, expectedAt: data.expectedAt.getTime(), products, delivered: "false", prices };
+    const finalData = { ...data, expectAt: data.expectAt.getTime(), products, delivered: "false", prices };
     localStorage.setItem("order", JSON.stringify(finalData));
     navigate("/payment");
   }

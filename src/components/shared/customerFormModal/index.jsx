@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useNavigate } from "react-router";
 import { MdCloseCircleOutlineIcon } from "../../icons";
 import Input from "../input";
 import useCustomerFormValidation from "../modalValidation/customCustomerFormValidation";
+import { Calendar, CalendarProvider, DatePicker, TimePicker } from "zaman";
 
 function CustomerFormModal(props) {
-  const { register, handleSubmit, errors, payment } = useCustomerFormValidation();
+  const { register, handleSubmit, errors, payment, setValue, setError } =
+    useCustomerFormValidation();
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   return ReactDOM.createPortal(
     <div className="fixed flex flex-col gap-4 w-1/3 p-10 h-2/3 top-44 left-1/3 items-center border-2 bg-slate-100 overflow-auto no-scrollbar">
@@ -15,9 +20,7 @@ function CustomerFormModal(props) {
         className="absolute top-2 left-2 text-slate-600 hover:text-rose-400"
         onClick={props.onClose}
       />
-      <form className="flex flex-col gap-6"
-        onSubmit={handleSubmit(payment)}
-      >
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit(payment)}>
         <Input
           type="text"
           lable="نام"
@@ -46,13 +49,25 @@ function CustomerFormModal(props) {
           validation={{ ...register("phone") }}
           error={errors.phone?.message}
         />
-        <Input
+        {/* <Input
           type="date"
           lable="تاریخ تحویل"
           className="border-2 w-96 h-8"
           validation={{ ...register("expectAt") }}
           error={errors.expectAt?.message}
-        />
+        /> */}
+        <div>
+          <p className="pr-3 mb-2 text-slate-600 vazir-extraBold">تاریخ تحویل</p>
+          <DatePicker
+            onChange={(d) => setValue("expectAt", d.value)}
+            inputClass="datePicker"
+            className="dataPickerCalender"
+          />
+          <p className="text-xs text-red-600 absolute top-[460px] pr-3 vazir-medium">
+            {errors.expectAt?.message}
+          </p>
+        </div>
+
         <Input
           type="submit"
           value="پرداخت"

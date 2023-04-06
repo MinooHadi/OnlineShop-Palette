@@ -223,3 +223,15 @@
   bottom: 1.25rem;
   left: 1.25rem;
 }
+
+.datePicker {
+  width: 384px;
+  height: 32px;
+  border: 2px solid #e5e7eb;
+  padding-right: 300px;
+  font-family: 'vazir-light';
+}
+
+.dataPickerCalender {
+  border-radius: 20px;
+}

@@ -38,14 +38,22 @@ function useCustomerFormValidation() {
       )
       .required("پر کردن این فیلد الزامی می باشد"),
     expectAt: yup
-      .date()
-      .required("پر کردن این فیلد الزامی می باشد")
-      .min(new Date(), "تاریخ انتخاب شده صحیح نمی باشد")
-      .typeError("تاریخ انتخاب شده صحیح نمی باشد"),
+      .mixed()
+      .test("is-valid-date", "تاریخ باید حداقل یک روز بعد باشد", (value) => {
+        let tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0)
+        if (value === undefined) {
+          return false;
+        } else {
+          return (value.getTime() >= tomorrow.getTime());
+        }
+      }),
   });
 
   function payment(data, e) {
     e.preventDefault();
+    console.log(data.expectAt);
     const card = JSON.parse(localStorage.getItem("card"));
     const products = card.map((item) => ({
       id: item.id,
@@ -54,8 +62,17 @@ function useCustomerFormValidation() {
       image: item.thumbnail,
       count: shoppingCard.cardState[item.id],
     }));
-    const prices = card.reduce((sum, curent) => sum + (curent.price * shoppingCard.cardState[curent.id]), 0)
-    const finalData = { ...data, expectAt: data.expectAt.getTime(), products, delivered: "false", prices };
+    const prices = card.reduce(
+      (sum, curent) => sum + curent.price * shoppingCard.cardState[curent.id],
+      0
+    );
+    const finalData = {
+      ...data,
+      expectAt: new Date(data.expectAt).getTime(),
+      products,
+      delivered: "false",
+      prices,
+    };
     localStorage.setItem("order", JSON.stringify(finalData));
     navigate("/payment");
   }
@@ -64,6 +81,8 @@ function useCustomerFormValidation() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    setError,
   } = useForm({ resolver: yupResolver(modalSchema), mode: "onChange" });
 
   return {
@@ -71,6 +90,8 @@ function useCustomerFormValidation() {
     handleSubmit,
     errors,
     payment,
+    setValue,
+    setError,
   };
 }
 

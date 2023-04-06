@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import { CheckOrderModal, Pagination, Table } from "../../../shared";
+import { CheckOrderModal, Pagination, Table, Toast } from "../../../shared";
 import { fetchOrders } from "../../../../redux/Slices/ordersSlice";
 
 import { ClipboardCheckIcon } from "../../../icons";
@@ -12,6 +12,7 @@ function AdminPanelOrders() {
   const { orders } = useSelector((store) => store);
   const [params, setParams] = useSearchParams();
   const [showChOModal, setShowChOModal] = useState(false);
+  const [showChToast, setShowChToast] = useState(undefined);
 
   const [selectedOrderId, setSelectedOrderId] = useState("");
 
@@ -48,8 +49,18 @@ function AdminPanelOrders() {
     setSelectedOrderId(selected);
   }
 
-  function closeCheckOrderModal() {
+  function closeCheckOrderModal(status) {
     setShowChOModal(false);
+    setShowChToast(status);
+    dispatch(
+      fetchOrders({
+        page: params.get("page"),
+        delivered: params.get("delivered"),
+      })
+    );
+    setTimeout(() => {
+      setShowChToast(undefined);
+    }, 2000);
   }
 
   const selectedOrder = orders.data.filter(
@@ -83,6 +94,12 @@ function AdminPanelOrders() {
           orders={selectedOrder[0]}
         />
       )}
+
+      {showChToast === true ? (
+        <Toast msg="عملیات با موفقیت انجام شد" status={1} />
+      ) : showChToast === false ? (
+        <Toast msg="دوباره امتحان کنید" status={0} />
+      ) : null}
     </div>
   );
 }

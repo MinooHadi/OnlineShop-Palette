@@ -5,10 +5,13 @@ import Button from "../button";
 import { orderDeliveredService } from "../../../api/services/orders";
 
 function CheckOrderModal(props) {
+
   async function delivered() {
-    const res = await orderDeliveredService(props.orders.id);
-    if (res.status === 200) {
-      alert("ok");
+    try{
+      const res = await orderDeliveredService(props.orders.id);
+    props.onClose(res.status === 200)
+    } catch {
+      props.onClose(false)
     }
   }
 

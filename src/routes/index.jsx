@@ -42,7 +42,7 @@ function GateWay() {
           <Route path="/admin/products" element={<AdminPanelProducts />} />
         </Route>
         <Route path="/payment" element={<PaymentLayout />} />
-        <Route path="/payment-result" element={<PaymentResultLayout />} />
+        <Route path="/payment-result/:id" element={<PaymentResultLayout />} />
       </Routes>
     </BrowserRouter>
   );

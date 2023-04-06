@@ -12,6 +12,7 @@ export const postMainOrder = createAsyncThunk(
 const shoppingCardSlice = createSlice({
   name: "shoppingCard/list",
   initialState: {
+    orderId: null,
     cardState: JSON.parse(localStorage.getItem("cardState")) || {},
     status: "idle",
   },
@@ -45,7 +46,8 @@ const shoppingCardSlice = createSlice({
     },
     reset: (state) => {
       state.cardState = {};
-      state.status = "idle"
+      state.status = "idle";
+      state.orderId = null;
     }
   },
   extraReducers: {
@@ -55,8 +57,9 @@ const shoppingCardSlice = createSlice({
     [postMainOrder.rejected]: (state) => {
       state.status = "rejected";
     },
-    [postMainOrder.fulfilled]: (state) => {
+    [postMainOrder.fulfilled]: (state, action) => {
       state.status = "success";
+      state.orderId = action.payload.id;
     },
   },
 });

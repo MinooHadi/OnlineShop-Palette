@@ -1,43 +1,23 @@
-import React, { useEffect, useRef } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { OutlineClose, Tick } from "../../components/icons";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  postMainOrder,
-  shoppingCardSliceActions,
-} from "../../redux/MainSlices/shoppingCardSlice";
 
 function PaymentResultLayout() {
-  const [params] = useSearchParams();
-  const dispatch = useDispatch();
-  const { shoppingCard } = useSelector((store) => store);
-  const flag = useRef(false)
+  const [qParams] = useSearchParams();
+  const { id } = useParams();
 
-  useEffect(() => {
-    if (params.get("status") == "true" && flag.current === false) {
-      const data = JSON.parse(localStorage.getItem("order"));
-      dispatch(postMainOrder(data));
-      flag.current = true
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (shoppingCard.status === "success") {
-      localStorage.removeItem("card");
-      localStorage.removeItem("cardState");
-      localStorage.removeItem("order");
-      dispatch(shoppingCardSliceActions.reset());
-    }
-  }, [dispatch, shoppingCard.status]);
+  console.log(id);
 
   return (
     <>
-      {params.get("status") == "true" ? (
+      {qParams.get("status") == "true" ? (
         <div className="flex flex-col gap-4 items-center justify-center h-[100vh] w-[100%]">
           <div className="w-72 h-72 rounded-full bg-green-500 flex items-center justify-center">
             <Tick size="13rem" color="white" />
           </div>
-          <p className="vazir-bold text-xl">پرداخت با موفقیت انجام شد</p>
+          <p className="vazir-bold text-xl">
+            پرداخت سفارش {id} با کد رهگیری {Date.now} با موفقیت انجام شد
+          </p>
           <Link
             to="/"
             className="w-52 h-12 rounded-xl vazir-medium mainHeaderColor text-slate-600 flex justify-center items-center "
@@ -50,7 +30,14 @@ function PaymentResultLayout() {
           <div className="w-72 h-72 rounded-full bg-red-500 flex items-center justify-center">
             <OutlineClose size="13rem" color="white" />
           </div>
-          <p className="vazir-bold text-xl"> پرداخت با خطا مواجه شد </p>
+          {id !== "null" ? (
+            <p className="vazir-bold text-xl">
+              {" "}
+              پرداخت سفارش {id} با خطا مواجه شد{" "}
+            </p>
+          ) : (
+            <p className="vazir-bold text-xl"> شما از این خرید انصراف داده اید </p>
+          )}
           <Link
             to="/"
             className="w-52 h-12 rounded-xl vazir-medium mainHeaderColor text-slate-600 flex justify-center items-center "

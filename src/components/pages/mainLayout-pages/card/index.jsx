@@ -18,8 +18,12 @@ function Card() {
     const promises = Object.keys(shoppingCard.cardState).map((item) =>
       mainProductDetailService(item)
     );
-    Promise.all(promises).then((res) =>
-      setData(res.map((item) => item.data[0]))
+    Promise.all(promises).then((res) => {
+      const data = res.map((item) => item.data[0]); 
+      setData(data)
+      localStorage.setItem("card", JSON.stringify(data));
+    }
+     
     );
   }
 

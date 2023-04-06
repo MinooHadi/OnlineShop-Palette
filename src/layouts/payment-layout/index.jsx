@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IosKeypad, Loop2, RegEnvelope } from "../../components/icons";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postMainOrder, shoppingCardSliceActions } from "../../redux/MainSlices/shoppingCardSlice";
 
 function PaymentLayout() {
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { shoppingCard } = useSelector((store) => store);
+
+  function doPayment(e) {
+    e.preventDefault()
+    const data = JSON.parse(localStorage.getItem("order"));
+    dispatch(postMainOrder(data));
+  }
+
+  useEffect(() => {
+    if (shoppingCard.status === "success") {
+      localStorage.removeItem("card");
+      localStorage.removeItem("cardState");
+      localStorage.removeItem("order");
+      dispatch(shoppingCardSliceActions.reset());
+      navigate(`/payment-result/${shoppingCard.orderId}?status=true`);
+    } else if (shoppingCard.status === "rejected") {
+      navigate(`/payment-result/${shoppingCard.orderId}?status=false`);
+    }
+  }, [shoppingCard.status]);
 
   return (
     <div className="w-[50%] border-4 border-slate-400 flex flex-col gap-8 m-auto p-6 my-10 vazir-medium">
       <p className="text-fuchsia-700 text-xl">اطلاعات کارت</p>
-      <form className="flex flex-col gap-10 py-3" onSubmit={() => navigate("/payment-result?status=true")}>
+      <form className="flex flex-col gap-10 py-3" onSubmit={doPayment}>
         <div className="flex gap-12 items-center">
           <div>
             <label>شماره کارت :</label>
@@ -107,7 +129,10 @@ function PaymentLayout() {
             value="پرداخت"
             className="w-[63%] bg-green-600 text-white py-2 rounded-lg"
           />
-          <button className="w-[33%] bg-red-600 text-white py-2 rounded-lg " onClick={() => navigate("/payment-result?status=false")}>
+          <button
+            className="w-[33%] bg-red-600 text-white py-2 rounded-lg "
+            onClick={() => navigate("/payment-result/null?status=false")}
+          >
             انصراف
           </button>
         </div>

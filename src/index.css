@@ -233,5 +233,7 @@
 }
 
 .dataPickerCalender {
-  border-radius: 20px;
+  font-size: smaller;
+  font-family: "vazir-medium";
+  
 }

@@ -1,11 +1,15 @@
 import axios from "axios";
 import { instance, toFormData } from "../../constant";
 
-export const productsService = (page, categoryId) => {
+export const productsService = (page, categoryId, searchItem) => {
   let base = `/products?_expand=category&_expand=subcategory&_page=${page}&_limit=6`;
   if (categoryId !== null && categoryId !== undefined) {
     base += `&categoryId=${categoryId}`;
   }
+  if (searchItem !== null && searchItem !== undefined) {
+    base += `&name_like=${searchItem}`;
+  }
+  console.log(searchItem)
   return instance.get(base);
 };
 

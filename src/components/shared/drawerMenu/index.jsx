@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Input from "../input";
@@ -15,6 +15,7 @@ function DrawerMenu() {
   const [ordersSub, setOrdersSub] = useState(false);
   const [stocksSub, setStocksSub] = useState(false);
   const [productsSub, setProductsSub] = useState(false);
+  const [params, setParams] = useSearchParams();
 
   const { categories } = useSelector((store) => store);
 
@@ -60,6 +61,15 @@ function DrawerMenu() {
     }
   }
 
+  function search(e) {
+    if (e.target.value) {
+      params.set("search", e.target.value);
+    } else {
+      params.delete("search");
+    }
+    setParams(params.toString());
+  }
+
   return (
     <div className="w-80 bg-rose-100 border-rose-400 text-slate-600 vazir-bold border-2 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
       <Input
@@ -67,20 +77,27 @@ function DrawerMenu() {
         value=""
         lable="جست و جو"
         className="border-2 h-8 w-64"
+        onFocus={() => {
+          setOrdersSub(false);
+          setProductsSub(false);
+          setStocksSub(false);
+        }}
+        onChange={search}
+        defaultValue={params.get("search")}
       />
       <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
       <Select opt={[{ name: "مرتب سازی" }]} className="h-8 w-64" />
       <div>
-        <div
-          className="flex gap-1 w-fit"
-          onMouseEnter={() => {
-            setOrdersSub(true);
-            setStocksSub(false);
-            setProductsSub(false);
-          }}
-        >
+        <div className="flex gap-1 w-fit">
           <Link to="/admin/orders">سفارش ها</Link>
-          <ArrowDownSFillIcon size="1.5rem" />
+          <ArrowDownSFillIcon
+            size="1.5rem"
+            onClick={() => {
+              setOrdersSub(!ordersSub);
+              setProductsSub(false);
+              setStocksSub(false);
+            }}
+          />
         </div>
         {ordersSub && (
           <SubMenu
@@ -90,53 +107,50 @@ function DrawerMenu() {
             ]}
             all="همه سفارش ها"
             onClick={ordersFilter}
-            onMouseLeave={() => setOrdersSub(false)}
           />
         )}
       </div>
       <div>
-        <div
-          className="flex gap-1 w-fit"
-          onMouseEnter={() => {
-            setOrdersSub(false);
-            setStocksSub(true);
-            setProductsSub(false);
-          }}
-        >
+        <div className="flex gap-1 w-fit">
           <Link to="/admin/stocks" className="flex gap-1 w-fit">
             موجودی و قیمت ها
           </Link>
-          <ArrowDownSFillIcon size="1.5rem" />
+          <ArrowDownSFillIcon
+            size="1.5rem"
+            onClick={() => {
+              setStocksSub(!stocksSub);
+              setOrdersSub(false);
+              setProductsSub(false);
+            }}
+          />
         </div>
         {stocksSub && (
           <SubMenu
             items={categories.data}
             all="همه موجودی ها"
             onClick={stocksFilter}
-            onMouseLeave={() => setStocksSub(false)}
           />
         )}
       </div>
       <div>
-        <div
-          className="flex gap-1 w-fit"
-          onMouseEnter={() => {
-            setProductsSub(true);
-            setOrdersSub(false);
-            setStocksSub(false);
-          }}
-        >
+        <div className="flex gap-1 w-fit">
           <Link to="/admin/products" className="flex gap-1 w-fit">
             کالاها
           </Link>
-          <ArrowDownSFillIcon size="1.5rem" />
+          <ArrowDownSFillIcon
+            size="1.5rem"
+            onClick={() => {
+              setProductsSub(!productsSub);
+              setOrdersSub(false);
+              setStocksSub(false);
+            }}
+          />
         </div>
         {productsSub && (
           <SubMenu
             items={categories.data}
             all="همه کالاها"
             onClick={productsFilter}
-            onMouseLeave={() => setProductsSub(false)}
           />
         )}
       </div>

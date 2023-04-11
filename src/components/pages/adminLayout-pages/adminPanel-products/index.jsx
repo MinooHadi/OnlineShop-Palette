@@ -34,8 +34,10 @@ function AdminPanelProducts() {
       fetchProducts({
         page: params.get("page"),
         categoryId: params.get("categoryId"),
+        searchItem: params.get("search"),
       })
     );
+    console.log(params);
   }, [dispatch, params]);
 
   function calculatePageCount() {

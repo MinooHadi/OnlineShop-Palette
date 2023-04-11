@@ -39,6 +39,8 @@ function Input(props) {
           className={props.className}
           {...props.validation}
           defaultValue={props.defaultValue}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
         />
       )}
 

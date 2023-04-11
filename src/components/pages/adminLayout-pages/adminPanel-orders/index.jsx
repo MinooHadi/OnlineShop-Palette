@@ -21,6 +21,7 @@ function AdminPanelOrders() {
       fetchOrders({
         page: params.get("page"),
         delivered: params.get("delivered"),
+        searchItem: params.get("search"),
       })
     );
   }, [dispatch, params]);
@@ -56,6 +57,7 @@ function AdminPanelOrders() {
       fetchOrders({
         page: params.get("page"),
         delivered: params.get("delivered"),
+        searchItem: params.get("search"),
       })
     );
     setTimeout(() => {

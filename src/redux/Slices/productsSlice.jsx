@@ -4,7 +4,6 @@ import { productsService } from "../../api/services/products";
 export const fetchProducts = createAsyncThunk(
   "products/fetchlist",
   async ({page, categoryId, searchItem}) => {
-    console.log("a", searchItem)
     const res = await productsService(page, categoryId, searchItem);
     const totalCount = res.headers["x-total-count"];
     return [res.data, totalCount];

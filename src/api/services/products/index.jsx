@@ -9,7 +9,6 @@ export const productsService = (page, categoryId, searchItem) => {
   if (searchItem !== null && searchItem !== undefined) {
     base += `&name_like=${searchItem}`;
   }
-  console.log(searchItem)
   return instance.get(base);
 };
 

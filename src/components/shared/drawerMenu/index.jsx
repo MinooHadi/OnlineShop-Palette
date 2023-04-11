@@ -62,16 +62,25 @@ function DrawerMenu() {
 
   return (
     <div className="w-80 bg-rose-100 border-rose-400 text-slate-600 vazir-bold border-2 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
-      <Input type="search" value="" lable="جست و جو" className="border-2 h-8 w-64" />
-      <Select opt={[{name: "فیلتر"}]} className="h-8 w-64" />
-      <Select opt={[{name: "مرتب سازی"}]} className="h-8 w-64" />
+      <Input
+        type="search"
+        value=""
+        lable="جست و جو"
+        className="border-2 h-8 w-64"
+      />
+      <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
+      <Select opt={[{ name: "مرتب سازی" }]} className="h-8 w-64" />
       <div>
-        <div className="flex gap-1 w-fit">
+        <div
+          className="flex gap-1 w-fit"
+          onMouseEnter={() => {
+            setOrdersSub(true);
+            setStocksSub(false);
+            setProductsSub(false);
+          }}
+        >
           <Link to="/admin/orders">سفارش ها</Link>
-          <ArrowDownSFillIcon
-            size="1.5rem"
-            onClick={() => setOrdersSub(!ordersSub)}
-          />
+          <ArrowDownSFillIcon size="1.5rem" />
         </div>
         {ordersSub && (
           <SubMenu
@@ -81,42 +90,53 @@ function DrawerMenu() {
             ]}
             all="همه سفارش ها"
             onClick={ordersFilter}
+            onMouseLeave={() => setOrdersSub(false)}
           />
         )}
       </div>
       <div>
-        <div className="flex gap-1 w-fit">
+        <div
+          className="flex gap-1 w-fit"
+          onMouseEnter={() => {
+            setOrdersSub(false);
+            setStocksSub(true);
+            setProductsSub(false);
+          }}
+        >
           <Link to="/admin/stocks" className="flex gap-1 w-fit">
             موجودی و قیمت ها
           </Link>
-          <ArrowDownSFillIcon
-            size="1.5rem"
-            onClick={() => setStocksSub(!stocksSub)}
-          />
+          <ArrowDownSFillIcon size="1.5rem" />
         </div>
         {stocksSub && (
           <SubMenu
             items={categories.data}
             all="همه موجودی ها"
             onClick={stocksFilter}
+            onMouseLeave={() => setStocksSub(false)}
           />
         )}
       </div>
       <div>
-        <div className="flex gap-1 w-fit">
+        <div
+          className="flex gap-1 w-fit"
+          onMouseEnter={() => {
+            setProductsSub(true);
+            setOrdersSub(false);
+            setStocksSub(false);
+          }}
+        >
           <Link to="/admin/products" className="flex gap-1 w-fit">
             کالاها
           </Link>
-          <ArrowDownSFillIcon
-            size="1.5rem"
-            onClick={() => setProductsSub(!productsSub)}
-          />
+          <ArrowDownSFillIcon size="1.5rem" />
         </div>
         {productsSub && (
           <SubMenu
             items={categories.data}
             all="همه کالاها"
             onClick={productsFilter}
+            onMouseLeave={() => setProductsSub(false)}
           />
         )}
       </div>

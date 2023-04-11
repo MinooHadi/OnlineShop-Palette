@@ -2,7 +2,7 @@ import React from "react";
 
 function SubMenu(props) {
   return (
-    <div className="bg-rose-200 p-2 my-2 mr-8">
+    <div className="bg-rose-200 p-2 my-2 mr-8" onMouseLeave={props.onMouseLeave}>
       <p onClick={props.onClick} id="0" className="py-2 hover:cursor-pointer">
         {props.all}
       </p>

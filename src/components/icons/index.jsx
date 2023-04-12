@@ -24,6 +24,7 @@ import { BsBasket } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { MdOutlineClose } from "react-icons/md";
 import { BiSearchAlt2 } from "react-icons/bi";
+import { BiSortDown } from "react-icons/bi";
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -51,3 +52,4 @@ export const Basket = BsBasket;
 export const Tick = TiTick;
 export const OutlineClose = MdOutlineClose;
 export const SearchAlt2 = BiSearchAlt2;
+export const SortDown = BiSortDown;

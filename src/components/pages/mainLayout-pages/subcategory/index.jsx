@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { baseURL } from "../../../../api/constant";
 import { fetchMainSubcategories } from "../../../../redux/MainSlices/mainSubcategoriesSlice";
-import { store } from "../../../../redux/store";
 import { Pagination } from "../../../shared";
 import ProductCart from "../../../shared/product-cart";
+import { SortDown } from "../../../icons";
 
 function Subcategory() {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ function Subcategory() {
       fetchMainSubcategories({
         page: params.get("page"),
         subcategoryId: params.get("id"),
+        sortId: params.get("sort"),
       })
     );
   }, [dispatch, params]);
@@ -38,7 +39,68 @@ function Subcategory() {
 
   return (
     <>
-      <div className="px-10 my-16">
+      <div className="flex gap-8 pr-10 vazir-bold text-slate-700 items-center hover:cursor-pointer">
+        <div className="flex">
+          <SortDown size="1.7rem" />
+          <p>مرتب سازی:</p>
+        </div>
+        <p
+          className="text-sm"
+          data-id="1"
+          onClick={(e) => {
+            params.delete("page")
+            params.set("sort", e.target.dataset.id);
+            setParams(params)
+          }}
+        >
+          نام کالا
+        </p>
+        <p
+          className="text-sm"
+          data-id="2"
+          onClick={(e) => {
+            params.delete("page")
+            params.set("sort", e.target.dataset.id);
+            setParams(params)
+          }}
+        >
+          ارزان ترین قیمت
+        </p>
+        <p
+          className="text-sm"
+          data-id="3"
+          onClick={(e) => {
+            params.delete("page")
+            params.set("sort", e.target.dataset.id);
+            setParams(params)
+          }}
+        >
+          گران ترین قیمت
+        </p>
+        <p
+          className="text-sm"
+          data-id="4"
+          onClick={(e) => {
+            params.delete("page")
+            params.set("sort", e.target.dataset.id);
+            setParams(params)
+          }}
+        >
+          کمترین تعداد
+        </p>
+        <p
+          className="text-sm"
+          data-id="5"
+          onClick={(e) => {
+            params.delete("page")
+            params.set("sort", e.target.dataset.id);
+            setParams(params)
+          }}
+        >
+          بیشترین تعداد
+        </p>
+      </div>
+      <div className="px-10 my-6">
         <div className="bg-slate-300 flex justify-center items-center h-10 vazir-extraBold text-lg text-slate-700 rounded-xl">
           {mainSubcategories.data[0] &&
             mainSubcategories.data[0].subcategory.name}

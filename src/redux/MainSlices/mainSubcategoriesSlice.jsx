@@ -3,8 +3,8 @@ import { mainSubcategoriesService } from "../../api/mainServices/subcategories";
 
 export const fetchMainSubcategories = createAsyncThunk(
   "subcategory/fetchlist",
-  async ({ page, subcategoryId, sortId }) => {
-    const res = await mainSubcategoriesService(page, subcategoryId, sortId);
+  async ({ page, subcategoryId, sortId, filter }) => {
+    const res = await mainSubcategoriesService(page, subcategoryId, sortId, filter);
     const totalCount = res.headers["x-total-count"];
     return [res.data, totalCount];
   }

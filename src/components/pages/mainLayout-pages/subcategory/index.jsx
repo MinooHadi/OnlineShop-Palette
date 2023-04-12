@@ -5,7 +5,7 @@ import { baseURL } from "../../../../api/constant";
 import { fetchMainSubcategories } from "../../../../redux/MainSlices/mainSubcategoriesSlice";
 import { Pagination } from "../../../shared";
 import ProductCart from "../../../shared/product-cart";
-import { SortDown } from "../../../icons";
+import { FilterAlt, SortDown } from "../../../icons";
 
 function Subcategory() {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ function Subcategory() {
         page: params.get("page"),
         subcategoryId: params.get("id"),
         sortId: params.get("sort"),
+        filter: params.get("filter"),
       })
     );
   }, [dispatch, params]);
@@ -39,66 +40,107 @@ function Subcategory() {
 
   return (
     <>
-      <div className="flex gap-8 pr-10 vazir-bold text-slate-700 items-center hover:cursor-pointer">
-        <div className="flex">
-          <SortDown size="1.7rem" />
-          <p>مرتب سازی:</p>
+      <div className="flex gap-32">
+        <div className="flex gap-8 pr-10 vazir-bold text-slate-700 items-center hover:cursor-pointer">
+          <div className="flex gap-1">
+            <SortDown size="1.7rem" />
+            <p>مرتب سازی:</p>
+          </div>
+          <p
+            className="text-sm"
+            data-id="1"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("sort", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            نام کالا
+          </p>
+          <p
+            className="text-sm"
+            data-id="2"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("sort", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            ارزان ترین قیمت
+          </p>
+          <p
+            className="text-sm"
+            data-id="3"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("sort", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            گران ترین قیمت
+          </p>
+          <p
+            className="text-sm"
+            data-id="4"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("sort", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            کمترین تعداد
+          </p>
+          <p
+            className="text-sm"
+            data-id="5"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("sort", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            بیشترین تعداد
+          </p>
         </div>
-        <p
-          className="text-sm"
-          data-id="1"
-          onClick={(e) => {
-            params.delete("page")
-            params.set("sort", e.target.dataset.id);
-            setParams(params)
-          }}
-        >
-          نام کالا
-        </p>
-        <p
-          className="text-sm"
-          data-id="2"
-          onClick={(e) => {
-            params.delete("page")
-            params.set("sort", e.target.dataset.id);
-            setParams(params)
-          }}
-        >
-          ارزان ترین قیمت
-        </p>
-        <p
-          className="text-sm"
-          data-id="3"
-          onClick={(e) => {
-            params.delete("page")
-            params.set("sort", e.target.dataset.id);
-            setParams(params)
-          }}
-        >
-          گران ترین قیمت
-        </p>
-        <p
-          className="text-sm"
-          data-id="4"
-          onClick={(e) => {
-            params.delete("page")
-            params.set("sort", e.target.dataset.id);
-            setParams(params)
-          }}
-        >
-          کمترین تعداد
-        </p>
-        <p
-          className="text-sm"
-          data-id="5"
-          onClick={(e) => {
-            params.delete("page")
-            params.set("sort", e.target.dataset.id);
-            setParams(params)
-          }}
-        >
-          بیشترین تعداد
-        </p>
+        <div className="flex gap-8 pl-10 vazir-bold text-slate-700 items-center hover:cursor-pointer">
+          <div className="flex gap-1">
+            <FilterAlt size="1.7rem" />
+            <p> فیلتر: </p>
+          </div>
+          <p
+            className="text-sm"
+            data-id="3"
+            onClick={() => {
+              params.delete("page");
+              params.delete("filter");
+              setParams(params);
+            }}
+          >
+            همه کالاها
+          </p>
+          <p
+            className="text-sm"
+            data-id="1"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("filter", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            کالاهای موجود
+          </p>
+          <p
+            className="text-sm"
+            data-id="2"
+            onClick={(e) => {
+              params.delete("page");
+              params.set("filter", e.target.dataset.id);
+              setParams(params);
+            }}
+          >
+            کالاهای ناموجود
+          </p>
+        </div>
       </div>
       <div className="px-10 my-6">
         <div className="bg-slate-300 flex justify-center items-center h-10 vazir-extraBold text-lg text-slate-700 rounded-xl">

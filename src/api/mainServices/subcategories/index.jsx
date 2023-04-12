@@ -1,6 +1,6 @@
 import { userInstance } from "../../constant";
 
-export const mainSubcategoriesService = (page, subcategoryId, sortId) => {
+export const mainSubcategoriesService = (page, subcategoryId, sortId, filter) => {
   let base = `/products?_expand=category&_expand=subcategory&_page=${page}&_limit=3`;
   if (subcategoryId !== null && subcategoryId !== undefined) {
     base += `&subcategoryId=${subcategoryId}`;
@@ -24,5 +24,10 @@ export const mainSubcategoriesService = (page, subcategoryId, sortId) => {
         break;
     }
   }
+  if(filter === "2") {
+    base += `&quantity=0`
+  } else if (filter === "1") {
+    base += `&quantity_gte=1`
+  } 
   return userInstance.get(base);
 };

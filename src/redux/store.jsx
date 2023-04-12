@@ -8,6 +8,7 @@ import productsSlice from "./Slices/productsSlice";
 import stocksSlice from "./Slices/stocksSlice";
 import subcategoriesSlice from "./Slices/subcategoriesSlice";
 import shoppingCardSlice from "./MainSlices/shoppingCardSlice";
+import searchProductSlice from "./MainSlices/searchProductSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     mainCategories: mainCategoriesSlice,
     mainProductDetail: mainProductDetailSlice,
     shoppingCard: shoppingCardSlice,
+    searchProduct: searchProductSlice,
   },
 });

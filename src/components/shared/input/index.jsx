@@ -41,6 +41,8 @@ function Input(props) {
           defaultValue={props.defaultValue}
           onChange={props.onChange}
           onFocus={props.onFocus}
+          placeholder={props.placeholder}
+          onBlur={props.onBlur}
         />
       )}
 

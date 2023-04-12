@@ -23,7 +23,7 @@ function Product() {
         id: params.get("id"),
       })
     );
-  }, [dispatch]);
+  }, [dispatch, params]);
 
   function increaseProductCount() {
     const quantity = mainProductDetail.data[0].quantity;

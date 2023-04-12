@@ -32,7 +32,6 @@ function GateWay() {
           <Route path="/subcategory" element={<Subcategory />} />
           <Route path="/product" element={<Product />} />
           <Route path="/card" element={<Card />} />
-          <Route path="/favorites" element={<Favorites />} />
           <Route path="/checkout" element={<Checkout />} />
         </Route>
         <Route path="/adminLogin" element={<LoginLayout />} />

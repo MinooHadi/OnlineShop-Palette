@@ -126,7 +126,7 @@ function Product() {
                       />
                     </div>
                     {item.quantity < 10 ? (
-                      <p className="text-red-600 text-xs absolute bottom-56">
+                      <p className="text-red-600 text-xs absolute bottom-48">
                         {" "}
                         تنها {item.quantity} عدد در انبار باقی مانده{" "}
                       </p>

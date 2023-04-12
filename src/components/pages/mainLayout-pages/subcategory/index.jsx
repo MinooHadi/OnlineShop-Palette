@@ -47,7 +47,11 @@ function Subcategory() {
             <p>مرتب سازی:</p>
           </div>
           <p
-            className="text-sm"
+            className={
+              params.get("sort") == 1
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="1"
             onClick={(e) => {
               params.delete("page");
@@ -58,7 +62,11 @@ function Subcategory() {
             نام کالا
           </p>
           <p
-            className="text-sm"
+            className={
+              params.get("sort") == 2
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="2"
             onClick={(e) => {
               params.delete("page");
@@ -69,7 +77,11 @@ function Subcategory() {
             ارزان ترین قیمت
           </p>
           <p
-            className="text-sm"
+            className={
+              params.get("sort") == 3
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="3"
             onClick={(e) => {
               params.delete("page");
@@ -80,7 +92,11 @@ function Subcategory() {
             گران ترین قیمت
           </p>
           <p
-            className="text-sm"
+            className={
+              params.get("sort") == 4
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="4"
             onClick={(e) => {
               params.delete("page");
@@ -91,7 +107,11 @@ function Subcategory() {
             کمترین تعداد
           </p>
           <p
-            className="text-sm"
+            className={
+              params.get("sort") == 5
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="5"
             onClick={(e) => {
               params.delete("page");
@@ -108,7 +128,11 @@ function Subcategory() {
             <p> فیلتر: </p>
           </div>
           <p
-            className="text-sm"
+            className={
+              !params.get("filter")
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="3"
             onClick={() => {
               params.delete("page");
@@ -119,7 +143,11 @@ function Subcategory() {
             همه کالاها
           </p>
           <p
-            className="text-sm"
+            className={
+              params.get("filter") == 1
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="1"
             onClick={(e) => {
               params.delete("page");
@@ -130,7 +158,11 @@ function Subcategory() {
             کالاهای موجود
           </p>
           <p
-            className="text-sm"
+            className={
+              params.get("filter") == 2
+                ? `text-sm text-red-500`
+                : `text-sm hover:text-red-500`
+            }
             data-id="2"
             onClick={(e) => {
               params.delete("page");

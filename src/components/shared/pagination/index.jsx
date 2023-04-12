@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import {
@@ -8,8 +8,8 @@ import {
 
 function Pagination(props) {
   const divWidth = useRef();
-  const [params] = useSearchParams()
-  const currentPage = params.get("page") || 1
+  const [params] = useSearchParams();
+  const currentPage = params.get("page") || 1;
 
   function createPaginationDiv() {
     let pages = [];
@@ -18,6 +18,14 @@ function Pagination(props) {
     }
     return pages;
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentPage && currentPage > 5) {
+        divWidth.current.scrollLeft = 40 * (currentPage - 1);
+      }
+    }, 100);
+  }, [divWidth]);
 
   function goToLeft() {
     divWidth.current.scrollLeft -= 100;
@@ -44,7 +52,9 @@ function Pagination(props) {
           >
             {createPaginationDiv().map((item) => (
               <div
-                className={`${item == currentPage ? "bg-rose-200" : "bg-rose-400" } w-8 h-8 flex justify-center items-center rounded-full text-slate-600 vazir-extraBold hover:bg-rose-100  hover:cursor-pointer p-3`}
+                className={`${
+                  item == currentPage ? "bg-rose-200" : "bg-rose-400"
+                } w-8 h-8 flex justify-center items-center rounded-full text-slate-600 vazir-extraBold hover:bg-rose-100  hover:cursor-pointer p-3`}
                 onClick={props.onClick}
               >
                 {item}
@@ -66,7 +76,9 @@ function Pagination(props) {
         >
           {createPaginationDiv().map((item) => (
             <div
-              className={`${item == currentPage ? "bg-rose-200" : "bg-rose-400" } w-8 h-8 flex justify-center items-center rounded-full text-slate-600 vazir-extraBold hover:bg-rose-100  hover:cursor-pointer p-3`}
+              className={`${
+                item == currentPage ? "bg-rose-200" : "bg-rose-400"
+              } w-8 h-8 flex justify-center items-center rounded-full text-slate-600 vazir-extraBold hover:bg-rose-100  hover:cursor-pointer p-3`}
               onClick={props.onClick}
             >
               {item}

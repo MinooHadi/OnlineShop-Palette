@@ -111,8 +111,9 @@ function MainLayoutHeader() {
                       setShowSearchResults(true);
                     }
                   }}
-                  onBlur={() =>
+                  onBlur={(e) =>
                     setTimeout(() => {
+                      e.target.value = "";
                       setShowSearchResults(false);
                     }, 200)
                   }

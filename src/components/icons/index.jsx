@@ -22,7 +22,8 @@ import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
 import { BsBasket } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
-import {MdOutlineClose} from "react-icons/md";
+import { MdOutlineClose } from "react-icons/md";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 export const ClipboardCheckIcon = BsClipboardCheck;
 export const EditAltIcon = BiEditAlt;
@@ -49,3 +50,4 @@ export const Minus = HiMinus;
 export const Basket = BsBasket;
 export const Tick = TiTick;
 export const OutlineClose = MdOutlineClose;
+export const SearchAlt2 = BiSearchAlt2;

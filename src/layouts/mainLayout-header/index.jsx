@@ -3,25 +3,26 @@ import { Link, useNavigate } from "react-router-dom";
 
 import logo from "./../../../src/assets/logo/logo.png";
 import { fetchCategories } from "./../../redux/Slices/categoriesSlice";
+import Input from "./../../../src/components/shared/input/index";
 
 import {
   AdminLineIcon,
-  FavoriteBorderIcon,
   Home,
   ShoppingBagIcon,
   Store,
 } from "../../components/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSubcategories } from "../../redux/Slices/subcategoriesSlice";
+import { fetchSearchProduct } from "../../redux/MainSlices/searchProductSlice";
 
 function MainLayoutHeader() {
   const [showMenu, setShowMenu] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState();
   const [selected, setSelected] = useState();
   const dispatch = useDispatch();
-  const { categories, subcategories, shoppingCard } = useSelector(
-    (store) => store
-  );
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const { categories, subcategories, shoppingCard, searchProduct } =
+    useSelector((store) => store);
   const navigate = useNavigate();
   const lastSelected = useRef();
 
@@ -66,12 +67,26 @@ function MainLayoutHeader() {
     setShowSubMenu(false);
   }
 
+  function searchProducts(e) {
+    if (e.target.value) {
+      dispatch(
+        fetchSearchProduct({
+          searchItem: e.target.value,
+        })
+      );
+      setShowSearchResults(true);
+    } else {
+      setShowSearchResults(false);
+    }
+  }
+
   return (
     <>
       <div className="flex flex-col sticky top-0 z-40" onMouseLeave={hideMenus}>
         <div className="flex justify-center items-center h-10 text-slate-50 topColor arsoo text-xl">
           <p>
-            به فروشگاه <span className="morvarid font-bold text-3xl"> پالت </span>
+            به فروشگاه
+            <span className="morvarid font-bold text-3xl"> پالت </span>
             خوش اومدی
           </p>
         </div>
@@ -83,30 +98,69 @@ function MainLayoutHeader() {
             </p>
           </div>
           <div className="flex gap-10 text-slate-600 vazir-semiBold">
+            <div className="flex flex-row-reverse gap-2 items-center">
+              <div className="flex flex-col relative">
+                <Input
+                  type="search"
+                  value=""
+                  className="border-2 h-8 w-64 px-2"
+                  placeholder="جست و جو"
+                  onChange={searchProducts}
+                  onFocus={(e) => {
+                    if (e.target.value) {
+                      setShowSearchResults(true);
+                    }
+                  }}
+                  onBlur={() =>
+                    setTimeout(() => {
+                      setShowSearchResults(false);
+                    }, 200)
+                  }
+                />
+                {showSearchResults && (
+                  <div className="w-64 max-h-36 overflow-y-scroll no-scrollbar bg-slate-100 absolute top-10 pr-2 z-10">
+                    {searchProduct.data.length !== 0 ? (
+                      searchProduct.data.map((item) => (
+                        <p
+                          className="text-sm leading-8 text-slate-700 hover:cursor-pointer"
+                          id={item.id}
+                          onClick={(e) => {
+                            navigate(`/product?id=${e.target.id}`);
+                            setShowSearchResults(false);
+                          }}
+                        >
+                          {item.name}
+                        </p>
+                      ))
+                    ) : (
+                      <p className="text-sm leading-8 text-red-700 hover:cursor-pointer">
+                        محصول مورد نظر یافت نشد
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
             <Link
-              className="flex flex-col items-center text-sm font-medium hover:text-lime-500"
+              className="flex flex-col items-center text-sm font-medium hover:text-yellow-500"
               to="/"
             >
               <Home size="1.7rem" />
               خانه
             </Link>
             <div
-              className="flex flex-col items-center text-sm font-medium hover:text-yellow-500 hover:cursor-pointer"
+              className="flex flex-col items-center text-sm font-medium hover:text-red-500 hover:cursor-pointer"
               onMouseOver={showProductsMenu}
             >
               <Store size="1.7rem" />
               محصولات
             </div>
             <Link
-              className="flex flex-col items-center text-sm font-medium hover:text-red-500"
+              className="flex flex-col items-center text-sm font-medium hover:text-fuchsia-500"
               to={adminAuth() ? "/admin/orders" : "/adminLogin"}
             >
               <AdminLineIcon size="1.7rem" />
               مدیریت
-            </Link>
-            <Link className="flex flex-col items-center text-sm font-medium hover:text-fuchsia-500">
-              <FavoriteBorderIcon size="1.7rem" />
-              مورد علاقه ها
             </Link>
             <div className="relative">
               {Object.keys(shoppingCard.cardState).length > 0 && (

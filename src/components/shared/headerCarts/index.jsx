@@ -83,18 +83,24 @@ function HeaderCarts() {
           />
           {showSearchResults && (
             <div className="w-64 max-h-36 overflow-y-scroll no-scrollbar bg-slate-100 absolute top-10 pr-2">
-              {searchProduct.data.map((item) => (
-                <p
-                  className="text-sm leading-8 text-slate-700 hover:cursor-pointer"
-                  id={item.id}
-                  onClick={(e) => {
-                    navigate(`/product?id=${e.target.id}`);
-                    setShowSearchResults(false);
-                  }}
-                >
-                  {item.name}
+              {searchProduct.data.length !== 0 ? (
+                searchProduct.data.map((item) => (
+                  <p
+                    className="text-sm leading-8 text-slate-700 hover:cursor-pointer"
+                    id={item.id}
+                    onClick={(e) => {
+                      navigate(`/product?id=${e.target.id}`);
+                      setShowSearchResults(false);
+                    }}
+                  >
+                    {item.name}
+                  </p>
+                ))
+              ) : (
+                <p className="text-sm leading-8 text-red-700 hover:cursor-pointer">
+                  محصول مورد نظر یافت نشد
                 </p>
-              ))}
+              )}
             </div>
           )}
         </div>

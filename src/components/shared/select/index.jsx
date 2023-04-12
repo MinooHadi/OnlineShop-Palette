@@ -6,10 +6,8 @@ function Select(props) {
       className={props.className}
       {...props.validation}
       onChange={(e) => {
-        {
-          props.onChange && props.onChange(e);
-        }
-        props.validation.onChange(e);
+        props.onChange && props.onChange(e);
+        props.validation && props.validation.onChange(e);
       }}
     >
       {props.opt.map((item) => (

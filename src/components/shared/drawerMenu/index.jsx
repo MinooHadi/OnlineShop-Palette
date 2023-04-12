@@ -86,7 +86,17 @@ function DrawerMenu() {
         defaultValue={params.get("search")}
       />
       <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
-      <Select opt={[{ name: "مرتب سازی" }]} className="h-8 w-64" />
+      <Select
+        opt={[
+          { name: "مرتب سازی", id: 0 },
+          { name: "براساس قیمت (نزولی)", id: 1 },
+          { name: "براساس قیمت (صعودی)", id: 2 },
+          { name: "براساس تعداد (نزولی)", id: 3 },
+          { name: "براساس تعداد (صعودی)", id: 4 },
+        ]}
+        className="h-8 w-64"
+        onChange={(e) => console.log(e.target.value)}
+      />
       <div>
         <div className="flex gap-1 w-fit">
           <Link to="/admin/orders">سفارش ها</Link>

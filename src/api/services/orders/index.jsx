@@ -23,7 +23,7 @@ export const ordersService = (page, delivered, searchItem, sortId) => {
         base += `&_sort=expectAt&_order=desc`;
         break;
       case "9":
-        base += `&_sort=expectAt&_order=desc`;
+        base += `&_sort=expectAt&_order=asc`;
         break;
     }
   }

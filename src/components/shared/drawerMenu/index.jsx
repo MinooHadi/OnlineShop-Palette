@@ -8,6 +8,7 @@ import Select from "../select";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 
 import { ArrowDownSFillIcon } from "../../icons";
+import { fetchProducts } from "../../../redux/Slices/productsSlice";
 
 function DrawerMenu() {
   const dispatch = useDispatch();
@@ -70,6 +71,16 @@ function DrawerMenu() {
     setParams(params.toString());
   }
 
+  function sortProducts(e) {
+    params.delete("page");
+    if (e.target.value == -1) {
+      params.delete("sort");
+    } else {
+      params.set("sort", e.target.value);
+    }
+    setParams(params.toString());
+  }
+
   return (
     <div className="w-80 bg-rose-100 border-rose-400 text-slate-600 vazir-bold border-2 p-6 flex flex-col gap-5 h-[600px] fixed top-40 overflow-auto no-scrollbar">
       <Input
@@ -88,14 +99,15 @@ function DrawerMenu() {
       <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
       <Select
         opt={[
-          { name: "مرتب سازی", id: 0 },
+          { name: "مرتب سازی", id: -1 },
+          { name: "به ترتیب حروف الفبا", id: 5 },
           { name: "براساس قیمت (نزولی)", id: 1 },
           { name: "براساس قیمت (صعودی)", id: 2 },
           { name: "براساس تعداد (نزولی)", id: 3 },
           { name: "براساس تعداد (صعودی)", id: 4 },
         ]}
         className="h-8 w-64"
-        onChange={(e) => console.log(e.target.value)}
+        onChange={sortProducts}
       />
       <div>
         <div className="flex gap-1 w-fit">

@@ -35,6 +35,7 @@ function AdminPanelProducts() {
         page: params.get("page"),
         categoryId: params.get("categoryId"),
         searchItem: params.get("search"),
+        sortId: params.get("sort"),
       })
     );
   }, [dispatch, params]);
@@ -61,6 +62,7 @@ function AdminPanelProducts() {
           page: params.get("page"),
           categoryId: params.get("categoryId"),
           searchItem: params.get("search"),
+          sortId: params.get("sort"),
         })
       );
     }
@@ -92,6 +94,7 @@ function AdminPanelProducts() {
           page: params.get("page"),
           categoryId: params.get("categoryId"),
           searchItem: params.get("search"),
+          sortId: params.get("sort"),
         })
       );
     }
@@ -123,6 +126,7 @@ function AdminPanelProducts() {
           page: params.get("page"),
           categoryId: params.get("categoryId"),
           searchItem: params.get("search"),
+          sortId: params.get("sort"),
         })
       );
     }

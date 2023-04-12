@@ -3,8 +3,8 @@ import { productsService } from "../../api/services/products";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchlist",
-  async ({page, categoryId, searchItem}) => {
-    const res = await productsService(page, categoryId, searchItem);
+  async ({page, categoryId, searchItem, sortId}) => {
+    const res = await productsService(page, categoryId, searchItem, sortId);
     const totalCount = res.headers["x-total-count"];
     return [res.data, totalCount];
   }

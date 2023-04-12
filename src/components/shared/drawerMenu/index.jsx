@@ -80,6 +80,12 @@ function DrawerMenu(props) {
       case "0":
         navigate("/admin/stocks");
         break;
+      case "-1":
+        params.delete("categoryId");
+        params.delete("page");
+        params.set("filter", true);
+        setParams(params);
+        break;
       default:
         navigate(`/admin/stocks?categoryId=${id}`);
         break;
@@ -132,7 +138,6 @@ function DrawerMenu(props) {
         </>
       ) : (
         <>
-          <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
           <Select
             opt={commonOptions}
             className="h-8 w-64"
@@ -161,7 +166,7 @@ function DrawerMenu(props) {
               { name: "سفارش های ارسال شده", id: 1 },
               { name: "سفارش های ارسال نشده", id: 2 },
             ]}
-            all="همه سفارش ها"
+            all={[{ name: "همه سفارش ها", id: 0 }]}
             onClick={ordersFilter}
           />
         )}
@@ -187,7 +192,10 @@ function DrawerMenu(props) {
         {stocksSub && (
           <SubMenu
             items={categories.data}
-            all="همه موجودی ها"
+            all={[
+              { name: "همه موجودی ها", id: 0 },
+              { name: "کالاهای ناموجود", id: -1 },
+            ]}
             onClick={stocksFilter}
           />
         )}
@@ -213,7 +221,7 @@ function DrawerMenu(props) {
         {productsSub && (
           <SubMenu
             items={categories.data}
-            all="همه کالاها"
+            all={[{ name: "همه کالاها", id: 0 }]}
             onClick={productsFilter}
           />
         )}

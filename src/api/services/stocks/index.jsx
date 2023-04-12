@@ -1,7 +1,7 @@
 import { instance } from "../../constant";
 
-export const stocksService = (page, categoryId, searchItem, sortId) => {
-  let base = `/products?_expand=category&_expand=subcategory&quantity_gte=1&_page=${page}&_limit=6`;
+export const stocksService = (page, categoryId, searchItem, sortId, filter) => {
+  let base = `/products?_expand=category&_expand=subcategory&_page=${page}&_limit=6`;
   if (categoryId !== null && categoryId !== undefined) {
     base += `&categoryId=${categoryId}`;
   }
@@ -25,6 +25,11 @@ export const stocksService = (page, categoryId, searchItem, sortId) => {
       case "5":
         base += `&_sort=name&_order=asc`;
     }
+  }
+  if (filter) {
+    base += `&quantity=0`;
+  } else {
+    base += `&quantity_gte=1`;
   }
   return instance.get(base);
 };

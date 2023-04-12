@@ -21,6 +21,7 @@ function AdminPanelStocks() {
         categoryId: params.get("categoryId"),
         searchItem: params.get("search"),
         sortId: params.get("sort"),
+        filter: params.get("filter"),
       })
     );
   }, [dispatch, params]);

@@ -20,6 +20,7 @@ function AdminPanelStocks() {
         page: params.get("page"),
         categoryId: params.get("categoryId"),
         searchItem: params.get("search"),
+        sortId: params.get("sort"),
       })
     );
   }, [dispatch, params]);
@@ -57,6 +58,7 @@ function AdminPanelStocks() {
         page: params.get("page"),
         categoryId: params.get("categoryId"),
         searchItem: params.get("search"),
+        sortId: params.get("sort"),
       })
     );
   }

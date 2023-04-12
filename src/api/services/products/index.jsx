@@ -23,8 +23,9 @@ export const productsService = (page, categoryId, searchItem, sortId) => {
       case "4":
         base += `&_sort=quantity&_order=asc`;
         break;
-        case "5":
-          base +=  `&_sort=name&_order=asc`
+      case "5":
+        base += `&_sort=name&_order=asc`;
+        break;
     }
   }
   return instance.get(base);

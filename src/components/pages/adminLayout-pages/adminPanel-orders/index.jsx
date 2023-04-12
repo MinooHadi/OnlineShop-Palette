@@ -22,6 +22,7 @@ function AdminPanelOrders() {
         page: params.get("page"),
         delivered: params.get("delivered"),
         searchItem: params.get("search"),
+        sortId: params.get("sort"),
       })
     );
   }, [dispatch, params]);
@@ -58,6 +59,7 @@ function AdminPanelOrders() {
         page: params.get("page"),
         delivered: params.get("delivered"),
         searchItem: params.get("search"),
+        sortId: params.get("sort"),
       })
     );
     setTimeout(() => {

@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function useAuth() {
   const navigate = useNavigate();
-  const [showLToast, setShowLToast] = useState(undefined)
+  const [showLToast, setShowLToast] = useState(undefined);
 
   const loginSchema = yup.object({
     username: yup.string().required("پر کردن این فیلد الزامی می باشد"),
@@ -27,8 +27,8 @@ function useAuth() {
     } catch {
       setShowLToast(false);
       setTimeout(() => {
-        setShowLToast(undefined)
-      }, 2000)
+        setShowLToast(undefined);
+      }, 2000);
     }
   }
 
@@ -43,7 +43,7 @@ function useAuth() {
     handleSubmit,
     errors,
     login,
-    showLToast
+    showLToast,
   };
 }
 

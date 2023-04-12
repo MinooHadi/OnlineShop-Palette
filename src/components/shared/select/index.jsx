@@ -3,6 +3,7 @@ import React from "react";
 function Select(props) {
   return (
     <select
+      value={props.value}
       className={props.className}
       {...props.validation}
       onChange={(e) => {
@@ -10,8 +11,10 @@ function Select(props) {
         props.validation && props.validation.onChange(e);
       }}
     >
-      {props.opt.map((item) => (
-        <option value={item.id}> {item.name} </option>
+      {props.opt.map((item, i) => (
+        <option key={i} value={item.id}>
+          {item.name}
+        </option>
       ))}
     </select>
   );

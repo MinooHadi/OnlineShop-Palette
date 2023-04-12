@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Input from "../input";
@@ -8,17 +13,34 @@ import Select from "../select";
 import { fetchCategories } from "../../../redux/Slices/categoriesSlice";
 
 import { ArrowDownSFillIcon } from "../../icons";
-import { fetchProducts } from "../../../redux/Slices/productsSlice";
 
-function DrawerMenu() {
+function DrawerMenu(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [ordersSub, setOrdersSub] = useState(false);
   const [stocksSub, setStocksSub] = useState(false);
   const [productsSub, setProductsSub] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(-1);
   const [params, setParams] = useSearchParams();
+  const location = useLocation();
 
   const { categories } = useSelector((store) => store);
+
+  const commonOptions = [
+    { name: "مرتب سازی", id: -1 },
+    { name: "به ترتیب حروف الفبا", id: 5 },
+    { name: "براساس قیمت (نزولی)", id: 1 },
+    { name: "براساس قیمت (صعودی)", id: 2 },
+    { name: "براساس تعداد (نزولی)", id: 3 },
+    { name: "براساس تعداد (صعودی)", id: 4 },
+  ];
+
+  const orderOption = [
+    { name: "مرتب سازی", id: -1 },
+    { name: "به ترتیب حروف الفبا", id: 5 },
+    { name: "به ترتیب تاریخ (نزولی)", id: 6 },
+    { name: "به ترتیب تاریخ (صعودی)", id: 7 },
+  ];
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -72,6 +94,7 @@ function DrawerMenu() {
   }
 
   function sortProducts(e) {
+    setSelectedValue(e.target.value);
     params.delete("page");
     if (e.target.value == -1) {
       params.delete("sort");
@@ -96,22 +119,31 @@ function DrawerMenu() {
         onChange={search}
         defaultValue={params.get("search")}
       />
-      <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
-      <Select
-        opt={[
-          { name: "مرتب سازی", id: -1 },
-          { name: "به ترتیب حروف الفبا", id: 5 },
-          { name: "براساس قیمت (نزولی)", id: 1 },
-          { name: "براساس قیمت (صعودی)", id: 2 },
-          { name: "براساس تعداد (نزولی)", id: 3 },
-          { name: "براساس تعداد (صعودی)", id: 4 },
-        ]}
-        className="h-8 w-64"
-        onChange={sortProducts}
-      />
+      {location.pathname.startsWith("/admin/orders") ? (
+        <>
+          <Select
+            opt={orderOption}
+            className="h-8 w-64"
+            onChange={sortProducts}
+            value={selectedValue}
+          />
+        </>
+      ) : (
+        <>
+          <Select opt={[{ name: "فیلتر" }]} className="h-8 w-64" />
+          <Select
+            opt={commonOptions}
+            className="h-8 w-64"
+            onChange={sortProducts}
+            value={selectedValue}
+          />
+        </>
+      )}
       <div>
         <div className="flex gap-1 w-fit">
-          <Link to="/admin/orders">سفارش ها</Link>
+          <Link to="/admin/orders" onClick={() => setSelectedValue(-1)}>
+            سفارش ها
+          </Link>
           <ArrowDownSFillIcon
             size="1.5rem"
             onClick={() => {
@@ -134,7 +166,11 @@ function DrawerMenu() {
       </div>
       <div>
         <div className="flex gap-1 w-fit">
-          <Link to="/admin/stocks" className="flex gap-1 w-fit">
+          <Link
+            to="/admin/stocks"
+            className="flex gap-1 w-fit"
+            onClick={() => setSelectedValue(-1)}
+          >
             موجودی و قیمت ها
           </Link>
           <ArrowDownSFillIcon
@@ -156,7 +192,11 @@ function DrawerMenu() {
       </div>
       <div>
         <div className="flex gap-1 w-fit">
-          <Link to="/admin/products" className="flex gap-1 w-fit">
+          <Link
+            to="/admin/products"
+            className="flex gap-1 w-fit"
+            onClick={() => setSelectedValue(-1)}
+          >
             کالاها
           </Link>
           <ArrowDownSFillIcon
@@ -176,6 +216,7 @@ function DrawerMenu() {
           />
         )}
       </div>
+      {props.children}
     </div>
   );
 }

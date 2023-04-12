@@ -2,7 +2,6 @@ import axios from "axios";
 import { instance, toFormData } from "../../constant";
 
 export const productsService = (page, categoryId, searchItem, sortId) => {
-  console.log(sortId);
   let base = `/products?_expand=category&_expand=subcategory&_page=${page}&_limit=6`;
   if (categoryId !== null && categoryId !== undefined) {
     base += `&categoryId=${categoryId}`;

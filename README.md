@@ -5,7 +5,8 @@
 3. `npm install`
 4. `npm start`
 
-**Note:** To run this project you need to run backend on port `3001`: 
+**Note:** To run this project you need to run backend on port `3001`:
+
 5. `cd backend`
 6. `npm install`
 7. `npm run backend`

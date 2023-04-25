@@ -1,7 +1,7 @@
-# Palet: Online shop written with React and Tailwind
+# Palette: Online shop written with React and Tailwind
 ## Getting Started
-1. `git clone https://github.com/MinooHadi/OnlineShop-Palet.git`
-2. `cd OnlineShop-Palet`
+1. `git clone https://github.com/MinooHadi/OnlineShop-Palette.git`
+2. `cd OnlineShop-Palette`
 3. `npm install`
 4. `npm start`
 
